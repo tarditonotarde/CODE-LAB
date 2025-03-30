@@ -1,4 +1,6 @@
+/* GRADIENT EFFECT */
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -10,11 +12,13 @@
 }
 html,
 body {
+  display: block;
   overscroll-behavior-x: none;
   overscroll-behavior-y: none;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
 @property --hue1 {
   syntax: "<angle>";
   inherits: false;
@@ -25,6 +29,7 @@ body {
   inherits: false;
   initial-value: 0deg;
 }
+
 body {
   font-family: "Geist", sans-serif;
   position: relative;
@@ -46,26 +51,24 @@ body {
 
   background-size: 100% 100%;
   color: PaleVioletRed;
-
-  animation-name: anim_bg;
-  animation-duration: 5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation: anim_bg 5s linear infinite;
 }
+
 @keyframes anim_bg {
   0% {
     --hue1: 0deg;
     --hue2: 300deg;
   }
-
   100% {
     --hue1: 360deg;
     --hue2: 660deg;
   }
 }
+
 main {
   position: relative;
 }
+
 section {
   position: relative;
   width: 100%;
@@ -74,6 +77,72 @@ section {
   display: grid;
   place-items: center;
 }
+
 h1 {
   text-transform: uppercase;
 }
+/* END GRADIENT EFFECT */
+
+/* TYPING EFFECT */
+.typing.animate {
+  color: black;
+  border-right: 0.1em solid black;
+  font-family: monospace;
+  font-size: 2em;
+  animation: type 4s steps(60), writer 1s infinite alternate, delete 0.5s steps(5) 4s, type2 1s steps(5) 4.5s forwards, type3 3s steps(60, end) 7.5s forwards;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.typing.animate::before { 
+  content: "👋 Hey! I’m Claudia Tardito. These are my code experiments!";
+  animation: type2 1s steps(5) 4.5s forwards, type3 3s steps(60, end) 7.5s forwards;
+}
+
+@keyframes type {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60ch;
+  }
+}
+
+@keyframes type2 {
+  from {
+    width: 45ch;
+    content: "👋 Hey! I’m Claudia Tardito. These are my code experiments!";
+  }
+  to {
+    width: 60ch;
+    content: "👋 Hey! I’m Claudia Tardito. These are my code experiments!";
+  }
+}
+
+@keyframes type3 {
+  from {
+    width: 60ch;
+    content: "👋 Hey! I’m Claudia Tardito. These are my code experiments!";
+  }
+  to {
+    width: 60ch;
+    content: "👋 Hey! I’m Claudia Tardito. These are my code experiments!";
+  }
+}
+
+@keyframes writer {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes delete {
+  from {
+    width: 60ch;
+  }
+  to {
+    width: 45ch;
+  }
+}
+/* END TYPING EFFECT */
