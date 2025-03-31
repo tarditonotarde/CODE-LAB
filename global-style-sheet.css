@@ -121,7 +121,7 @@ header {
 #cubicle > .links li {
     min-width: var(--width);
     height: var(--height);
-    margin: 0 0 0 calc(-1 * var(--border));
+    margin: 0 0 0 0; /* Espacio entre los elementos antes: 0 0 0 calc(-1 * var(--border)); */
     perspective: 1000px;
     z-index: 1;
 }
@@ -167,68 +167,53 @@ header {
 
 
 
+/* END NAV HEADER */
+/* END HEADER */
+
+
+
 /* TYPING EFFECT */
-.typing.animate {
+.typing {
   color: black;
-  border-right: 0.1em solid black;
   font-family: monospace;
   font-size: 2em;
-  animation: type 4s steps(60), writer 1s infinite alternate, delete 0.5s steps(5) 4s, type2 1s steps(5) 4.5s forwards, type3 3s steps(60, end) 7.5s forwards;
-  overflow: hidden;
   white-space: nowrap;
+  overflow: hidden;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.typing.animate::before { 
-  content: "👋 Hey! I’m Claudia Tardito. These are my code experiments!";
-  animation: type2 1s steps(5) 4.5s forwards, type3 3s steps(60, end) 7.5s forwards;
-}
-
-@keyframes type {
-  from {
-    width: 0;
-  }
-  to {
-    width: 60ch;
+@media (max-width: 768px) {
+  .typing {
+    font-size: 1.2em;
   }
 }
 
-@keyframes type2 {
-  from {
-    width: 45ch;
-    content: "👋 Hey! I’m Claudia Tardito. These are my code experiments!";
-  }
-  to {
-    width: 60ch;
-    content: "👋 Hey! I’m Claudia Tardito. These are my code experiments!";
+@media (max-width: 480px) {
+  .typing {
+    font-size: 1em;
   }
 }
 
-@keyframes type3 {
-  from {
-    width: 60ch;
-    content: "👋 Hey! I’m Claudia Tardito. These are my code experiments!";
-  }
-  to {
-    width: 60ch;
-    content: "👋 Hey! I’m Claudia Tardito. These are my code experiments!";
-  }
+.typing::before {
+  content: "👋 Hey! I’m Claudia Tardito.";
+  color: black;
 }
 
-@keyframes writer {
+.typing-line {
+  display: inline-block;
+  border-right: 0.1em solid black;
+  font-family: monospace;
+  padding-left: 5px;
+  animation: type 3s steps(40) forwards, blink 0.8s step-end infinite;
+
+}
+
+@keyframes blink {
   50% {
     border-color: transparent;
   }
 }
-
-@keyframes delete {
-  from {
-    width: 60ch;
-  }
-  to {
-    width: 45ch;
-  }
-}
 /* END TYPING EFFECT */
-
-
