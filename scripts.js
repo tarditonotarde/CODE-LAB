@@ -1,7 +1,14 @@
+/* INDEX PAGE */
+/* This script handles the typing effect on the index page */
+/* It types and deletes words from an array of texts */
+/* The words are displayed in a typing animation */
+/* The animation is triggered when the user clicks on the typing element */
+/* The user is redirected to the "stuffs.html" page when they click on the typing element */
+
 $(document).ready(() => {
   let typingElement = $('.typing');
   let typingLine = $('.typing-line');
-  const texts = ["crap-code", "tonterías", "experiments", "labs", "playground", "bullshits", "nonsense", "stupidities", "projects", "silly-stuff"];
+  const texts = ["crap-codes", "tonterías", "experiments", "labs", "playgrounds", "bullshits", "nonsenses", "stupidities", "projects", "silly-stuffs"];
   let index = 0;
 
   function typeText(text, i = 0) {
@@ -24,10 +31,33 @@ $(document).ready(() => {
   }
 
   typingElement.on('click', () => {
-    typingElement.removeClass('animate');
-    void typingElement[0].offsetWidth; // Forzar re-render en jQuery
-    typingElement.addClass('animate');
+    window.location.href = "stuffs.html";
   });
 
   typeText(texts[index]);
 });
+
+/*LETTER EFFECTS*/
+const spans = document.querySelectorAll('.word span');
+
+spans.forEach((span, idx) => {
+  span.addEventListener('click', (e) => {
+    e.target.classList.add('active');
+  });
+  span.addEventListener('animationend', (e) => {
+    e.target.classList.remove('active');
+  });
+  
+  // Initial animation
+  setTimeout(() => {
+    span.classList.add('active');
+  }, 750 * (idx+1))
+});
+
+
+
+
+
+
+
+
