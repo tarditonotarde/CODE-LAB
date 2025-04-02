@@ -12,7 +12,7 @@
     <link rel="icon" type="image/svg+xml" href="ASSETS/IMG/favicom-claudia-tardito.svg">
     <link rel="apple-touch-icon" href="ASSETS/IMG/favicom-claudia-tardito.svg">
 
-    <title>contact</title>
+    <title>Contact</title>
 </head>
 <body>
 
@@ -26,23 +26,40 @@
             <li><a href="contact.html" title="contact"></a></li>
         </ul>
     </nav>
-</header>
+  </header>
 
-
-  <section>
-    <div class="word">
-        <span>M</span>
-        <span>N</span>
+  <!-- Contact Section -->
+  <section class="container mt-5">
+    <div class="row">
+      <!-- Form Column -->
+      <div class="col-md-6">
+        <h2>Contact Us</h2>
+        <form action="submit_form.php" method="POST">
+          <div class="mb-3">
+            <label for="name" class="form-label">Your Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Your Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Your Message</label>
+            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
       </div>
+      
+      <!-- Image Column -->
+      <div class="col-md-6">
+        <img src="ASSETS/IMG/claudia-tardito-action-figure.png" alt="Image" class="img-fluid" style="height: 100%; object-fit: cover;">
+      </div>
+    </div>
   </section>
-
-
-
-
-
-
 
 </main>
 
 </body>
 </html>
+
