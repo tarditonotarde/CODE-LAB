@@ -1,9 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 @import url(https://fonts.bunny.net/css?family=nunito:400,400i,600,600i,800,800i);
 @import url('https://fonts.googleapis.com/css?family=Anton|Roboto');
-
-
-
+@import url("ASSETS/stuffs-style-sheet.css");
 
 /* GRADIENT EFFECT BACKGROUND*/
 * {
@@ -218,54 +216,4 @@ header {
   }
 }
 /* END TYPING EFFECT */
-
-/*LETTER EFFECTS*/
-
-
-.word {
-  font-family: 'Anton', sans-serif;
-  perspective: 1000px; 
-}
-
-.word span {
-  cursor: pointer;
-  display: inline-block;
-  font-size: 100px;
-  user-select: none;
-  line-height: .8;
-}
-
-.word span:nth-child(1).active {
-  animation: balance 1.5s ease-out;
-  transform-origin: bottom left;
-}
-
-@keyframes balance {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  
-  30%, 60% {
-    transform: rotate(-45deg);
-  }
-}
-
-.word span:nth-child(2).active {
-  animation: pulse 1.5s infinite;
-  transform-origin: bottom center;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(0.9);
-  }
-  50% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.9);
-  }
-}
-
-/* END LETTER EFFECTS */
 
