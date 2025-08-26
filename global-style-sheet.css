@@ -217,3 +217,93 @@ header {
 }
 /* END TYPING EFFECT */
 
+
+/* CONTACT FORM */
+
+#contact-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1rem;
+}
+
+.cubicle-form {
+  width: 100%;
+  max-width: 800px;
+}
+
+.cubicle-form > .links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cubicle-form li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* CAMPOS NORMALES */
+.cubicle-form input,
+.cubicle-form textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  border: 2px solid #000;
+  outline: none;
+  background: transparent;
+  color: #000;
+  resize: none;
+}
+
+/* =============================
+   BOTÓN 3D - EFECTO IGUAL AL NAV
+   ============================= */
+   
+.btn-nav-effect {
+  display: block;
+  width: var(--width);
+  height: var(--height);
+  background: transparent;
+  border: none;
+  color: var(--color1);
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(-1 * var(--height) / 2));
+  transition: transform 0.5s cubic-bezier(.08,.82,.17,1);
+}
+
+.btn-nav-effect:hover {
+  transform: translateZ(calc(-1 * var(--height) / 2)) rotateX(-90deg);
+}
+
+.btn-nav-effect::before,
+.btn-nav-effect::after {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--width);
+    height: var(--height);
+    position: absolute;
+    border: var(--border) solid var(--color1);
+    content: attr(title);
+}
+
+.btn-nav-effect::before {
+    background-color: transparent; /* Fondo transparente */
+    color: var(--color1); /* Letras negras */
+    transform: rotateY(0deg) translateZ(calc(var(--height) / 2));
+}
+
+.btn-nav-effect::after {
+    background-color: var(--color1); /* Fondo negro */
+    color: var(--color2); /* Letras blancas */
+    transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
+}
+/* END BOTÓN 3D - EFECTO IGUAL AL NAV */
