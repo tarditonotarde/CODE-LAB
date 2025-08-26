@@ -169,8 +169,6 @@ header {
 /* END NAV HEADER */
 /* END HEADER */
 
-
-
 /* TYPING EFFECT */
 .typing {
   color: black;
@@ -228,8 +226,9 @@ header {
 }
 
 .cubicle-form {
-  width: 100%;
-  max-width: 800px;
+  width: 100vw;
+max-width: 600px;
+padding: 10%;
 }
 
 .cubicle-form > .links {
@@ -252,7 +251,6 @@ header {
 .cubicle-form textarea {
   width: 100%;
   padding: 0.8rem 1rem;
-  font-family: 'Nunito', sans-serif;
   font-size: 1rem;
   border: 2px solid #000;
   outline: none;
