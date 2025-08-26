@@ -55,6 +55,14 @@ spans.forEach((span, idx) => {
 });
 
 
+/* MENU TOGGLE */
+// Asegúrate de que jQuery esté cargado antes de este script
+$(document).ready(function () {
+  $(".menu-toggle").click(function () {
+    $(".navbar").toggleClass("active");
+    $("body").toggleClass("menu-open");
+  });
+});
 
 
 
