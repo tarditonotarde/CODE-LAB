@@ -56,8 +56,114 @@ spans.forEach((span, idx) => {
 
 
 
+/* CONTACT PAGE */
+/* MSN-style popup + Windows-like bottom bar */
 
+document.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("msn-popup");
+  const sound = document.getElementById("msn-sound");
+  const winbar = document.getElementById("winbar");
+  const startBtn = document.querySelector(".start-btn");
+  const contactBtn = document.querySelector(".tray-btn[aria-label='Contact']");
+  const stuffsBtn = document.querySelector(".tray-btn[aria-label='Stuffs']");
+  const figmaBtn = document.querySelector(".tray-btn[aria-label='Figma']");
+  const whatsappArea = document.getElementById("msn-whatsapp");
+  const closeArea = document.getElementById("msn-close");
 
+  const whatsappLink = "https://wa.me/34663830109";
+  const figmaLink = "https://www.figma.com/proto/95WPIJoGGErxr5TYSXC9o0/Portfolio-Claudia-Tardito?page-id=2010%3A24768&node-id=2010-24769&viewport=115%2C74%2C0.31&t=llxvXUiUtBJnbqi1-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2010%3A24769"; // my figma
 
+  let audioEnabled = false;
+  let popupVisible = false;
+  let footerShown = false;
 
+  // Mostrar popup automáticamente a los 2 segundos
+  setTimeout(() => {
+    popup.style.display = "block";
+    popup.classList.add("shake");
+    popupVisible = true;
+    if (audioEnabled) {
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+    }
+  }, 2000);
 
+  // Clicks globales
+  document.addEventListener("click", (e) => {
+    if (!audioEnabled) audioEnabled = true;
+    if (!popupVisible) return;
+
+    // Click en WhatsApp → abrir WhatsApp
+    if (whatsappArea && whatsappArea.contains(e.target)) {
+      window.open(whatsappLink, "_blank");
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+      return;
+    }
+
+    // Click en cierre superior derecho → cerrar popup
+    if (closeArea && closeArea.contains(e.target)) {
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+      popup.style.display = "none";
+      popupVisible = false;
+      if (!footerShown && winbar) {
+        winbar.classList.remove("hidden");
+        winbar.classList.add("appear");
+        setTimeout(() => winbar.classList.remove("appear"), 300);
+        footerShown = true;
+      }
+      return;
+    }
+
+    // Click dentro del popup → solo sonido
+    if (popup.contains(e.target)) {
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+      return;
+    }
+
+    // Click fuera del popup → último sonido, cerrar popup, mostrar footer
+    sound.currentTime = 0;
+    sound.play().catch(() => {});
+    popup.style.display = "none";
+    popupVisible = false;
+    if (!footerShown && winbar) {
+      winbar.classList.remove("hidden");
+      winbar.classList.add("appear");
+      setTimeout(() => winbar.classList.remove("appear"), 300);
+      footerShown = true;
+    }
+  });
+
+  // ----- Botones barra inferior -----
+  if (startBtn) startBtn.addEventListener("click", () => window.location.href = "index.html");
+  if (stuffsBtn) stuffsBtn.addEventListener("click", () => window.location.href = "stuffs.html");
+  if (contactBtn) contactBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    popup.style.display = "block";
+    popup.classList.add("shake");
+    popupVisible = true;
+    if (!audioEnabled) audioEnabled = true;
+    sound.currentTime = 0;
+    sound.play().catch(() => {});
+  });
+  if (figmaBtn) figmaBtn.addEventListener("click", () => {
+    window.open(figmaLink, "_blank");
+  });
+});
+/* CONTACT PAGE */
+/* This script handles the MSN-style popup and Windows-like bottom bar on the contact page */
+
+// NAV ITEMS 
+document.addEventListener("DOMContentLoaded", () => {
+  const navLinks = document.querySelectorAll("#cubicle > .links a");
+  const currentPath = window.location.pathname.split("/").pop(); // nombre del archivo actual
+
+  navLinks.forEach(link => {
+    const linkPath = link.getAttribute("href");
+    if (linkPath === currentPath) {
+      link.classList.add("active");
+    }
+  });
+});

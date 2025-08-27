@@ -104,6 +104,12 @@ ol, ul {
 }
 
 /* NAV HEADER */
+
+#cubicle > .links a.active {
+  transform: translateZ(calc(-1 * calc(var(--height) / 2))) rotateX(-90deg);
+}
+
+
 *,*::before,*::after{box-sizing:border-box}body{margin:0;padding:0;width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;font-family:'Nunito', sans-serif;font-size:16px;line-height:1.5}
 :root{
     --color1:#000;
@@ -340,3 +346,90 @@ display: flex;
   color: var(--color2);
   transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
 }
+
+/* Popup centrado */
+#msn-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: none;
+}
+
+#msn-popup img {
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Animación de temblor en su eje */
+@keyframes msn-shake {
+  0%   { transform: translate(-50%, -50%) rotate(0deg); }
+  20%  { transform: translate(-50%, -50%) rotate(-3deg); }
+  40%  { transform: translate(-50%, -50%) rotate(3deg); }
+  60%  { transform: translate(-50%, -50%) rotate(-3deg); }
+  80%  { transform: translate(-50%, -50%) rotate(3deg); }
+  100% { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+#msn-popup.shake {
+  animation: msn-shake 0.2s ease-in-out infinite;
+}
+
+/* ----- Windows-like bottom bar ----- */
+.winbar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: 56px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-image: url('ASSETS/IMG/Bottom-bar.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 9999;
+  user-select: none;
+  -webkit-user-select: none;
+}
+#winbar {
+  filter: drop-shadow(0 -4px 6px rgba(0,0,0,0.5));
+}
+.start-btn img,
+.tray-btn img {
+  transition: transform 0.1s;
+}
+
+/* Efecto sutil al presionar (hundido) */
+.start-btn:active img,
+.tray-btn:active img,
+.tray-btn-clock:active img {
+  transform: translateY(1.5px); /* sutil hundido */
+  filter: brightness(0.95);     /* ligero oscurecimiento para realismo */
+}
+
+
+.winbar.hidden { display: none; }
+
+.winbar-left, .winbar-right { display: flex; align-items: center; gap: 10px; }
+
+.start-btn, .tray-btn {
+  border: 0;
+  background: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.start-btn:hover, .tray-btn:hover {
+  filter: brightness(1.08);
+}
+
+.start-btn img { height: 36px; width: auto; display: block; }
+.tray-btn img  { height: 28px; width: 28px ; display: block; }
+.tray-btn-clock img  { height: 30px; width: auto !important; display: block; }
+
+/* opcional: pequeña animación al aparecer */
+@keyframes winbar-slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.winbar.appear { animation: winbar-slide-up 220ms ease-out; }

@@ -9,8 +9,8 @@
   <script src="scripts.js" defer></script>
   
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="ASSETS/IMG/favicom-claudia-tardito.svg">
-  <link rel="apple-touch-icon" href="ASSETS/IMG/favicom-claudia-tardito.svg">
+  <link rel="icon" type="image/svg+xml" href="ASSETS/IMG/favicom-contact.svg">
+  <link rel="apple-touch-icon" href="ASSETS/IMG/favicom-contact.svg">
 
   <title>Contact</title>
 </head>
@@ -19,9 +19,10 @@
     <header>
       <nav id="cubicle">
         <ul class="links">
-          <li><a href="index.html" title="👋 Hey!"></a></li>
+          <li><a href="index.html" title="Hey!"></a></li>
           <li><a href="stuffs.html" title="stuffs"></a></li>
           <li><a href="contact.html" title="contact"></a></li>
+          <li><a href="https://www.claudiatardito.cl/" title="portfolio" target="_blank" rel="noopener noreferrer"></a></li>
         </ul>
       </nav>
     </header>
@@ -50,5 +51,60 @@
       </form>
     </section>
   </main>
+
+<!-- Popup MSN -->
+<div id="msn-popup" class="msn-hidden">
+  <img src="ASSETS/IMG/MSN DESK.svg" alt="MSN Popup" id="msn-window">
+  <audio id="msn-sound" src="ASSETS/SOUNDS/msn-zumbido.mp3" preload="auto"></audio>
+
+  <!-- Zona clicable WhatsApp en la esquina inferior derecha -->
+  <div id="msn-whatsapp" style="
+       position: absolute;
+       width: 80px;      /* ancho del área clicable */
+       height: 80px;     /* alto del área clicable */
+       bottom: 10px;     /* desde abajo */
+       right: 10px;      /* desde la derecha */
+       cursor: pointer;
+       z-index: 10;
+  "></div>
+
+  <!-- Zona clicable superior derecha para cerrar -->
+<div id="msn-close" style="
+     position: absolute;
+     width: 50px;      /* ancho del área de cierre */
+     height: 50px;     /* alto del área de cierre */
+     top: 10px;        /* desde arriba */
+     right: 10px;      /* desde la derecha */
+     cursor: pointer;
+     z-index: 10;
+"></div>
+
+</div>
+
+
+<!-- Barra inferior estilo Windows -->
+<footer id="winbar" class="winbar hidden" aria-label="Windows bottom bar">
+  <div class="winbar-left">
+    <button class="start-btn" aria-label="Start">
+      <img src="ASSETS/IMG/start-button.svg" alt="Start">
+    </button>
+  </div>
+
+  <div class="winbar-right">
+    <button class="tray-btn" aria-label="Contact">
+      <img src="ASSETS/IMG/favicom-contact.svg" alt="Contact">
+    </button>
+    <button class="tray-btn" aria-label="Stuffs">
+      <img src="ASSETS/IMG/favicom-stuffs.svg" alt="Stuffs">
+    </button>
+     <button class="tray-btn" aria-label="Figma">
+      <img src="ASSETS/IMG/Icon-figma.svg" alt="Figma">
+    </button>
+    <button style="margin-left: 10px;" class="tray-btn-clock" aria-label="Clock">
+      <img src="ASSETS/IMG/Clock.svg" alt="Clock">
+    </button>
+  </div>
+</footer>
+
 </body>
 </html>
