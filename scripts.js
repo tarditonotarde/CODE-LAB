@@ -8,7 +8,7 @@
 $(document).ready(() => {
   let typingElement = $('.typing');
   let typingLine = $('.typing-line');
-  const texts = ["crap-codes", "tonterías", "experiments", "labs", "playgrounds", "bullshits", "nonsenses", "stupidities", "projects", "silly-stuffs"];
+  const texts = ["crap-codes.", "tonterías.", "experiments.", "labs.", "playgrounds.", "bullshits.", "nonsenses.", "stupidities.", "projects.", "silly-stuffs."];
   let index = 0;
 
   function typeText(text, i = 0) {

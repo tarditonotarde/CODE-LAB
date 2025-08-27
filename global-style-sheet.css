@@ -76,7 +76,6 @@ section {
   position: relative;
   width: 100%;
   height: auto;
-  min-height: 100vh;
   display: grid;
   place-items: center;
 }
@@ -90,14 +89,18 @@ h1 {
 /* HEADER */
 header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 10px;
+  left: 10px;
+  right: 10px;
   z-index: 100;
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
-  padding: 2rem;
+}
+
+ol, ul {
+    padding-left: 0rem;
+    margin-bottom: 0rem;
 }
 
 /* NAV HEADER */
@@ -105,8 +108,8 @@ header {
 :root{
     --color1:#000;
     --color2:#fff;
-    --height:40px;
-    --width:110px;
+    --height:30px !important;
+    --width:90px !important;
     --border:2px;
 }
 #cubicle {
@@ -114,11 +117,14 @@ header {
 
 }
 #cubicle > .links {
-    display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
+     display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
     list-style: none;
     width: 100%;
+    flex-direction: column;
 }
+
 #cubicle > .links li {
     min-width: var(--width);
     height: var(--height);
@@ -222,13 +228,13 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4rem 1rem;
 }
 
 .cubicle-form {
   width: 100vw;
 max-width: 600px;
-padding: 10%;
+padding-left: 100px;
+padding-right: 100px;
 }
 
 .cubicle-form > .links {
@@ -262,46 +268,75 @@ padding: 10%;
 /* =============================
    BOTÓN 3D - EFECTO IGUAL AL NAV
    ============================= */
-   
+:root {
+  --width: 140px;
+  --height: 50px;
+  --color1: black;
+  --color2: white;
+  --border: 2px;
+}
+
+/* Contenedor opcional con perspectiva */
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  perspective: 1000px;
+}
+
+/* Asegura que el <li> no cause desplazamiento */
+.nav-list li {
+align-items: flex-end;
+display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+/* Botón 3D */
 .btn-nav-effect {
-  display: block;
   width: var(--width);
   height: var(--height);
-  background: transparent;
   border: none;
-  color: var(--color1);
-  cursor: pointer;
+  background: transparent;
   position: relative;
   transform-style: preserve-3d;
-  transform: translateZ(calc(-1 * var(--height) / 2));
-  transition: transform 0.5s cubic-bezier(.08,.82,.17,1);
+  transform: rotateX(0deg);
+  transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
+  cursor: pointer;
+  padding: 0;
 }
 
+/* Efecto hover */
 .btn-nav-effect:hover {
-  transform: translateZ(calc(-1 * var(--height) / 2)) rotateX(-90deg);
+  transform: rotateX(-90deg);
 }
 
-.btn-nav-effect::before,
-.btn-nav-effect::after {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: var(--width);
-    height: var(--height);
-    position: absolute;
-    border: var(--border) solid var(--color1);
-    content: attr(title);
+/* Caras del botón */
+.btn-nav-effect .face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--width);
+  height: var(--height);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: var(--border) solid var(--color1);
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  font: inherit;
 }
 
-.btn-nav-effect::before {
-    background-color: transparent; /* Fondo transparente */
-    color: var(--color1); /* Letras negras */
-    transform: rotateY(0deg) translateZ(calc(var(--height) / 2));
+/* Cara frontal */
+.btn-nav-effect .front {
+  background-color: transparent;
+  color: var(--color1);
+  transform: rotateX(0deg) translateZ(calc(var(--height) / 2));
 }
 
-.btn-nav-effect::after {
-    background-color: var(--color1); /* Fondo negro */
-    color: var(--color2); /* Letras blancas */
-    transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
+/* Cara superior */
+.btn-nav-effect .top {
+  background-color: var(--color1);
+  color: var(--color2);
+  transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
 }
-/* END BOTÓN 3D - EFECTO IGUAL AL NAV */
