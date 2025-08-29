@@ -442,96 +442,108 @@ display: flex;
   transition: transform 0.1s;
 }
 
-/* Efecto sutil al presionar (hundido) */
-.start-btn:active img,
-.tray-btn:active img,
-.tray-btn-clock:active img {
-  transform: translateY(1.5px); /* sutil hundido */
-  filter: brightness(0.95);     /* ligero oscurecimiento para realismo */
-}
 
-
-.winbar.hidden { display: none; }
-
-.winbar-left, .winbar-right { display: flex; align-items: center; gap: 10px; }
-
-.start-btn, .tray-btn {
-  border: 0;
-  background: transparent;
-  border-radius: 10px;
-  cursor: pointer;
-  line-height: 0;
-}
-
-.start-btn:hover, .tray-btn:hover {
-  filter: brightness(1.08);
-}
-
-.start-btn img { height: 36px; width: auto; display: block; }
-.tray-btn img  { height: 28px; width: 28px ; display: block; }
-.tray-btn-clock img  { height: 30px; width: auto !important; display: block; }
-
-/* opcional: pequeña animación al aparecer */
-@keyframes winbar-slide-up {
-  from { transform: translateY(100%); opacity: 0; }
-  to   { transform: translateY(0);    opacity: 1; }
-}
-.winbar.appear { animation: winbar-slide-up 220ms ease-out; }
-
-
-/* ----- STUFFS PAGE ----- */
-.cards-container {
-  position: relative;
+/* FOOTER */
+/* Footer lineal estilo nav */
+#footer-linear {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 80vh;
-  margin: 50px auto;
-  perspective: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  border-top: 2px solid black;
+  height: 50px;
+  background: transparent;
+  box-sizing: border-box;
 }
 
-.card {
+#snakeGame {
+  position: relative;
+  width: 200px;
+  height: 40px;
+  border: 0px solid black;
+  overflow: hidden;
+}
+
+.segment {
   position: absolute;
-  width: 150px;
-  height: 150px;
-  cursor: grab;
+  width: 5px;
+  height: 5px;
+  background: transparent;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.food {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: black;
+}
+/* Lista de iconos dentro del footer */
+
+.icon-nav-linear-links {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+
+.icon-nav-linear-links li {
+align-items: flex-end;
+display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.icon-nav-effect {
+ width: 50px;
+  height: var(--height);
+  border: none;
+  background: transparent;
+  position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(.08,.82,.17,1), box-shadow 0.3s;
+  transform: rotateX(0deg);
+  transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
+  cursor: pointer;
+  padding: 0;
 }
 
-.card:active {
-  cursor: grabbing;
+.icon-nav-effect:hover {
+  transform: rotateX(-90deg);
 }
 
-.card:hover {
-  transform: rotateX(-15deg);
-  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
-}
-
-.card .face {
+.icon-nav-effect .icon-face {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 50px;
+  height: var(--height);
   position: absolute;
-  width: 100%;
-  height: 100%;
-  border: var(--border) solid var(--color1);
+  top: 0;
+  left: 0;
+  border: 0px solid var(--color1);
+  box-sizing: border-box;
   backface-visibility: hidden;
-  font-family: "Geist", sans-serif;
-  font-size: 1.5rem;
+  font: inherit;
 }
 
-.card .front {
+.icon-nav-effect .icon-front {
   background-color: transparent;
   color: var(--color1);
-  transform: rotateX(0deg) translateZ(calc(var(--height)/2));
+  transform: rotateX(0deg) translateZ(calc(var(--height) / 2));
 }
 
-.card .top {
-  background-color: var(--color1);
-  color: var(--color2);
-  transform: rotateX(90deg) translateZ(calc(var(--height)/2));
+.icon-nav-effect .icon-top {
+ background-color: transparent;
+   border: 2px solid var(--color1);
+  color: var(--color1);
+  transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
 }
 
-/* Responsividad */
-@media (max-width: 768px) { .card { width: 120px; height: 120px; } }
-@media (max-width: 480px) { .card { width: 100px; height: 100px; } }
-/* END STUFFS PAGE */
+

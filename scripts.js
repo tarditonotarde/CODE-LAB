@@ -45,57 +45,9 @@
   });
 })();
 
-/* ----------------- CONTACT / STUFFS PAGE ----------------- */
 
-/* STUFFS PAGE */
-const container = document.querySelector('.cards-container');
-const cards = document.querySelectorAll('.card');
+/* ----------------- STUFFS PAGE ----------------- */
 
-cards.forEach(card => {
-  // Distribución inicial aleatoria
-  const maxX = container.offsetWidth - card.offsetWidth;
-  const maxY = container.offsetHeight - card.offsetHeight;
-  card.style.left = Math.random() * maxX + 'px';
-  card.style.top = Math.random() * maxY + 'px';
-});
-
-let zIndexCounter = 1;
-
-cards.forEach(card => {
-  let offsetX, offsetY;
-
-  card.addEventListener('mousedown', e => {
-    e.preventDefault();
-    const rect = card.getBoundingClientRect();
-    const containerRect = container.getBoundingClientRect();
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
-
-    card.style.zIndex = ++zIndexCounter;
-
-    function moveAt(pageX, pageY) {
-      let x = pageX - containerRect.left - offsetX;
-      let y = pageY - containerRect.top - offsetY;
-
-      // Limites dentro del contenedor
-      if (x < 0) x = 0;
-      if (y < 0) y = 0;
-      if (x + card.offsetWidth > containerRect.width) x = containerRect.width - card.offsetWidth;
-      if (y + card.offsetHeight > containerRect.height) y = containerRect.height - card.offsetHeight;
-
-      card.style.left = x + 'px';
-      card.style.top = y + 'px';
-    }
-
-    function onMouseMove(e) { moveAt(e.clientX, e.clientY); }
-
-    document.addEventListener('mousemove', onMouseMove);
-
-    document.addEventListener('mouseup', () => {
-      document.removeEventListener('mousemove', onMouseMove);
-    }, { once: true });
-  });
-});
 
 
 /* ----------------- LETTER CONTACT PAGE ----------------- */
@@ -156,6 +108,67 @@ cards.forEach(card => {
 })();
 
 
+/* FOOTER */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const contactBtn = document.querySelector(".icon-nav-effect[aria-label='Contact']");
+  const figmaBtn   = document.querySelector(".icon-nav-effect[aria-label='Figma']");
+  const msnPopup   = document.getElementById("msn-popup");
+  const msnSound   = document.getElementById("msn-sound");
+  const closeArea  = document.getElementById("msn-close");
+  const whatsappArea = document.getElementById("msn-whatsapp");
+
+  // Click en Contact → abrir popup MSN
+  if (contactBtn) {
+    contactBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (msnPopup && msnSound) {
+        msnPopup.style.display = "block";
+        msnPopup.classList.add("shake");
+        msnSound.currentTime = 0;
+        msnSound.play().catch(() => {});
+      }
+    });
+  }
+
+  // Click en Figma → abrir enlace
+  if (figmaBtn) {
+    figmaBtn.addEventListener("click", () => {
+      window.open("https://www.figma.com/proto/95WPIJoGGErxr5TYSXC9o0/Portfolio-Claudia-Tardito?page-id=2010%3A24768&node-id=2010-24769&viewport=115%2C74%2C0.31&t=llxvXUiUtBJnbqi1-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2010%3A24769", "_blank");
+    });
+  }
+
+  // Cerrar popup
+  if (msnPopup && closeArea) {
+    closeArea.addEventListener("click", (e) => {
+      e.stopPropagation();
+      msnPopup.style.display = "none";
+      msnSound.currentTime = 0;
+      msnSound.play().catch(() => {});
+    });
+  }
+
+  // Área WhatsApp
+  if (whatsappArea) {
+    whatsappArea.addEventListener("click", (e) => {
+      e.stopPropagation(); // No cierra el popup
+      window.open("https://wa.me/34663830109", "_blank");
+    });
+  }
+
+  // Cerrar popup al click fuera (excepto Contact y WhatsApp)
+  if (msnPopup) {
+    document.addEventListener("click", (e) => {
+      if (msnPopup.style.display === "block" &&
+          !msnPopup.contains(e.target) &&
+          !(contactBtn && contactBtn.contains(e.target))) {
+        msnPopup.style.display = "none";
+        msnSound.currentTime = 0;
+        msnSound.play().catch(() => {});
+      }
+    });
+  }
+});
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -258,3 +271,107 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+/*SNAKE PLAY*/
+document.addEventListener("DOMContentLoaded", () => {
+  const game = document.getElementById("snakeGame");
+  const gridSize = 5;
+  const cols = 200 / gridSize;
+  const rows = 40 / gridSize;
+
+  let snake, direction, foods;
+
+  const maxFood = 10;
+
+  function resetGame() {
+    // Mantener tamaño de snake pero reiniciar posición y dirección
+    const startX = Math.floor(Math.random() * cols);
+    const startY = Math.floor(Math.random() * rows);
+    snake = [{ x: startX, y: startY }, ...snake.slice(0, snake.length - 1)];
+    direction = { x: 1, y: 0 };
+    foods = [];
+    for (let i = 0; i < maxFood; i++) placeFood();
+  }
+
+  function placeFood() {
+    if (foods.length >= maxFood) return;
+    let food;
+    do {
+      food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
+    } while (snake.some(seg => seg.x === food.x && seg.y === food.y));
+    foods.push(food);
+  }
+
+  function moveFoodRandomly() {
+    foods.forEach((food, index) => {
+      let newFood;
+      do {
+        newFood = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
+      } while (snake.some(seg => seg.x === newFood.x && seg.y === newFood.y));
+      foods[index] = newFood;
+    });
+  }
+
+  function draw() {
+    game.innerHTML = "";
+    snake.forEach(seg => {
+      const el = document.createElement("div");
+      el.classList.add("segment");
+      el.style.left = seg.x * gridSize + "px";
+      el.style.top = seg.y * gridSize + "px";
+      game.appendChild(el);
+    });
+    foods.forEach(f => {
+      const el = document.createElement("div");
+      el.classList.add("food");
+      el.style.left = f.x * gridSize + "px";
+      el.style.top = f.y * gridSize + "px";
+      game.appendChild(el);
+    });
+  }
+
+  function move() {
+    const head = { ...snake[0] };
+    head.x += direction.x;
+    head.y += direction.y;
+
+    // Cambio de dirección aleatorio fluido
+    if (Math.random() < 0.15) {
+      const dirs = [
+        { x: 1, y: 0 }, { x: -1, y: 0 }, { x: 0, y: 1 }, { x: 0, y: -1 }
+      ];
+      direction = dirs[Math.floor(Math.random() * dirs.length)];
+    }
+
+    // Limitar dentro del área
+    if (head.x < 0) head.x = 0;
+    if (head.x >= cols) head.x = cols - 1;
+    if (head.y < 0) head.y = 0;
+    if (head.y >= rows) head.y = rows - 1;
+
+    snake.unshift(head); // siempre agregamos el nuevo segmento
+
+    // Comer comida
+    const foodIndex = foods.findIndex(f => f.x === head.x && f.y === head.y);
+    if (foodIndex !== -1) {
+      foods.splice(foodIndex, 1);
+      if (foods.length === 0) resetGame(); // reinicio inmediato
+    } else {
+      snake.pop(); // si no come, la serpiente sigue creciendo por que no hacemos pop
+    }
+
+    draw();
+  }
+
+  // Inicializar
+  snake = [{ x: 2, y: 2 }]; // tamaño inicial 1
+  resetGame();
+  setInterval(move, 60); // más rápido y fluido
+  setInterval(moveFoodRandomly, 3000); // comidas cambian cada 3s
+});
+
+
+
+
+/* FOOTER */
