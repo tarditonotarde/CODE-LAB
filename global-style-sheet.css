@@ -279,9 +279,9 @@ ol, ul {
 
 .cubicle-form {
   width: 100vw;
-max-width: 600px;
-padding-left: 100px;
-padding-right: 100px;
+max-width: 400px;
+padding-left: 50px;
+padding-right: 50px;
 }
 
 .cubicle-form > .links {
@@ -453,7 +453,7 @@ display: flex;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 30px 30px 0px;
+  padding: 30px 30px 30px 5px;
   border-top: 2px solid black;
   height: 50px;
   background: transparent;
