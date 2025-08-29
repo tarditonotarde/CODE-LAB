@@ -1,168 +1,259 @@
-/* INDEX PAGE */
-/* This script handles the typing effect on the index page */
-/* It types and deletes words from an array of texts */
-/* The words are displayed in a typing animation */
-/* The animation is triggered when the user clicks on the typing element */
-/* The user is redirected to the "stuffs.html" page when they click on the typing element */
+/* ----------------- INDEX PAGE ----------------- */
+(function () {
+  // Solo correr la parte de INDEX si existe jQuery y existe .typing
+  if (!window.jQuery) return;
+  $(function () {
+    const $typing = $('.typing');
+    if (!$typing.length) return;
 
-$(document).ready(() => {
-  let typingElement = $('.typing');
-  let typingLine = $('.typing-line');
-  const texts = ["crap-codes.", "tonterías.", "experiments.", "labs.", "playgrounds.", "bullshits.", "nonsenses.", "stupidities.", "projects.", "silly-stuffs."];
-  let index = 0;
+    let typingLine = $('.typing-line');
+    const texts = ["crap-codes.", "tonterías.", "experiments.", "labs.", "playgrounds.", "bullshits.", "nonsenses.", "stupidities.", "projects.", "silly-stuffs."];
+    let index = 0;
 
-  function typeText(text, i = 0) {
-    if (i <= text.length) {
-      typingLine.text("These are my " + text.slice(0, i));
-      setTimeout(() => typeText(text, i + 1), 100);
-    } else {
-      setTimeout(() => deleteText(text), 1000);
+    function typeText(text, i = 0) {
+      if (i <= text.length) {
+        typingLine.text("These are my " + text.slice(0, i));
+        setTimeout(() => typeText(text, i + 1), 100);
+      } else {
+        setTimeout(() => deleteText(text), 1000);
+      }
     }
-  }
 
-  function deleteText(text, i = text.length) {
-    if (i >= 0) {
-      typingLine.text("These are my " + text.slice(0, i));
-      setTimeout(() => deleteText(text, i - 1), 100);
-    } else {
-      index = (index + 1) % texts.length;
-      setTimeout(() => typeText(texts[index]), 500);
+    function deleteText(text, i = text.length) {
+      if (i >= 0) {
+        typingLine.text("These are my " + text.slice(0, i));
+        setTimeout(() => deleteText(text, i - 1), 100);
+      } else {
+        index = (index + 1) % texts.length;
+        setTimeout(() => typeText(texts[index]), 500);
+      }
     }
-  }
 
-  typingElement.on('click', () => {
-    window.location.href = "stuffs.html";
+    $typing.on('click', () => window.location.href = "stuffs.html");
+    typeText(texts[index]);
   });
+})();
 
-  typeText(texts[index]);
+/* LETTER EFFECTS (no depende de jQuery) */
+(() => {
+  const spans = document.querySelectorAll('.word span');
+  if (!spans.length) return;
+  spans.forEach((span, idx) => {
+    span.addEventListener('click', (e) => e.target.classList.add('active'));
+    span.addEventListener('animationend', (e) => e.target.classList.remove('active'));
+    setTimeout(() => span.classList.add('active'), 750 * (idx + 1));
+  });
+})();
+
+/* ----------------- CONTACT / STUFFS PAGE ----------------- */
+
+/* STUFFS PAGE */
+const container = document.querySelector('.cards-container');
+const cards = document.querySelectorAll('.card');
+
+cards.forEach(card => {
+  // Distribución inicial aleatoria
+  const maxX = container.offsetWidth - card.offsetWidth;
+  const maxY = container.offsetHeight - card.offsetHeight;
+  card.style.left = Math.random() * maxX + 'px';
+  card.style.top = Math.random() * maxY + 'px';
 });
 
-/*LETTER EFFECTS*/
-const spans = document.querySelectorAll('.word span');
+let zIndexCounter = 1;
 
-spans.forEach((span, idx) => {
-  span.addEventListener('click', (e) => {
-    e.target.classList.add('active');
+cards.forEach(card => {
+  let offsetX, offsetY;
+
+  card.addEventListener('mousedown', e => {
+    e.preventDefault();
+    const rect = card.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+
+    card.style.zIndex = ++zIndexCounter;
+
+    function moveAt(pageX, pageY) {
+      let x = pageX - containerRect.left - offsetX;
+      let y = pageY - containerRect.top - offsetY;
+
+      // Limites dentro del contenedor
+      if (x < 0) x = 0;
+      if (y < 0) y = 0;
+      if (x + card.offsetWidth > containerRect.width) x = containerRect.width - card.offsetWidth;
+      if (y + card.offsetHeight > containerRect.height) y = containerRect.height - card.offsetHeight;
+
+      card.style.left = x + 'px';
+      card.style.top = y + 'px';
+    }
+
+    function onMouseMove(e) { moveAt(e.clientX, e.clientY); }
+
+    document.addEventListener('mousemove', onMouseMove);
+
+    document.addEventListener('mouseup', () => {
+      document.removeEventListener('mousemove', onMouseMove);
+    }, { once: true });
   });
-  span.addEventListener('animationend', (e) => {
-    e.target.classList.remove('active');
-  });
-  
-  // Initial animation
-  setTimeout(() => {
-    span.classList.add('active');
-  }, 750 * (idx+1))
 });
 
 
+/* ----------------- LETTER CONTACT PAGE ----------------- */
+(function () {
+  // Solo correr la parte de INDEX si existe jQuery y existe .typing
+  if (!window.jQuery) return;
+  $(function () {
+    const $typingcontact = $('.typing-contact');
+    if (!$typingcontact.length) return;
 
-/* CONTACT PAGE */
-/* MSN-style popup + Windows-like bottom bar */
+    let typingLineContact = $('.typing-line-contact');
+    const texts = [
+  "aliens?",
+  "weather?",
+  "design?",
+  "zommbies?",
+  "feetpics?",
+  "coffee?",
+  "code?",
+  "punk",
+  "cryptos?"
+];
+    let index = 0;
+
+    function typeText(text, i = 0) {
+      if (i <= text.length) {
+        typingLineContact.text("Let’s chat about " + text.slice(0, i));
+        setTimeout(() => typeText(text, i + 1), 100);
+      } else {
+        setTimeout(() => deleteText(text), 1000);
+      }
+    }
+
+    function deleteText(text, i = text.length) {
+      if (i >= 0) {
+        typingLineContact.text("Let’s chat about " + text.slice(0, i));
+        setTimeout(() => deleteText(text, i - 1), 100);
+      } else {
+        index = (index + 1) % texts.length;
+        setTimeout(() => typeText(texts[index]), 500);
+      }
+    }
+
+    $typingcontact.on('click', () => window.location.href = "stuffs.html");
+    typeText(texts[index]);
+  });
+})();
+
+/* LETTER EFFECTS CONTACT (no depende de jQuery) */
+(() => {
+  const spans = document.querySelectorAll('.word span');
+  if (!spans.length) return;
+  spans.forEach((span, idx) => {
+    span.addEventListener('click', (e) => e.target.classList.add('active'));
+    span.addEventListener('animationend', (e) => e.target.classList.remove('active'));
+    setTimeout(() => span.classList.add('active'), 750 * (idx + 1));
+  });
+})();
+
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const popup = document.getElementById("msn-popup");
-  const sound = document.getElementById("msn-sound");
+  const msnSound = document.getElementById("msn-sound"); // Zumbido MSN
+  // Evita errores si esta página no tiene popup
+  const hasPopup = !!popup && !!msnSound;
+
+  const winSound = new Audio("ASSETS/SOUNDS/Win-bin.mp3"); // Sonido Win para Stuffs/Figma
   const winbar = document.getElementById("winbar");
-  const startBtn = document.querySelector(".start-btn");
+
+  const startBtn  = document.querySelector(".start-btn");
   const contactBtn = document.querySelector(".tray-btn[aria-label='Contact']");
-  const stuffsBtn = document.querySelector(".tray-btn[aria-label='Stuffs']");
-  const figmaBtn = document.querySelector(".tray-btn[aria-label='Figma']");
-  const whatsappArea = document.getElementById("msn-whatsapp");
-  const closeArea = document.getElementById("msn-close");
+  const stuffsBtn  = document.querySelector(".tray-btn[aria-label='Stuffs']");
+  const figmaBtn   = document.querySelector(".tray-btn[aria-label='Figma']");
+  const closeArea  = document.getElementById("msn-close");
 
-  const whatsappLink = "https://wa.me/34663830109";
-  const figmaLink = "https://www.figma.com/proto/95WPIJoGGErxr5TYSXC9o0/Portfolio-Claudia-Tardito?page-id=2010%3A24768&node-id=2010-24769&viewport=115%2C74%2C0.31&t=llxvXUiUtBJnbqi1-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2010%3A24769"; // my figma
+  const currentPage = window.location.pathname.split("/").pop();
 
-  let audioEnabled = false;
-  let popupVisible = false;
-  let footerShown = false;
+  // Mostrar footer siempre
+  if (winbar) {
+    winbar.classList.remove("hidden");
+    winbar.classList.add("appear");
+    setTimeout(() => winbar.classList.remove("appear"), 300);
+  }
 
-  // Mostrar popup automáticamente a los 2 segundos
-  setTimeout(() => {
-    popup.style.display = "block";
-    popup.classList.add("shake");
-    popupVisible = true;
-    if (audioEnabled) {
-      sound.currentTime = 0;
-      sound.play().catch(() => {});
-    }
-  }, 2000);
+  // --- Popup automático SOLO en contact.html ---
+  if (hasPopup && currentPage === "contact.html") {
+    setTimeout(() => {
+      popup.style.display = "block";
+      popup.classList.add("shake");
+      // Puede que el browser bloquee el audio auto; no pasa nada si falla
+      msnSound.currentTime = 0;
+      msnSound.play().catch(() => {});
+    }, 2000);
+  }
 
-  // Clicks globales
-  document.addEventListener("click", (e) => {
-    if (!audioEnabled) audioEnabled = true;
-    if (!popupVisible) return;
+  // --- Click en icono Contact → abrir popup MSN (stuffs y contact) ---
+  if (hasPopup && contactBtn) {
+    contactBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      popup.style.display = "block";
+      popup.classList.add("shake");
+      msnSound.currentTime = 0;
+      msnSound.play().catch(() => {});
+    });
+  }
 
-    // Click en WhatsApp → abrir WhatsApp
-    if (whatsappArea && whatsappArea.contains(e.target)) {
-      window.open(whatsappLink, "_blank");
-      sound.currentTime = 0;
-      sound.play().catch(() => {});
-      return;
-    }
-
-    // Click en cierre superior derecho → cerrar popup
-    if (closeArea && closeArea.contains(e.target)) {
-      sound.currentTime = 0;
-      sound.play().catch(() => {});
+  // --- Cerrar popup (X) ---
+  if (hasPopup && closeArea) {
+    closeArea.addEventListener("click", (e) => {
+      e.stopPropagation();
       popup.style.display = "none";
-      popupVisible = false;
-      if (!footerShown && winbar) {
-        winbar.classList.remove("hidden");
-        winbar.classList.add("appear");
-        setTimeout(() => winbar.classList.remove("appear"), 300);
-        footerShown = true;
+      msnSound.currentTime = 0;
+      msnSound.play().catch(() => {});
+    });
+  }
+
+  // --- (Opcional) Cerrar popup al click fuera ---
+  if (hasPopup) {
+    document.addEventListener("click", (e) => {
+      if (popup.style.display === "block" && !popup.contains(e.target) && !(contactBtn && contactBtn.contains(e.target))) {
+        popup.style.display = "none";
+        msnSound.currentTime = 0;
+        msnSound.play().catch(() => {});
       }
-      return;
-    }
+    });
+  }
 
-    // Click dentro del popup → solo sonido
-    if (popup.contains(e.target)) {
-      sound.currentTime = 0;
-      sound.play().catch(() => {});
-      return;
-    }
+  // --- Iconos barra inferior ---
+  if (startBtn) {
+    startBtn.addEventListener("click", () => {
+      winSound.currentTime = 0;
+      winSound.play().catch(() => {});
+      window.location.href = "index.html";
+    });
+  }
 
-    // Click fuera del popup → último sonido, cerrar popup, mostrar footer
-    sound.currentTime = 0;
-    sound.play().catch(() => {});
-    popup.style.display = "none";
-    popupVisible = false;
-    if (!footerShown && winbar) {
-      winbar.classList.remove("hidden");
-      winbar.classList.add("appear");
-      setTimeout(() => winbar.classList.remove("appear"), 300);
-      footerShown = true;
-    }
-  });
+  if (stuffsBtn) {
+    stuffsBtn.addEventListener("click", () => {
+      winSound.currentTime = 0;
+      winSound.play().catch(() => {});
+      window.location.href = "stuffs.html";
+    });
+  }
 
-  // ----- Botones barra inferior -----
-  if (startBtn) startBtn.addEventListener("click", () => window.location.href = "index.html");
-  if (stuffsBtn) stuffsBtn.addEventListener("click", () => window.location.href = "stuffs.html");
-  if (contactBtn) contactBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    popup.style.display = "block";
-    popup.classList.add("shake");
-    popupVisible = true;
-    if (!audioEnabled) audioEnabled = true;
-    sound.currentTime = 0;
-    sound.play().catch(() => {});
-  });
-  if (figmaBtn) figmaBtn.addEventListener("click", () => {
-    window.open(figmaLink, "_blank");
-  });
-});
-/* CONTACT PAGE */
-/* This script handles the MSN-style popup and Windows-like bottom bar on the contact page */
+  if (figmaBtn) {
+    figmaBtn.addEventListener("click", () => {
+      winSound.currentTime = 0;
+      winSound.play().catch(() => {});
+      window.open("https://www.figma.com/proto/95WPIJoGGErxr5TYSXC9o0/Portfolio-Claudia-Tardito", "_blank");
+    });
+  }
 
-// NAV ITEMS 
-document.addEventListener("DOMContentLoaded", () => {
+  // --- Dejar activo el link de navegación ---
   const navLinks = document.querySelectorAll("#cubicle > .links a");
-  const currentPath = window.location.pathname.split("/").pop(); // nombre del archivo actual
-
   navLinks.forEach(link => {
-    const linkPath = link.getAttribute("href");
-    if (linkPath === currentPath) {
+    if (link.getAttribute("href") === currentPage) {
       link.classList.add("active");
     }
   });
