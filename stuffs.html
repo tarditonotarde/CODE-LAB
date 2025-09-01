@@ -67,14 +67,16 @@
 <!-- Popup MSN: oculto inicialmente -->
 <div id="msn-popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9990;">
   <img src="ASSETS/IMG/MSN DESK.svg" alt="MSN Popup" id="msn-window" style="max-width:400px; width:100%;">
-  <audio id="msn-sound" src="ASSETS/SOUNDS/msn-zumbido.mp3" preload="auto"></audio>
 
-  <!-- Botón de cierre (esquina superior derecha) -->
+  <!-- Botón de cierre -->
   <div id="msn-close" style="position:absolute; width:50px; height:50px; top:10px; right:10px; cursor:pointer; z-index:10;"></div>
 
-  <!-- Área clicable WhatsApp (cuarto inferior derecho) -->
+  <!-- Área clicable WhatsApp -->
   <div id="msn-whatsapp" style="position:absolute; width:50%; height:50%; bottom:0; right:0; cursor:pointer; z-index:10;"></div>
 </div>
+
+<!-- Audio fuera del popup -->
+<audio id="msn-sound" src="ASSETS/SOUNDS/msn-zumbido.mp3" preload="auto"></audio>
 
 
 </body>

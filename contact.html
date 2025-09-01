@@ -83,34 +83,19 @@
 </footer>
 
 
-<!-- Popup MSN -->
-<div id="msn-popup" class="msn-hidden">
-  <img src="ASSETS/IMG/MSN DESK.svg" alt="MSN Popup" id="msn-window">
-  <audio id="msn-sound" src="ASSETS/SOUNDS/msn-zumbido.mp3" preload="auto"></audio>
+<!-- Popup MSN: oculto inicialmente -->
+<div id="msn-popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9990;">
+  <img src="ASSETS/IMG/MSN DESK.svg" alt="MSN Popup" id="msn-window" style="max-width:400px; width:100%;">
 
-  <!-- Zona clicable WhatsApp en la esquina inferior derecha -->
-  <div id="msn-whatsapp" style="
-       position: absolute;
-       width: 80px;      /* ancho del área clicable */
-       height: 80px;     /* alto del área clicable */
-       bottom: 10px;     /* desde abajo */
-       right: 10px;      /* desde la derecha */
-       cursor: pointer;
-       z-index: 10;
-  "></div>
+  <!-- Botón de cierre -->
+  <div id="msn-close" style="position:absolute; width:50px; height:50px; top:10px; right:10px; cursor:pointer; z-index:10;"></div>
 
-  <!-- Zona clicable superior derecha para cerrar -->
-<div id="msn-close" style="
-     position: absolute;
-     width: 50px;      /* ancho del área de cierre */
-     height: 50px;     /* alto del área de cierre */
-     top: 10px;        /* desde arriba */
-     right: 10px;      /* desde la derecha */
-     cursor: pointer;
-     z-index: 10;
-"></div>
-
+  <!-- Área clicable WhatsApp -->
+  <div id="msn-whatsapp" style="position:absolute; width:50%; height:50%; bottom:0; right:0; cursor:pointer; z-index:10;"></div>
 </div>
+
+<!-- Audio fuera del popup -->
+<audio id="msn-sound" src="ASSETS/SOUNDS/msn-zumbido.mp3" preload="auto"></audio>
 
 
 
