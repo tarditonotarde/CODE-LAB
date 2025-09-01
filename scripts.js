@@ -1,3 +1,18 @@
+// --------------------- NAV ACTIVE LINK ---------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const navLinks = document.querySelectorAll("#cubicle > .links a");
+  const currentPath = window.location.pathname.split("/").pop(); // obtiene el nombre del archivo actual
+
+  navLinks.forEach(link => {
+    const linkPath = link.getAttribute("href");
+    if (linkPath === currentPath || (linkPath === "index.html" && currentPath === "")) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
+});
+
 /* ----------------- INDEX PAGE ----------------- */
 (function () {
   if (!window.jQuery) return;
@@ -120,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Figma → abrir enlace
   if (figmaBtn) {
     figmaBtn.addEventListener("click", () => {
-      window.open("https://www.figma.com/proto/95WPIJoGGErxr5TYSXC9o0/Portfolio-Claudia-Tardito", "_blank");
+      window.open("https://www.figma.com/proto/95WPIJoGGErxr5TYSXC9o0/Portfolio-Claudia-Tardito?page-id=2010%3A24768&node-id=2010-24769&viewport=115%2C74%2C0.31&t=llxvXUiUtBJnbqi1-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2010%3A24769", "_blank");
       winSound.currentTime = 0;
       winSound.play().catch(() => {});
     });
@@ -247,4 +262,139 @@ document.addEventListener("DOMContentLoaded", () => {
   resetGame();
   setInterval(move, 60);
   setInterval(moveFoodRandomly, 3000);
+});
+
+
+/* DRAG OBJECTS */
+
+/* DRAG OBJECTS */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const draggables = document.querySelectorAll(".draggable");
+  const PADDING = 10;   
+  const SPREAD = 250;    
+  const APPEAR_DELAY = 300; 
+
+  let loadedCount = 0;
+  draggables.forEach(el => {
+    el.style.position = "fixed";
+    el.style.opacity = 0; 
+    el.style.transform = "translateY(-30px)"; // efecto flotante inicial
+    if (el.complete) checkLoaded();
+    else el.onload = checkLoaded;
+  });
+
+  function checkLoaded() {
+    loadedCount++;
+    if (loadedCount === draggables.length) {
+      setInitialPositions();
+      makeDraggable();
+      showSequentially();
+    }
+  }
+
+  function setInitialPositions() {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    draggables.forEach(el => {
+      const elWidth = el.offsetWidth;
+      const elHeight = el.offsetHeight;
+
+      const randX = centerX - elWidth / 2 + (Math.random() * SPREAD * 2 - SPREAD);
+      const randY = centerY - elHeight / 2 + (Math.random() * SPREAD * 2 - SPREAD);
+
+      const posX = Math.min(Math.max(PADDING, randX), window.innerWidth - elWidth - PADDING);
+      const posY = Math.min(Math.max(PADDING, randY), window.innerHeight - elHeight - PADDING);
+
+      el.style.left = posX + "px";
+      el.style.top = posY + "px";
+      localStorage.setItem("pos_" + el.src, JSON.stringify({ left: posX, top: posY }));
+    });
+  }
+
+  function showSequentially() {
+    draggables.forEach((el, i) => {
+      setTimeout(() => {
+        el.style.opacity = 1;
+        // solo aplica translateY si NO está arrastrando
+        if (!el.classList.contains("touch-active")) {
+          el.style.transform = "translateY(0)";
+        }
+      }, i * APPEAR_DELAY);
+    });
+  }
+
+  function makeDraggable() {
+    draggables.forEach(el => {
+      let shiftX = 0, shiftY = 0, isDragging = false;
+      el.style.cursor = "grab";
+
+      // PC
+      el.addEventListener("mousedown", e => {
+        isDragging = true;
+        shiftX = e.clientX - el.getBoundingClientRect().left;
+        shiftY = e.clientY - el.getBoundingClientRect().top;
+        el.style.cursor = "grabbing";
+        el.classList.add("touch-active"); // aplica efecto hundido
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp);
+      });
+
+      function onMouseMove(e) { if (isDragging) moveAt(e.clientX, e.clientY); }
+      function onMouseUp() { endDrag(); }
+
+      // MOBILE
+      el.addEventListener("touchstart", e => {
+        isDragging = true;
+        const touch = e.touches[0];
+        shiftX = touch.clientX - el.getBoundingClientRect().left;
+        shiftY = touch.clientY - el.getBoundingClientRect().top;
+        el.classList.add("touch-active"); // aplica efecto hundido
+      });
+
+      el.addEventListener("touchmove", e => {
+        if (isDragging) {
+          const touch = e.touches[0];
+          moveAt(touch.clientX, touch.clientY);
+        }
+      });
+
+      el.addEventListener("touchend", endDrag);
+
+      el.ondragstart = () => false;
+
+      function moveAt(pageX, pageY) {
+        const maxX = window.innerWidth - el.offsetWidth - PADDING;
+        const maxY = window.innerHeight - el.offsetHeight - PADDING;
+        const newX = Math.min(Math.max(PADDING, pageX - shiftX), maxX);
+        const newY = Math.min(Math.max(PADDING, pageY - shiftY), maxY);
+        el.style.left = newX + "px";
+        el.style.top = newY + "px";
+      }
+
+      function endDrag() {
+        isDragging = false;
+        el.style.cursor = "grab";
+        el.classList.remove("touch-active"); // quita efecto hundido al soltar
+        localStorage.setItem("pos_" + el.src, JSON.stringify({
+          left: parseInt(el.style.left),
+          top: parseInt(el.style.top)
+        }));
+      }
+    });
+  }
+
+  window.addEventListener("resize", () => {
+    draggables.forEach(el => {
+      const saved = localStorage.getItem("pos_" + el.src);
+      if (saved) {
+        const pos = JSON.parse(saved);
+        const maxX = window.innerWidth - el.offsetWidth - PADDING;
+        const maxY = window.innerHeight - el.offsetHeight - PADDING;
+        el.style.left = Math.min(pos.left, maxX) + "px";
+        el.style.top = Math.min(pos.top, maxY) + "px";
+      }
+    });
+  });
 });

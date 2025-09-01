@@ -553,4 +553,31 @@ display: flex;
   transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
 }
 
+/* ----------------- DRAGGABLE ELEMENTS ----------------- */
+.draggable {
+  position: absolute;
+  cursor: grab;
+  max-width: 150px;
+  user-select: none;
+  touch-action: none;
+  transition: transform 0.2s ease, opacity 0.5s ease;
+  z-index: 1000;
+}
 
+.draggable:active {
+  cursor: grabbing;
+}
+
+/* Efecto hundido al arrastrar */
+.draggable.touch-active {
+  transform: scale(0.9) translateY(5px) !important; /* achica y hunde */
+  z-index: 2000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .draggable { max-width: 150px; }
+}
+@media (max-width: 480px) {
+  .draggable { max-width: 100px; }
+}
