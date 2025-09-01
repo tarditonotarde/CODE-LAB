@@ -404,6 +404,13 @@ display: flex;
   width: 100%;
 }
 
+#msn-sound {
+  display: none;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
 /* Animación de temblor en su eje */
 @keyframes msn-shake {
   0%   { transform: translate(-50%, -50%) rotate(0deg); }
