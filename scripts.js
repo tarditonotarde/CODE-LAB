@@ -116,8 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // 🔊 Crear sonidos dinámicamente
   const msnSound = new Audio("ASSETS/SOUNDS/msn-zumbido.mp3");
   msnSound.preload = "auto";
-  const winSound = new Audio("ASSETS/SOUNDS/Win-bin.mp3");
-  winSound.preload = "auto";
 
   // Contact → popup MSN
   if (contactBtn) {
@@ -136,8 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (figmaBtn) {
     figmaBtn.addEventListener("click", () => {
       window.open("https://www.figma.com/proto/95WPIJoGGErxr5TYSXC9o0/Portfolio-Claudia-Tardito?page-id=2010%3A24768&node-id=2010-24769&viewport=115%2C74%2C0.31&t=llxvXUiUtBJnbqi1-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2010%3A24769", "_blank");
-      winSound.currentTime = 0;
-      winSound.play().catch(() => {});
     });
   }
 
