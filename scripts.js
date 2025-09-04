@@ -263,8 +263,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* DRAG OBJECTS */
 
-/* DRAG OBJECTS */
-
 document.addEventListener("DOMContentLoaded", () => {
   const draggables = document.querySelectorAll(".draggable");
   const PADDING = 10;   
@@ -394,3 +392,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+/* ----------------- DESK INTERACTIONS ----------------- */
