@@ -494,7 +494,6 @@ display: flex;
 .icon-nav-linear-links {
   list-style: none;
   display: flex;
-  gap: 10px;
   margin: 0;
   padding: 0;
 }
@@ -830,6 +829,36 @@ display: flex;
   50%  { transform: translateX(10px); }
   100% { transform: translateX(0); }
 }
+
+
+#lego {
+  transform-origin: center bottom;
+  animation: subir-caer 5s ease-in-out infinite; /* ciclo automático */
+}
+
+#lego:hover {
+  animation: hover-subir-caer 0.8s ease-in-out forwards; /* efecto rápido en hover */
+      stroke: #000;
+  stroke-width: 1px;
+  cursor: pointer;
+}
+
+@keyframes subir-caer {
+  /* 0% a 20% = 1s de movimiento (subir + caer) */
+  0%   { transform: translateY(0); }
+  10%  { transform: translateY(-150px); } /* sube */
+  20%  { transform: translateY(0); }     /* cae */
+
+  /* 20% a 100% = pausa (4s) */
+  100% { transform: translateY(0); }
+}
+
+@keyframes hover-subir-caer {
+  0%   { transform: translateY(0); }
+  40%  { transform: translateY(-150px); } /* sube rápido */
+  100% { transform: translateY(0); }     /* vuelve al suelo */
+}
+
 
 
 /* STTUFFS PAGE */
