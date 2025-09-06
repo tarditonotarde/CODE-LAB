@@ -14,6 +14,30 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ----------------- INDEX PAGE ----------------- */
+
+document.addEventListener('mousemove', (e) => {
+  const eyes = document.querySelectorAll('.ojo-svg');
+  eyes.forEach(eye => {
+    const pupil = eye.querySelector('#pupila');
+    const rect = eye.getBoundingClientRect();
+    const eyeX = rect.left + rect.width / 2;
+    const eyeY = rect.top + rect.height / 2;
+
+    const dx = e.clientX - eyeX;
+    const dy = e.clientY - eyeY;
+    const angle = Math.atan2(dy, dx);
+    const distance = Math.min(15, Math.hypot(dx, dy) / 10);
+
+    pupil.setAttribute('transform', `translate(${Math.cos(angle) * distance}, ${Math.sin(angle) * distance})`);
+  });
+});
+
+
+/* TYPING EFFECTS */
+
+
+
+
 (function () {
   if (!window.jQuery) return;
   $(function () {
@@ -395,3 +419,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ----------------- DESK INTERACTIONS ----------------- */
+
+
+/* =============================
+   ME PAGE
+   ============================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const text = "I love solving problems and designing with impact.";
+  const output = document.getElementById("typing-text-me");
+  const cursor = document.getElementById("cursor-me");
+  
+  if (!output || !cursor) return; // ✅ no afecta otras páginas
+
+  let i = 0;
+  function typeWriter() {
+    if (i < text.length) {
+      output.textContent += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 100); // velocidad de escritura
+    } else {
+      cursor.style.display = "inline"; // deja el cursor parpadeando
+    }
+  }
+
+  typeWriter();
+});

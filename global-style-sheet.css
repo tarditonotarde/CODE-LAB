@@ -179,7 +179,40 @@ ol, ul {
 /* END NAV HEADER */
 /* END HEADER */
 
-/* TYPING EFFECT INDEX */
+
+/* INDEX PAGE */
+
+.eye-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* menos espacio porque los ojos son más pequeños */
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.eye {
+  position: relative;
+  width: 100px;
+  height: 80px;
+}
+
+.ojo-svg #pupila {
+  transform-origin: center;
+  transition: transform 0.1s linear;
+}
+
+
+
+
+.gif-index {
+  width: 150px;        /* ajusta el tamaño del GIF */
+  padding: 30px;
+  object-fit: cover;   /* ajusta el GIF dentro del contenedor */
+  margin: 0 auto;      /* opcional: centra horizontalmente */
+  opacity: 0.7;
+}
+
+
 .typing {
   color: black;
   font-family: monospace;
@@ -213,7 +246,7 @@ ol, ul {
   display: inline-block;
   border-right: 0.1em solid black;
   font-family: monospace;
-  padding-left: 5px;
+  padding-left: 10%;
   animation: type 3s steps(40) forwards, blink 0.8s step-end infinite;
 
 }
@@ -838,7 +871,7 @@ display: flex;
 
 #lego:hover {
   animation: hover-subir-caer 0.8s ease-in-out forwards; /* efecto rápido en hover */
-      stroke: #000;
+  stroke: #000;
   stroke-width: 1px;
   cursor: pointer;
 }
@@ -869,21 +902,26 @@ display: flex;
 
 
 /* Contenedor opcional con perspectiva */
+
+.stuff-container {     
+  padding-bottom: 5% !important;
+  padding-left: 40px !important;
+  padding-right: 20px !important;
+}
+
 .stuffs-list {
   list-style: none;
-  padding: 0px;
-  margin: 0px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 /* Asegura que el <li> no cause desplazamiento */
 .stuffs-list li {
 align-items: flex-end;
 display: flex;
-  margin: 0;
   border-radius: 100px !important;
 }
 
@@ -937,3 +975,141 @@ display: flex;
   color: var(--color2);
   transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
 }
+
+/* =============================
+   ME PAGE
+   ============================= */
+
+#typing-me {
+  color: black;
+  font-family: monospace;
+  font-size: 1.2em;
+  line-height: 1.6;
+  white-space: normal;   /* ✅ permite saltos de línea en responsive */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 700px;      /* límite de ancho */
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .typing-me {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .typing-me {
+    font-size: 0.8em;
+  }
+}
+
+#typing-me p {
+  margin-bottom: 20px;
+}
+
+#typing-text-me {
+  display: inline;
+}
+
+#cursor-me {
+  font-weight: bold;
+  color: black;
+  animation: blink-me 1s infinite;
+}
+
+#rocket-me {
+  display: inline;
+  margin-left: 5px;
+}
+
+/* Cursor parpadeo */
+@keyframes blink-me {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* =============================
+   BOTÓN 3D - EFECTO IGUAL AL NAV
+   ============================= */
+
+
+/* Contenedor opcional con perspectiva */
+.me-list {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Asegura que el <li> no cause desplazamiento */
+.me-list li {
+align-items: flex-end;
+display: flex;
+  margin: 0;
+  border-radius: 100px !important;
+}
+
+/* Botón 3D */
+.me-nav-effect {
+  width: 200px ;
+  height: var(--height);
+  border: none;
+  background: transparent;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg);
+  transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Efecto hover */
+.me-nav-effect:hover {
+  transform: rotateX(-90deg);
+}
+
+/* Caras del botón */
+.me-nav-effect .face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: var(--height);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: var(--border) solid var(--color1);
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  font: inherit;
+  border-radius: 40px !important;
+
+}
+
+/* Cara frontal */
+.me-nav-effect .front {
+  background-color: transparent;
+  color: var(--color1);
+  transform: rotateX(0deg) translateZ(calc(var(--height) / 2));
+}
+
+/* Cara superior */
+.me-nav-effect .top {
+  background-color: var(--color1);
+  color: var(--color2);
+  transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
+}
+
+.me-nav-effect a {
+  color: inherit;       /* hereda el color del botón */
+  text-decoration: none; /* quita el subrayado */
+  display: inline-block; /* mantiene la caja del span */
+}
+
