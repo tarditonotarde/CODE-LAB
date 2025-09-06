@@ -268,7 +268,6 @@ ol, ul {
   font-size: 1.4em;
   white-space: nowrap;
   overflow: hidden;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -529,6 +528,7 @@ display: flex;
   display: flex;
   margin: 0;
   padding: 0;
+  gap: 10px;
 }
 
 
@@ -981,28 +981,29 @@ display: flex;
    ============================= */
 
 #typing-me {
+      text-align: left;
   color: black;
   font-family: monospace;
-  font-size: 1.2em;
+  font-size: 1em;
   line-height: 1.6;
   white-space: normal;   /* ✅ permite saltos de línea en responsive */
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 700px;      /* límite de ancho */
+  max-width: 650px;      /* límite de ancho */
   padding: 20px;
 }
 
 @media (max-width: 768px) {
   .typing-me {
-    font-size: 1em;
+    font-size: 0.8em;
   }
 }
 
 @media (max-width: 480px) {
   .typing-me {
-    font-size: 0.8em;
+    font-size: 0.6em;
   }
 }
 

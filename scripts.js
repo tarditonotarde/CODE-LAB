@@ -113,7 +113,6 @@ document.addEventListener('mousemove', (e) => {
       }
     }
 
-    $typingcontact.on('click', () => window.location.href = "stuffs.html");
     typeText(texts[index]);
   });
 })();
