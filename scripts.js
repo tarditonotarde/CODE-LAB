@@ -35,9 +35,6 @@ document.addEventListener('mousemove', (e) => {
 
 /* TYPING EFFECTS */
 
-
-
-
 (function () {
   if (!window.jQuery) return;
   $(function () {
@@ -132,6 +129,7 @@ document.addEventListener('mousemove', (e) => {
 document.addEventListener("DOMContentLoaded", () => {
   const contactBtn = document.querySelector(".icon-nav-effect[aria-label='Contact']");
   const figmaBtn   = document.querySelector(".icon-nav-effect[aria-label='Figma']");
+  const resumeBtn   = document.querySelector(".icon-nav-effect[aria-label='Resume']");
   const msnPopup   = document.getElementById("msn-popup");
   const closeArea  = document.getElementById("msn-close");
   const whatsappArea = document.getElementById("msn-whatsapp");
@@ -157,6 +155,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (figmaBtn) {
     figmaBtn.addEventListener("click", () => {
       window.open("https://www.figma.com/proto/95WPIJoGGErxr5TYSXC9o0/Portfolio-Claudia-Tardito?page-id=2010%3A24768&node-id=2010-24769&viewport=115%2C74%2C0.31&t=llxvXUiUtBJnbqi1-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2010%3A24769", "_blank");
+    });
+  }
+
+    // Resume → abrir enlace
+  if (resumeBtn) {
+    resumeBtn.addEventListener("click", () => {
+      window.open("https://drive.google.com/file/d/1BSFvcdQJjesg4U2r8i4tGjXFQhhCA5L5/view", "_blank");
     });
   }
 
@@ -443,4 +448,55 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   typeWriter();
+});
+
+
+/* ===========NAV STUFFS PAGES ACTIVE==================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const navLinks = document.querySelectorAll(".stuffs-list a");
+  const currentPath = window.location.pathname.split("/").pop(); // archivo actual
+
+  navLinks.forEach(link => {
+    const linkPath = link.getAttribute("href");
+    if (
+      linkPath === currentPath ||
+      (linkPath === "index.html" && (currentPath === "" || currentPath === "/"))
+    ) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
+});
+
+
+/* CARDS PORTFOLIO */
+$(document).ready(function() {
+  $('.card').each(function(index) {
+    $(this).delay(150 * index).animate({opacity: 1}, 500)
+           .queue(function(next){
+               $(this).css('transform', 'translateY(0)');
+               next();
+           });
+  });
+});
+
+/* ===========NAV STUFFOOTER PAGES ACTIVE==================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const navLinks = document.querySelectorAll(".stuffooter-list a");
+  const currentPath = window.location.pathname.split("/").pop(); // archivo actual
+
+  navLinks.forEach(link => {
+    const linkPath = link.getAttribute("href");
+    if (
+      linkPath === currentPath ||
+      (linkPath === "index.html" && (currentPath === "" || currentPath === "/"))
+    ) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
 });
