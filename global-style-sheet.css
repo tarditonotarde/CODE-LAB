@@ -359,7 +359,6 @@ body {
 .cubicle-form li {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 
 .cubicle-form input,
