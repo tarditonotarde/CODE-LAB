@@ -815,6 +815,33 @@ h1 {
    ME PAGE
    ============================= */
 
+
+.eye-me-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.eye-me svg.ojo-svg {
+  width: 80px;   /* antes 100px */
+  height: 60px;  /* antes 80px */
+}
+
+
+.eye-right {
+    transform: scaleX(-1);
+    transform-origin: center;
+}
+
+.ojo-svg #pupila {
+  transform-origin: center;
+  transition: transform 0.1s linear;
+}
+
+
+
 /* Texto typing */
 #typing-me {
   text-align: left;
@@ -828,7 +855,7 @@ h1 {
   flex-direction: column;
   align-items: flex-start;
   max-width: 650px;
-  padding: 20px;
+  padding: 20px 20px 0 20px;
 }
 
 @media (max-width: 768px) {
