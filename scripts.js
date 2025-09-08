@@ -28,7 +28,14 @@ document.addEventListener('mousemove', (e) => {
     const angle = Math.atan2(dy, dx);
     const distance = Math.min(15, Math.hypot(dx, dy) / 10);
 
-    pupil.setAttribute('transform', `translate(${Math.cos(angle) * distance}, ${Math.sin(angle) * distance})`);
+    // 👁️ Detectamos si es el ojo derecho
+    const isRightEye = eye.parentElement.classList.contains("eye-right");
+
+    // Si es el derecho, invertimos el movimiento en X
+    const offsetX = Math.cos(angle) * distance * (isRightEye ? -1 : 1);
+    const offsetY = Math.sin(angle) * distance;
+
+    pupil.setAttribute("transform", `translate(${offsetX}, ${offsetY})`);
   });
 });
 
@@ -286,6 +293,28 @@ document.addEventListener("DOMContentLoaded", () => {
   resetGame();
   setInterval(move, 60);
   setInterval(moveFoodRandomly, 3000);
+});
+
+
+/* FOOTER ARROWS */
+
+$(document).ready(function(){
+
+    // Navegación atrás
+    $(".arrow.prev").click(function(){
+        window.history.back();
+    });
+
+    // Navegación adelante
+    $(".arrow.next").click(function(){
+        window.history.forward();
+    });
+
+    // Scroll hasta arriba
+    $(".arrow.scroll-top").click(function(){
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    });
+
 });
 
 

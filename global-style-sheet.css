@@ -23,6 +23,7 @@ html, body {
   height: 100%;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  
 }
 
 body {
@@ -31,8 +32,7 @@ body {
   min-height: 100vh;
   font-family: "Geist", sans-serif;
   color: PaleVioletRed;
-  text-align: center;
-  overflow-x: hidden;
+  
 }
 
 /* =============================
@@ -88,9 +88,6 @@ ol, ul {
   margin-bottom: 0rem;
 }
 
-
-
-
 /* =============================
    GRADIENT EFFECT BACKGROUND
    ============================= */
@@ -141,19 +138,6 @@ h1 {
    ============================= */
 #cubicle > .links a.active {
   transform: translateZ(calc(-1 * calc(var(--height) / 2))) rotateX(-90deg);
-}
-
-body {
-  margin:0;
-  padding:0;
-  width:100vw;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:'Nunito', sans-serif;
-  font-size:16px;
-  line-height:1.5;
 }
 
 :root {
@@ -246,6 +230,11 @@ body {
   position: relative;
   width: 100px;
   height: 80px;
+}
+
+.eye-right {
+    transform: scaleX(-1);
+    transform-origin: center;
 }
 
 .ojo-svg #pupila {
@@ -514,6 +503,51 @@ body {
 /* =============================
    FOOTER LINEAL
    ============================= */
+  footer {
+    position: relative;
+    padding: 20px;
+    display: flex;
+}
+
+.footer-arrows {
+    display: flex;
+    gap: 20px;
+    width: 100vw;
+    justify-content: space-between; /* Alinea las flechas a la derecha */
+
+}
+
+.footer-arrows .arrow {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    transition: transform 0.2s ease, color 0.2s ease;
+        cursor: pointer;
+
+}
+
+.footer-arrows .arrow:hover {
+    color: #555;
+    transform: scale(1.2);
+        cursor: pointer;
+
+}
+
+.arrow.scroll-top {
+  transform: rotate(90deg);
+    cursor: pointer;
+    margin-right: 20px; /* espacio con las otras flechas */
+}
+
+.arrow.scroll-top:hover {
+  transform: rotate(90deg);
+    cursor: pointer;
+    margin-right: 20px; /* espacio con las otras flechas */
+}
+
+
+
 #footer-linear {
   position: fixed;
   bottom: 0;
@@ -679,6 +713,7 @@ body {
 
 /* Contenedor de stuffs */
 .stuff-container {     
+  margin: 10px;
 }
 
 /* Lista de stuffs */
@@ -687,10 +722,8 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   max-width: 700px;
-  width: 100%;
   justify-content: center;
-  padding: 10px;
-  box-sizing: border-box;
+  padding: 20px;
 }
 
 /* Cada item */
@@ -965,14 +998,13 @@ body {
 /* =============================
    STUFFS NAV FOOTER 
    ============================= */
-
-
-   #footer-stuffs {
+  #footer-stuffs {
 
   width: 100%;
   align-items: center;
   padding-bottom: 20px;
 }
+
 /* Contenedor de stuffs */
 .stuffooter-container {
   flex-grow: 1;
