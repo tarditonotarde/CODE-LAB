@@ -27,6 +27,7 @@ html, body {
 }
 
 body {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -34,6 +35,73 @@ body {
   color: PaleVioletRed;
   
 }
+
+body::before {
+  content: "";
+  position: fixed; /* aquí sí se mantiene fijo */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(
+      in oklch longer hue to right,
+      oklch(0.93 0.08 var(--hue1) / 50%),
+      oklch(0.93 0.08 var(--hue2) / 50%)
+    ),
+    linear-gradient(
+      in oklch longer hue to bottom,
+      oklch(0.93 0.08 var(--hue1) / 50%),
+      oklch(0.93 0.08 var(--hue2) / 50%)
+    );
+  background-size: 100% 100%;
+  z-index: -1; /* siempre detrás de todo */
+  animation: anim_bg 5s linear infinite;
+}
+
+/* =============================
+   GRADIENT EFFECT BACKGROUND
+   ============================= */
+@property --hue1 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --hue2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+body {
+  background-image: linear-gradient(
+      in oklch longer hue to right,
+      oklch(0.93 0.08 var(--hue1) / 50%),
+      oklch(0.93 0.08 var(--hue2) / 50%)
+    ),
+    linear-gradient(
+      in oklch longer hue to bottom,
+      oklch(0.93 0.08 var(--hue1) / 50%),
+      oklch(0.93 0.08 var(--hue2) / 50%)
+    );
+  background-size: 100% 100%;
+  background-attachment: fixed !important; /* <-- esto mantiene el fondo fijo */
+  animation: anim_bg 5s linear infinite;
+}
+
+@keyframes anim_bg {
+  0% {
+    --hue1: 0deg;
+    --hue2: 300deg;
+  }
+  100% {
+    --hue1: 360deg;
+    --hue2: 660deg;
+  }
+}
+
+
 
 /* =============================
    HEADER
@@ -88,50 +156,6 @@ ol, ul {
   margin-bottom: 0rem;
 }
 
-/* =============================
-   GRADIENT EFFECT BACKGROUND
-   ============================= */
-@property --hue1 {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
-@property --hue2 {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
-body {
-  background-image: linear-gradient(
-      in oklch longer hue to right,
-      oklch(0.93 0.08 var(--hue1) / 50%),
-      oklch(0.93 0.08 var(--hue2) / 50%)
-    ),
-    linear-gradient(
-      in oklch longer hue to bottom,
-      oklch(0.93 0.08 var(--hue1) / 50%),
-      oklch(0.93 0.08 var(--hue2) / 50%)
-    );
-  background-size: 100% 100%;
-  animation: anim_bg 5s linear infinite;
-}
-
-@keyframes anim_bg {
-  0% {
-    --hue1: 0deg;
-    --hue2: 300deg;
-  }
-  100% {
-    --hue1: 360deg;
-    --hue2: 660deg;
-  }
-}
-
-h1 {
-  text-transform: uppercase;
-}
 
 /* =============================
    NAV HEADER
@@ -240,14 +264,6 @@ h1 {
 .ojo-svg #pupila {
   transform-origin: center;
   transition: transform 0.1s linear;
-}
-
-.gif-index {
-  width: 150px;
-  padding: 30px;
-  object-fit: cover;
-  margin: 0 auto;
-  opacity: 0.7;
 }
 
 .typing {
@@ -472,84 +488,11 @@ h1 {
 }
 
 /* =============================
-   WINDOWS-LIKE BOTTOM BAR
-   ============================= */
-.winbar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 56px;
-  padding: 0 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-image: url('ASSETS/IMG/Bottom-bar.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 9999;
-  user-select: none;
-}
-
-#winbar {
-  filter: drop-shadow(0 -4px 6px rgba(0,0,0,0.5));
-}
-
-.start-btn img,
-.tray-btn img {
-  transition: transform 0.1s;
-}
-
-/* =============================
    FOOTER LINEAL
    ============================= */
-  footer {
-    position: relative;
-    padding: 20px;
-    display: flex;
-}
-
-.footer-arrows {
-    display: flex;
-    gap: 20px;
-    width: 100vw;
-    justify-content: space-between; /* Alinea las flechas a la derecha */
-
-}
-
-.footer-arrows .arrow {
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
-    text-decoration: none;
-    transition: transform 0.2s ease, color 0.2s ease;
-        cursor: pointer;
-
-}
-
-.footer-arrows .arrow:hover {
-    color: #555;
-    transform: scale(1.2);
-        cursor: pointer;
-
-}
-
-.arrow.scroll-top {
-  transform: rotate(90deg);
-    cursor: pointer;
-    margin-right: 20px; /* espacio con las otras flechas */
-}
-
-.arrow.scroll-top:hover {
-  transform: rotate(90deg);
-    cursor: pointer;
-    margin-right: 20px; /* espacio con las otras flechas */
-}
-
-
 
 #footer-linear {
-  position: fixed;
+  position: sticky;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -648,35 +591,6 @@ h1 {
 }
 
 /* =============================
-   DRAGGABLE ELEMENTS
-   ============================= */
-.draggable {
-  position: absolute;
-  cursor: grab;
-  user-select: none;
-  touch-action: none;
-  transition: transform 0.2s ease, opacity 0.5s ease;
-  z-index: 1000;
-}
-
-.draggable:active {
-  cursor: grabbing;
-}
-
-.draggable.touch-active {
-  transform: scale(0.9) translateY(5px) !important;
-  z-index: 2000;
-}
-
-@media (max-width: 768px) {
-  .draggable { max-width: 150px; }
-}
-
-@media (max-width: 480px) {
-  .draggable { max-width: 100px; }
-}
-
-/* =============================
    DESK INTERACTIONS
    ============================= */
 #workplace { width: 100%; height: auto; max-width: 500px; /* tamaño máximo por defecto */ display: block; } /* Móviles pequeños (iPhone) */ @media (max-width: 480px) { #workplace { max-width: 250px !important; } } /* Smartphones grandes */ @media (min-width: 481px) and (max-width: 768px) { #workplace { max-width: 300px; } } /* Tablets y pantallas medianas */ @media (min-width: 769px) and (max-width: 1024px) { #workplace { max-width: 300px; } } /* Pantallas grandes */ @media (min-width: 1025px) { #workplace { max-width: 300px; } } #coffe { transform-origin: center bottom; animation: triple-bounce 6s ease infinite; /* ciclo total: 0.5s saltitos + 5.5s pausa */ } #coffe:hover { stroke: #000; stroke-width: 2px; fill:#000; cursor: pointer; } @keyframes triple-bounce { /* Planta en suelo al inicio y durante la pausa */ 0%, 8.33%, 100% { transform: translateY(0); } /* Primer salto rápido */ 2% { transform: translateY(-20px); } 4% { transform: translateY(-10px); } /* Segundo salto rápido */ 5% { transform: translateY(-18px); } 6% { transform: translateY(-8px); } /* Tercer salto rápido */ 7% { transform: translateY(-15px); } 8% { transform: translateY(-5px); } /* Del 8% al 100%: planta en suelo, pausa de 5.5s */ } @keyframes hover-bounce { 0% { transform: translateY(0); } 25% { transform: translateY(-20px); } 50% { transform: translateY(-10px); } 75% { transform: translateY(-15px); } 100% { transform: translateY(0); } } #furniture{ transform-origin: center center; animation: shake-cycle 8s ease infinite; } @keyframes shake-cycle { /* 0% a 25% = temblor durante 2s (25% de 8s = 2s) */ 0% { transform: translateX(0) rotate(0deg); } 5% { transform: translateX(-5px) rotate(-2deg); } 10% { transform: translateX(5px) rotate(2deg); } 15% { transform: translateX(-5px) rotate(-2deg); } 20% { transform: translateX(5px) rotate(2deg); } 25% { transform: translateX(0) rotate(0deg); } /* 25% a 100% = pausa, sin movimiento */ 100% { transform: translateX(0) rotate(0deg); } } #camera { transform-origin: center center; animation: camera-tiritar 8s linear infinite; /* ciclo automático */ } #camera:hover { stroke: #000; stroke-width: 0.5px; cursor: pointer; } @keyframes camera-tiritar { /* 0% a 25% = 2s de tirite automático */ 0% { transform: translateX(0) rotate(0deg); } 2% { transform: translateX(-1px) rotate(-0.5deg); } 4% { transform: translateX(1px) rotate(0.5deg); } 6% { transform: translateX(-1px) rotate(-0.5deg); } 8% { transform: translateX(1px) rotate(0.5deg); } 10% { transform: translateX(-1px) rotate(-0.5deg); } 12% { transform: translateX(1px) rotate(0.5deg); } 14% { transform: translateX(-1px) rotate(-0.5deg); } 16% { transform: translateX(1px) rotate(0.5deg); } 18% { transform: translateX(-1px) rotate(-0.5deg); } 20% { transform: translateX(1px) rotate(0.5deg); } 22% { transform: translateX(-0.5px) rotate(-0.25deg); } 24% { transform: translateX(0.5px) rotate(0.25deg); } 25% { transform: translateX(0) rotate(0); } /* 25% a 100% = pausa (6s), cámara quieta */ 100% { transform: translateX(0) rotate(0); } } @keyframes camera-hover { 0% { transform: translateX(0) rotate(0deg); } 20% { transform: translateX(-1px) rotate(-0.5deg); } 40% { transform: translateX(1px) rotate(0.5deg); } 60% { transform: translateX(-1px) rotate(-0.5deg); } 80% { transform: translateX(1px) rotate(0.5deg); } 100% { transform: translateX(0) rotate(0); } } #chair { transform-origin: center center; transition: transform 0.5s ease; /* suaviza el movimiento */ } #chair:hover { transform: translateX(20px) rotate(-5deg); /* se mueve hacia la derecha y gira un poco */ } #wireframes { transform-origin: center center; animation: wireframes-tiritar 5s linear infinite; /* ciclo automático */ } #wireframes:hover { animation: wireframes-hover 0.3s linear forwards; /* tirite inmediato al pasar el mouse */ cursor: pointer; } @keyframes wireframes-tiritar { /* 0% a 25% = 2s de tirite automático */ 0% { transform: translateX(0) rotate(0deg); } 2% { transform: translateX(-1px) rotate(-0.5deg); } 4% { transform: translateX(1px) rotate(0.5deg); } 6% { transform: translateX(-1px) rotate(-0.5deg); } 8% { transform: translateX(1px) rotate(0.5deg); } 10% { transform: translateX(-1px) rotate(-0.5deg); } 12% { transform: translateX(1px) rotate(0.5deg); } 14% { transform: translateX(-1px) rotate(-0.5deg); } 16% { transform: translateX(1px) rotate(0.5deg); } 18% { transform: translateX(-1px) rotate(-0.5deg); } 20% { transform: translateX(1px) rotate(0.5deg); } 22% { transform: translateX(-0.5px) rotate(-0.25deg); } 24% { transform: translateX(0.5px) rotate(0.25deg); } 25% { transform: translateX(0) rotate(0); } /* 25% a 100% = pausa (6s), cámara quieta */ 100% { transform: translateX(0) rotate(0); } } @keyframes wireframes-hover { 0% { transform: translateX(0) rotate(0deg); } 20% { transform: translateX(-1px) rotate(-0.5deg); } 40% { transform: translateX(1px) rotate(0.5deg); } 60% { transform: translateX(-1px) rotate(-0.5deg); } 80% { transform: translateX(1px) rotate(0.5deg); } 100% { transform: translateX(0) rotate(0); } } #art { transform-origin: center center; animation: art-tambaleo 5s linear infinite; /* ciclo de 5s */ } #art:hover { stroke: #000; stroke-width: 3px; cursor: pointer; } @keyframes art-tambaleo { /* 0% a 10% = 0.5s de tambaleo (10% de 5s = 0.5s) */ 0% { transform: rotate(0deg); } 2% { transform: rotate(-2deg); } 4% { transform: rotate(2deg); } 6% { transform: rotate(-2deg); } 8% { transform: rotate(2deg); } 10% { transform: rotate(0deg); } /* 10% a 100% = 4.5s de pausa */ 100% { transform: rotate(0deg); } } @keyframes art-hover { 0% { transform: rotate(0deg); } 25% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } 75% { transform: rotate(-2deg); } 100% { transform: rotate(0deg); } } #book { transform-origin: center center; animation: book-slide 7s ease infinite; } #book:hover { stroke: #000; stroke-width: 1px; cursor: pointer; } @keyframes book-slide { /* 0% a 14.28% = 1s de deslizamiento (≈1/7 del ciclo) */ 0% { transform: translateX(0); } 7% { transform: translateX(10px); } /* se desplaza hacia la derecha */ 14.28%{ transform: translateX(0); } /* vuelve al inicio */ /* 14.28% a 100% = 6s de pausa */ 100% { transform: translateX(0); } } @keyframes book-hover { 0% { transform: translateX(0); } 50% { transform: translateX(10px); } 100% { transform: translateX(0); } } #lego { transform-origin: center bottom; animation: subir-caer 5s ease-in-out infinite; /* ciclo automático */ } #lego:hover { animation: hover-subir-caer 0.8s ease-in-out forwards; /* efecto rápido en hover */ stroke: #000; stroke-width: 1px; cursor: pointer; } @keyframes subir-caer { /* 0% a 20% = 1s de movimiento (subir + caer) */ 0% { transform: translateY(0); } 10% { transform: translateY(-150px); } /* sube */ 20% { transform: translateY(0); } /* cae */ /* 20% a 100% = pausa (4s) */ 100% { transform: translateY(0); } } @keyframes hover-subir-caer { 0% { transform: translateY(0); } 40% { transform: translateY(-150px); } /* sube rápido */ 100% { transform: translateY(0); } /* vuelve al suelo */ }
@@ -728,7 +642,7 @@ h1 {
 
 /* Cada item */
 .stuffs-list li {
-  align-items: flex-end;
+  align-items: center;
   display: flex;
   border-radius: 100px !important;
 }
@@ -841,6 +755,40 @@ h1 {
 }
 
 
+.typing-me-container { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 20px;
+}
+
+.photo-me-wrapper {
+    position: relative; /* necesario para el ::after */
+    display: inline-block; 
+}
+
+.photo-me {
+    max-height: 255px;
+    opacity: 0.6;
+    display: block;
+
+}
+
+.photo-me-wrapper::after {
+    padding: 20px;
+    content: "";
+    position: absolute;
+    top: -10px;   /* mover borde hacia arriba */
+    left: 10px;   /* mover borde hacia la derecha */
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    pointer-events: none;
+}
+
 
 /* Texto typing */
 #typing-me {
@@ -886,7 +834,7 @@ h1 {
 /* Botón 3D ME */
 .me-list {
   list-style: none;
-  padding: 0;
+  padding: 20px;
   margin: 0;
   display: flex;
   flex-direction: row;
@@ -955,6 +903,8 @@ h1 {
 /* =============================
    CARDS SECTION
    ============================= */
+
+   
 .cards-section {
   padding: 20px;
   display: flex;
@@ -1024,118 +974,4 @@ h1 {
 
 @media (max-width: 800px) {
   .cards-container { justify-content: center; }
-}
-
-/* =============================
-   STUFFS NAV FOOTER 
-   ============================= */
-  #footer-stuffs {
-
-  width: 100%;
-  align-items: center;
-  padding-bottom: 20px;
-}
-
-/* Contenedor de stuffs */
-.stuffooter-container {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Lista de stuffs */
-.stuffooter-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  max-width: 700px;
-  width: 100%;
-  justify-content: center;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-/* Cada item */
-.stuffooter-list li {
-  align-items: flex-end;
-  display: flex;
-  border-radius: 100px !important;
-}
-
-/* Botón 3D stuffs */
-.stuffooter-nav-effect {
-  width: 100px;
-  height: var(--height);
-  border: none;
-  background: transparent;
-  position: relative;
-  transform-style: preserve-3d;
-  transform: rotateX(0deg);
-  transition: transform 0.5s cubic-bezier(.08,.82,.17,1);
-  cursor: pointer;
-  padding: 0;
-}
-
-.stuffooter-nav-effect:hover {
-  transform: rotateX(-90deg);
-}
-
-
-/* Hover solo para los que NO están activos */
-.stuffooter-list li a.stuffooter-nav-effect:hover:not(.active) {
-  transform: rotateX(-90deg);
-}
-
-/* Aseguramos que el activo no rote */
-.stuffooter-list li a.stuffooter-nav-effect.active {
-  transform: rotateX(0deg) !important;
-}
-
-/* Las caras del activo quedan fijas */
-.stuffooter-list li a.stuffooter-nav-effect.active .front,
-.stuffooter-list li a.stuffooter-nav-effect.active .top {
-  transform: rotateX(0deg) translateZ(calc(var(--height)/2)) !important;
-}
-
-
-/* Caras del botón */
-.stuffooter-nav-effect .face {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 110px;
-  height: var(--height);
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: var(--border) solid var(--color1);
-  box-sizing: border-box;
-  backface-visibility: hidden;
-  font: inherit;
-  border-radius: 40px !important;
-}
-
-.stuffooter-nav-effect .front {
-  background-color: transparent;
-  color: var(--color1);
-  transform: rotateX(0deg) translateZ(calc(var(--height)/2));
-}
-
-.stuffooter-nav-effect .top {
-  background-color: var(--color1);
-  color: var(--color2);
-  transform: rotateX(90deg) translateZ(calc(var(--height)/2));
-}
-
-/* Estado activo */
-.stuffooter-list a.active .front {
-  background-color: var(--color1);
-  color: var(--color2);
-}
-
-.stuffooter-list a.active .top {
-  background-color: var(--color1);
-  color: var(--color2);
-  transform: rotateX(0deg) translateZ(calc(var(--height)/2));
 }
