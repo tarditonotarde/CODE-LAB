@@ -1,0 +1,133 @@
+/* =============================
+   FONTS IMPORT
+   ============================= */
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+@import url(https://fonts.bunny.net/css?family=nunito:400,400i,600,600i,800,800i);
+@import url('https://fonts.googleapis.com/css?family=Anton|Roboto');
+@import url('https://fonts.googleapis.com/css2?family=monospace:wght@400;700&display=swap');
+
+/* =============================
+   PORTFOLIO ITEMS
+   ============================= */
+
+   /* =============================
+   MAIN TITLE
+   ============================= */
+h1 {
+  color: black;
+  font-family: monospace;
+  font-size: 1.5em;
+  overflow: hidden;
+  padding: 20px 20px 0px 20px;
+}
+
+#cursor-title {
+  font-weight: bold;
+  color: black;
+  animation: blink-me 1s infinite;
+  margin-left: -15px;
+}
+
+
+/* =============================
+   TAG STYLES
+   ============================= */
+
+/* Contenedor de tags */
+.tags-container {
+  margin: 10px;
+}
+
+/* Lista de tags */
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 700px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Cada item */
+.tags-list li {
+  align-items: center;
+  display: flex;
+  border-radius: 100px !important;
+}
+
+/* Botón 3D tags */
+.tags-nav-effect {
+  width: 100px;
+  height: var(--height);
+  border: none;
+  background: transparent;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg);
+  transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
+  cursor: pointer;
+  padding: 0;
+}
+
+.tags-nav-effect:hover {
+  transform: rotateX(-90deg);
+}
+
+
+/* Hover solo para los que NO están activos */
+.tags-list li a.tags-nav-effect:hover:not(.active) {
+  transform: rotateX(-90deg);
+}
+
+/* Aseguramos que el activo no rote */
+.tags-list li a.tags-nav-effect.active {
+  transform: rotateX(0deg) !important;
+}
+
+/* Las caras del activo quedan fijas */
+.tags-list li a.tags-nav-effect.active .front,
+.tags-list li a.tags-nav-effect.active .top {
+  transform: rotateX(0deg) translateZ(calc(var(--height)/2)) !important;
+}
+
+
+/* Caras del botón */
+.tags-nav-effect .face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 110px;
+  height: var(--height);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: var(--border) solid var(--color1);
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  font: inherit;
+  border-radius: 40px !important;
+}
+
+.tags-nav-effect .front {
+  background-color: transparent;
+  color: var(--color1);
+  transform: rotateX(0deg) translateZ(calc(var(--height)/2));
+}
+
+.tags-nav-effect .top {
+  background-color: var(--color1);
+  color: var(--color2);
+  transform: rotateX(90deg) translateZ(calc(var(--height)/2));
+}
+
+/* Estado activo */
+.tags-list a.active .front {
+  background-color: var(--color1);
+  color: var(--color2);
+}
+
+.tags-list a.active .top {
+  background-color: var(--color1);
+  color: var(--color2);
+  transform: rotateX(0deg) translateZ(calc(var(--height)/2));
+}

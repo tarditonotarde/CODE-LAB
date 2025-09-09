@@ -135,10 +135,10 @@ document.addEventListener('mousemove', (e) => {
 /* FOOTER */
 document.addEventListener("DOMContentLoaded", () => {
   const contactBtn = document.querySelector(".icon-nav-effect[aria-label='Contact']");
-  const figmaBtn   = document.querySelector(".icon-nav-effect[aria-label='Figma']");
-  const resumeBtn   = document.querySelector(".icon-nav-effect[aria-label='Resume']");
-  const msnPopup   = document.getElementById("msn-popup");
-  const closeArea  = document.getElementById("msn-close");
+  const figmaBtn = document.querySelector(".icon-nav-effect[aria-label='Figma']");
+  const resumeBtn = document.querySelector(".icon-nav-effect[aria-label='Resume']");
+  const msnPopup = document.getElementById("msn-popup");
+  const closeArea = document.getElementById("msn-close");
   const whatsappArea = document.getElementById("msn-whatsapp");
 
   // 🔊 Crear sonidos dinámicamente
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         msnPopup.style.display = "block";
         msnPopup.classList.add("shake");
         msnSound.currentTime = 0;
-        msnSound.play().catch(() => {});
+        msnSound.play().catch(() => { });
       }
     });
   }
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-    // Resume → abrir enlace
+  // Resume → abrir enlace
   if (resumeBtn) {
     resumeBtn.addEventListener("click", () => {
       window.open("https://drive.google.com/file/d/1BSFvcdQJjesg4U2r8i4tGjXFQhhCA5L5/view", "_blank");
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation();
       msnPopup.style.display = "none";
       msnSound.currentTime = 0;
-      msnSound.play().catch(() => {});
+      msnSound.play().catch(() => { });
     });
   }
 
@@ -194,11 +194,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (msnPopup) {
     document.addEventListener("click", (e) => {
       if (msnPopup.style.display === "block" &&
-          !msnPopup.contains(e.target) &&
-          !(contactBtn && contactBtn.contains(e.target))) {
+        !msnPopup.contains(e.target) &&
+        !(contactBtn && contactBtn.contains(e.target))) {
         msnPopup.style.display = "none";
         msnSound.currentTime = 0;
-        msnSound.play().catch(() => {});
+        msnSound.play().catch(() => { });
       }
     });
   }
@@ -298,22 +298,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* FOOTER ARROWS */
 
-$(document).ready(function(){
+$(document).ready(function () {
 
-    // Navegación atrás
-    $(".arrow.prev").click(function(){
-        window.history.back();
-    });
+  // Navegación atrás
+  $(".arrow.prev").click(function () {
+    window.history.back();
+  });
 
-    // Navegación adelante
-    $(".arrow.next").click(function(){
-        window.history.forward();
-    });
+  // Navegación adelante
+  $(".arrow.next").click(function () {
+    window.history.forward();
+  });
 
-    // Scroll hasta arriba
-    $(".arrow.scroll-top").click(function(){
-        $("html, body").animate({ scrollTop: 0 }, "slow");
-    });
+  // Scroll hasta arriba
+  $(".arrow.scroll-top").click(function () {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  });
 
 });
 
@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const text = "I love solving problems and designing with impact.";
   const output = document.getElementById("typing-text-me");
   const cursor = document.getElementById("cursor-me");
-  
+
   if (!output || !cursor) return; // ✅ no afecta otras páginas
 
   let i = 0;
@@ -364,13 +364,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* CARDS PORTFOLIO */
-$(document).ready(function() {
-  $('.card').each(function(index) {
-    $(this).delay(150 * index).animate({opacity: 1}, 500)
-           .queue(function(next){
-               $(this).css('transform', 'translateY(0)');
-               next();
-           });
+$(document).ready(function () {
+  $('.card').each(function (index) {
+    $(this).delay(150 * index).animate({ opacity: 1 }, 500)
+      .queue(function (next) {
+        $(this).css('transform', 'translateY(0)');
+        next();
+      });
   });
 });
 
@@ -393,9 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 /* ------------------- PAGE TRANSITIONS ------------------- */
-
 document.addEventListener("DOMContentLoaded", () => {
   /* ------------------- FADE IN ON LOAD ------------------- */
   document.body.style.opacity = 0;
@@ -410,12 +408,19 @@ document.addEventListener("DOMContentLoaded", () => {
   links.forEach(link => {
     link.addEventListener('click', e => {
       const href = link.getAttribute('href');
-      // Ignorar enlaces internos o JS
-      if (!href || href.startsWith("#") || href.startsWith("javascript:") || href.startsWith("mailto:") || href.startsWith("tel:")) return;
+
+      // Ignorar enlaces internos o que abran en otra pestaña
+      if (
+        !href ||
+        href.startsWith("#") ||
+        href.startsWith("javascript:") ||
+        href.startsWith("mailto:") ||
+        href.startsWith("tel:") ||
+        link.target === "_blank"
+      ) return;
 
       e.preventDefault();
-      // Fade-out antes de navegar
-      document.body.style.transition = "opacity 0.3s ease";
+      document.body.style.transition = "opacity 0.5s ease-in-out";
       document.body.style.opacity = 0;
 
       setTimeout(() => {
@@ -424,3 +429,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+/* ------------------- ME PAGE RESUME LINK FIX ------------------- */
