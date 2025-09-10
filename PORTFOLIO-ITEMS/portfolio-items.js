@@ -3,7 +3,7 @@
    ============================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const text = "Case Study";
+  const text = "■ case study";
   const output = document.getElementById("typing-text-title");
   const cursor = document.getElementById("cursor-title");
 
@@ -11,13 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let i = 0;
   function typeWriter() {
-    if (i < text.length) {
-      output.textContent += text.charAt(i);
-      i++;
-      setTimeout(typeWriter, 100); // velocidad de escritura
-    } else {
-      cursor.style.display = "inline"; // deja el cursor parpadeando
-    }
+  if (i < text.length) {
+  output.textContent += text.charAt(i);
+  i++;
+  setTimeout(typeWriter, 100); // velocidad de escritura
+} 
+// no necesitamos hacer nada más, la animación CSS ya parpadea continuamente
+
   }
 
   typeWriter();
@@ -43,4 +43,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".tags-list li");
+
+  items.forEach(item => {
+    const link = item.querySelector("a");
+
+    // Click: toggle permanente
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      item.classList.toggle("open");
+    });
+  });
+});
+
 

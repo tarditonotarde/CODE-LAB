@@ -1,10 +1,438 @@
 /* =============================
    FONTS IMPORT
    ============================= */
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
-@import url(https://fonts.bunny.net/css?family=nunito:400,400i,600,600i,800,800i);
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import url('https://fonts.googleapis.com/css?family=Anton|Roboto');
-@import url('https://fonts.googleapis.com/css2?family=monospace:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* =============================
+   GLOBAL RESET & BODY
+   ============================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  /* aquí sí se mantiene fijo */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(in oklch longer hue to right,
+      oklch(0.93 0.08 var(--hue1) / 50%),
+      oklch(0.93 0.08 var(--hue2) / 50%)),
+    linear-gradient(in oklch longer hue to bottom,
+      oklch(0.93 0.08 var(--hue1) / 50%),
+      oklch(0.93 0.08 var(--hue2) / 50%));
+  background-size: 100% 100%;
+  z-index: -1;
+  /* siempre detrás de todo */
+  animation: anim_bg 5s linear infinite;
+}
+
+/* =============================
+   GRADIENT EFFECT BACKGROUND
+   ============================= */
+@property --hue1 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --hue2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+body {
+  background-image: linear-gradient(in oklch longer hue to right,
+      oklch(0.93 0.08 var(--hue1) / 50%),
+      oklch(0.93 0.08 var(--hue2) / 50%)),
+    linear-gradient(in oklch longer hue to bottom,
+      oklch(0.93 0.08 var(--hue1) / 50%),
+      oklch(0.93 0.08 var(--hue2) / 50%));
+  background-size: 100% 100%;
+  background-attachment: fixed !important;
+  /* <-- esto mantiene el fondo fijo */
+  animation: anim_bg 5s linear infinite;
+}
+
+@keyframes anim_bg {
+  0% {
+    --hue1: 0deg;
+    --hue2: 300deg;
+  }
+
+  100% {
+    --hue1: 360deg;
+    --hue2: 660deg;
+  }
+}
+
+
+/* =============================
+   HEADER
+   ============================= */
+header {
+  position: fixed;
+  /* header siempre visible */
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* =============================
+   MAIN & SECTION
+   ============================= */
+main {
+  flex: 1 0 auto;
+  /* ocupa todo el espacio restante */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+section {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+/* =============================
+   FONTS & TITLES
+   ============================= */
+h1 {
+  color: black;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8em;
+  font-weight: 400;
+  line-height: 1.2em;
+  text-transform: uppercase;
+  overflow: hidden;
+  padding: 20px 20px 0px 20px;
+}
+
+h2 {
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 1.5em;
+  line-height: 1.2em;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2em;
+  font-weight: 200;
+  line-height: 1.2em;
+  color: black;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  color: black;
+}
+
+/* =============================
+   FOOTER
+   ============================= */
+footer {
+  flex-shrink: 0;
+  /* nunca se achica */
+  height: 30px;
+  /* ajusta según tu diseño */
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+/* =============================
+   FOOTER LINEAL
+   ============================= */
+
+#footer-linear {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-top: 2px solid black;
+  height: 50px;
+background: #fdbdcf58; 
+   display: flex;
+  box-sizing: border-box;
+}
+
+#snakeGame {
+  position: relative;
+  width: 200px;
+  height: 40px;
+  border: 0px solid black;
+  overflow: hidden;
+}
+
+.segment {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: transparent;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.food {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: black;
+}
+
+.icon-nav-linear-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 10px;
+}
+
+.icon-nav-linear-links li {
+  align-items: flex-end;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.icon-nav-effect {
+  width: 50px;
+  height: var(--height);
+  border: none;
+  background: transparent;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg);
+  transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon-nav-effect:hover {
+  transform: rotateX(-90deg);
+}
+
+.icon-nav-effect .icon-face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: var(--height);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0px solid var(--color1);
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.icon-nav-effect .icon-front {
+  background-color: transparent;
+  color: var(--color1);
+  transform: rotateX(0deg) translateZ(calc(var(--height)/2));
+}
+
+.icon-nav-effect .icon-top {
+  background-color: transparent;
+  border: 2px solid var(--color1);
+  color: var(--color1);
+  transform: rotateX(90deg) translateZ(calc(var(--height)/2));
+}
+
+
+/* =============================
+   POPUP
+   ============================= */
+#msn-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: none;
+}
+
+#msn-popup img {
+  max-width: 400px;
+  width: 100%;
+}
+
+#msn-sound {
+  display: none;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+@keyframes msn-shake {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  20% {
+    transform: translate(-50%, -50%) rotate(-3deg);
+  }
+
+  40% {
+    transform: translate(-50%, -50%) rotate(3deg);
+  }
+
+  60% {
+    transform: translate(-50%, -50%) rotate(-3deg);
+  }
+
+  80% {
+    transform: translate(-50%, -50%) rotate(3deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+#msn-popup.shake {
+  animation: msn-shake 0.2s ease-in-out infinite;
+}
+
+
+/* =============================
+   LIST STYLES
+   ============================= */
+ol,
+ul {
+  padding-left: 0rem;
+  margin-bottom: 0rem;
+}
+
+
+/* =============================
+   NAV HEADER
+   ============================= */
+#cubicle>.links a.active {
+  transform: translateZ(calc(-1 * calc(var(--height) / 2))) rotateX(-90deg);
+}
+
+:root {
+  --color1: #000;
+  --color2: #fff;
+  --height: 30px !important;
+  --width: 90px !important;
+  --border: 2px;
+}
+
+#cubicle {
+  height: var(--height);
+}
+
+#cubicle>.links {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  list-style: none;
+  width: 100%;
+  flex-direction: column;
+}
+
+#cubicle>.links li {
+  min-width: var(--width);
+  height: var(--height);
+  margin: 0;
+  perspective: 1000px;
+  z-index: 1;
+}
+
+#cubicle>.links li:first-child {
+  margin-left: 0;
+}
+
+#cubicle>.links li:hover {
+  z-index: 2;
+}
+
+#cubicle>.links a {
+  display: block;
+  height: var(--height);
+  position: relative;
+  text-decoration: none;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(-1 * calc(var(--height) / 2)));
+  transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
+}
+
+#cubicle>.links a:hover {
+  transform: translateZ(calc(-1 * calc(var(--height) / 2))) rotateX(-90deg);
+}
+
+#cubicle>.links a::before,
+#cubicle>.links a::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--width);
+  height: var(--height);
+  position: absolute;
+  border: var(--border) solid var(--color1);
+  content: attr(title);
+}
+
+#cubicle>.links a::before {
+  background-color: transparent;
+  color: var(--color1);
+  transform: rotateY(0deg) translateZ(calc(var(--height) / 2));
+}
+
+#cubicle>.links a::after {
+  background-color: var(--color1);
+  color: var(--color2);
+  transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
+}
+
 
 /* =============================
    PORTFOLIO ITEMS
@@ -13,22 +441,29 @@
    /* =============================
    MAIN TITLE
    ============================= */
-h1 {
-  color: black;
-  text-align: center;
-  font-family: monospace;
-  font-size: 1.5em;
-  overflow: hidden;
-  padding: 20px 20px 0px 20px;
-}
 
 #cursor-title {
-  font-weight: bold;
   color: black;
-  animation: blink-me 1s infinite;
-  margin-left: -15px;
+  display: inline; /* necesario para que se vea */
+  animation: blink-me 1s step-start infinite;
+  margin-left: 0px; /* ajusta según tu preferencia */
 }
 
+@keyframes blink-me {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+
+.main-title-container {
+  padding-top: 130px;
+}
+
+.linea-completa {
+  height: 2px;
+  background-color: black;
+  width: 100%;
+}
 
 /* =============================
    TAG STYLES
@@ -44,10 +479,11 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  max-width: 700px;
-  justify-content: center;
+  max-width: 100%;
+  justify-content: center; /* 👈 ahora alineados a la izquierda */
   padding: 20px;
 }
+
 
 /* Cada item */
 .tags-list li {
@@ -58,7 +494,7 @@ h1 {
 
 /* Botón 3D tags */
 .tags-nav-effect {
-  width: 100px;
+  width: 120px;
   height: var(--height);
   border: none;
   background: transparent;
@@ -73,7 +509,6 @@ h1 {
 .tags-nav-effect:hover {
   transform: rotateX(-90deg);
 }
-
 
 /* Hover solo para los que NO están activos */
 .tags-list li a.tags-nav-effect:hover:not(.active) {
@@ -97,7 +532,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 110px;
+  width: 120px;
   height: var(--height);
   position: absolute;
   top: 0;
@@ -105,7 +540,7 @@ h1 {
   border: var(--border) solid var(--color1);
   box-sizing: border-box;
   backface-visibility: hidden;
-  font: inherit;
+  font-family: 'Montserrat', sans-serif;
   border-radius: 40px !important;
 }
 
@@ -116,8 +551,8 @@ h1 {
 }
 
 .tags-nav-effect .top {
-  background-color: var(--color1);
-  color: var(--color2);
+  background-color: transparent;
+  color: var(--color1);
   transform: rotateX(90deg) translateZ(calc(var(--height)/2));
 }
 
@@ -132,3 +567,147 @@ h1 {
   color: var(--color2);
   transform: rotateX(0deg) translateZ(calc(var(--height)/2));
 }
+
+/* Texto debajo de los botones */
+/* Cada item en columna, pero alineado al inicio (no centrado) */
+.tags-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 👈 ahora al inicio, no centrado */
+  gap: 6px;
+}
+
+/* Texto debajo de los botones */
+.tag-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: black;
+  max-width: 120px;
+  text-align: center !important; 
+}
+
+/* Mostrar en hover */
+.tags-list li:hover .tag-content {
+  max-height: 100px;
+  opacity: 1;
+}
+
+/* Mostrar en click (toggle con .open) */
+li.open .tag-content {
+  max-height: 100px;
+  opacity: 1;
+}
+
+/* =============================
+   PORTFOLIO ITEMS GRID
+   ============================= */
+  
+.text-blocks-container {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;       /* permite que los bloques bajen cuando no caben */
+  gap: 6em;             /* espacio entre bloques */
+  width: 80%;           /* ocupar todo el ancho */
+  padding: 20px;
+  justify-content: space-between; /* separa los bloques uniformemente */
+}
+
+.text-block {
+  flex: 1 1 45%;        /* ocupa aprox. la mitad del ancho, se adapta */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.block-content {
+  display: flex;
+  flex-direction: column; /* una columna de texto */
+}
+
+.text-block-list {
+  list-style-type: square;
+  list-style-position: outside;
+  color: rgb(77, 77, 77);
+  padding-bottom: 20px;
+}
+
+.text-block-list::marker {
+  font-size: 2em; /* ajusta el tamaño de la viñeta */
+  color: black; /* opcional: color de la viñeta */
+}
+
+
+.list-titles {
+  text-transform: uppercase;
+  font-weight: 500;
+  color: black;
+}
+
+.linea-completa-subtitle {
+  height: 1px;
+  background-color: black;
+  width: 100%;
+}
+
+/* =============================
+   FLIPBOOKS PORTFOLIO
+   ============================= */
+  
+   .flip-book-container {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;       /* permite que los bloques bajen cuando no caben */
+  width: 100%;           /* ocupar todo el ancho */
+  padding: 20px;
+}
+
+.fp-iframe {
+border: none; 
+width: 100%; 
+height: 30em;
+}
+
+/* =============================
+   VIDEOS PORTFOLIO
+   ============================= */
+  
+  .video-container {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;       /* permite que los bloques bajen cuando no caben */
+  gap: 6em;             /* espacio entre bloques */
+  width: 80%;           /* ocupar todo el ancho */
+  padding: 20px;
+  align-items: center;
+  justify-content: space-between; /* separa los bloques uniformemente */
+}
+
+  .video-content {
+  flex: 1 1 45%;        /* ocupa aprox. la mitad del ancho, se adapta */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.video-iframe {
+border: none; 
+width: 100%;
+height: 300px;
+}
+
+/* =============================
+   IMG PORTFOLIO
+   ============================= */
+  .img-port {
+  width: 100%;
+}
+
+
+
+
+

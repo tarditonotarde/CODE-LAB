@@ -1,10 +1,10 @@
 /* =============================
    FONTS IMPORT
    ============================= */
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
-@import url(https://fonts.bunny.net/css?family=nunito:400,400i,600,600i,800,800i);
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import url('https://fonts.googleapis.com/css?family=Anton|Roboto');
-@import url('https://fonts.googleapis.com/css2?family=monospace:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 /* =============================
    GLOBAL RESET & BODY
@@ -33,9 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: "Geist", sans-serif;
-  color: PaleVioletRed;
-
+  font-family: "Montserrat", sans-serif;
 }
 
 body::before {
@@ -449,7 +447,7 @@ ul {
   border: var(--border) solid var(--color1);
   box-sizing: border-box;
   backface-visibility: hidden;
-  font: inherit;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Cara frontal */
@@ -533,7 +531,7 @@ ul {
   padding: 10px;
   border-top: 2px solid black;
   height: 50px;
-  background: transparent;
+background: #fdbdcf58; 
   box-sizing: border-box;
 }
 
@@ -605,7 +603,7 @@ ul {
   border: 0px solid var(--color1);
   box-sizing: border-box;
   backface-visibility: hidden;
-  font: inherit;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .icon-nav-effect .icon-front {
@@ -1222,7 +1220,7 @@ ul {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  max-width: 700px;
+  max-width: 750px;
   justify-content: center;
   padding: 20px;
 }
@@ -1236,7 +1234,7 @@ ul {
 
 /* Botón 3D stuffs */
 .stuffs-nav-effect {
-  width: 100px;
+  width: 120px;
   height: var(--height);
   border: none;
   background: transparent;
@@ -1275,7 +1273,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 110px;
+  width: 120px;
   height: var(--height);
   position: absolute;
   top: 0;
@@ -1283,7 +1281,7 @@ ul {
   border: var(--border) solid var(--color1);
   box-sizing: border-box;
   backface-visibility: hidden;
-  font: inherit;
+  font-family: 'Montserrat', sans-serif;
   border-radius: 40px !important;
 }
 
@@ -1484,7 +1482,7 @@ ul {
   border: var(--border) solid var(--color1);
   box-sizing: border-box;
   backface-visibility: hidden;
-  font: inherit;
+  font-family: 'Montserrat', sans-serif;
   border-radius: 40px !important;
 }
 
@@ -1561,8 +1559,9 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: monospace;
-  font-size: 0.8rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  font-size: 1rem;
   text-align: center;
   padding: 10px;
   box-sizing: border-box;
