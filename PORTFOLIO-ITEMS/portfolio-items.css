@@ -442,6 +442,10 @@ ul {
    MAIN TITLE
    ============================= */
 
+   #typing-title {
+    padding-bottom: 20px;
+   }
+
 #cursor-title {
   color: black;
   display: inline; /* necesario para que se vea */
@@ -460,9 +464,9 @@ ul {
 }
 
 .linea-completa {
-  height: 2px;
-  background-color: black;
+  border: 1px solid #000;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 /* =============================
@@ -573,13 +577,14 @@ ul {
 .tags-list li {
   display: flex;
   flex-direction: column;
-  align-items: center; /* 👈 ahora al inicio, no centrado */
+  align-items: flex-start; /* 👈 ahora al inicio, no centrado */
   gap: 6px;
 }
 
 /* Texto debajo de los botones */
 .tag-content {
   max-height: 0;
+  padding-left: 15px;
   overflow: hidden;
   opacity: 0;
   transition: all 0.3s ease;
@@ -588,7 +593,6 @@ ul {
   text-transform: uppercase;
   color: black;
   max-width: 120px;
-  text-align: center !important; 
 }
 
 /* Mostrar en hover */
@@ -658,12 +662,13 @@ li.open .tag-content {
    FLIPBOOKS PORTFOLIO
    ============================= */
   
-   .flip-book-container {
+  .flip-book-container {
   display: flex;
   align-content: center;
   flex-wrap: wrap;       /* permite que los bloques bajen cuando no caben */
   width: 100%;           /* ocupar todo el ancho */
   padding: 20px;
+  justify-content: center
 }
 
 .fp-iframe {
@@ -705,6 +710,108 @@ height: 300px;
    ============================= */
   .img-port {
   width: 100%;
+}
+
+/* =============================
+   STUFFS NAV FOOTER NAV
+   ============================= */
+
+/* Contenedor de stuffs */
+.stuff-container {
+  margin: 10px;
+}
+
+/* Lista de stuffs */
+.stuffs-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Cada item */
+.stuffs-list li {
+  align-items: center;
+  display: flex;
+  border-radius: 100px !important;
+}
+
+/* Botón 3D stuffs */
+.stuffs-nav-effect {
+  width: 120px;
+  height: var(--height);
+  border: none;
+  background: transparent;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg);
+  transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
+  cursor: pointer;
+  padding: 0;
+}
+
+.stuffs-nav-effect:hover {
+  transform: rotateX(-90deg);
+}
+
+
+/* Hover solo para los que NO están activos */
+.stuffs-list li a.stuffs-nav-effect:hover:not(.active) {
+  transform: rotateX(-90deg);
+}
+
+/* Aseguramos que el activo no rote */
+.stuffs-list li a.stuffs-nav-effect.active {
+  transform: rotateX(0deg) !important;
+}
+
+/* Las caras del activo quedan fijas */
+.stuffs-list li a.stuffs-nav-effect.active .front,
+.stuffs-list li a.stuffs-nav-effect.active .top {
+  transform: rotateX(0deg) translateZ(calc(var(--height)/2)) !important;
+}
+
+
+/* Caras del botón */
+.stuffs-nav-effect .face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: var(--height);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: var(--border) solid var(--color1);
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 40px !important;
+}
+
+.stuffs-nav-effect .front {
+  background-color: transparent;
+  color: var(--color1);
+  transform: rotateX(0deg) translateZ(calc(var(--height)/2));
+}
+
+.stuffs-nav-effect .top {
+  background-color: var(--color1);
+  color: var(--color2);
+  transform: rotateX(90deg) translateZ(calc(var(--height)/2));
+}
+
+/* Estado activo */
+.stuffs-list a.active .front {
+  background-color: var(--color1);
+  color: var(--color2);
+}
+
+.stuffs-list a.active .top {
+  background-color: var(--color1);
+  color: var(--color2);
+  transform: rotateX(0deg) translateZ(calc(var(--height)/2));
 }
 
 

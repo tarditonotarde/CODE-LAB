@@ -625,38 +625,33 @@ background: #fdbdcf58;
 #workplace {
   width: 100%;
   height: auto;
-  max-width: 500px;
   /* tamaño máximo por defecto */
-  display: block;
+}
+.all-block-svg {
+    display: flex;
+    justify-content: center;
+}
+
+.all-svg {
+    width: 100%;
+  height: auto;
 }
 
 /* Móviles pequeños (iPhone) */
 @media (max-width: 480px) {
-  #workplace {
-    max-width: 250px !important;
+  .all-svg {
+    max-width: 60% !important;
   }
 }
 
 /* Smartphones grandes */
 @media (min-width: 481px) and (max-width: 768px) {
-  #workplace {
-    max-width: 300px;
+  .all-svg {
+    max-width: 70% !important;
   }
 }
 
-/* Tablets y pantallas medianas */
-@media (min-width: 769px) and (max-width: 1024px) {
-  #workplace {
-    max-width: 300px;
-  }
-}
 
-/* Pantallas grandes */
-@media (min-width: 1025px) {
-  #workplace {
-    max-width: 300px;
-  }
-}
 
 #coffe {
   transform-origin: center bottom;
@@ -1347,8 +1342,8 @@ background: #fdbdcf58;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  flex-direction: row;
   flex-wrap: wrap;
+  flex-direction: row-reverse;
   padding-top: 20px;
 }
 
