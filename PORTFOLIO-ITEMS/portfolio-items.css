@@ -154,7 +154,7 @@ h2 {
   font-weight: 300;
   font-size: 1.5em;
   line-height: 1.2em;
-}
+  padding: 20px 20px 0px 20px;}
 
 h3 {
   font-family: 'Montserrat', sans-serif;
@@ -162,12 +162,15 @@ h3 {
   font-weight: 200;
   line-height: 1.2em;
   color: black;
+  padding: 20px 20px 0px 20px;
+
 }
 
 p {
   font-family: 'Montserrat', sans-serif;
   font-size: 1em;
   color: black;
+  padding: 20px 20px 0px 20px;
 }
 
 /* =============================
@@ -467,6 +470,7 @@ ul {
   border: 1px solid #000;
   width: 100%;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 /* =============================
@@ -656,25 +660,20 @@ li.open .tag-content {
   height: 1px;
   background-color: black;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 /* =============================
    FLIPBOOKS PORTFOLIO
    ============================= */
-  
-  .flip-book-container {
-  display: flex;
-  align-content: center;
-  flex-wrap: wrap;       /* permite que los bloques bajen cuando no caben */
-  width: 100%;           /* ocupar todo el ancho */
-  padding: 20px;
-  justify-content: center
-}
 
 .fp-iframe {
 border: none; 
-width: 100%; 
-height: 30em;
+width: 80vw; 
+height: 80vh;
+border: 0px ; 
+padding: 20px;
+justify-content: center;
 }
 
 /* =============================
@@ -692,7 +691,7 @@ height: 30em;
   justify-content: space-between; /* separa los bloques uniformemente */
 }
 
-  .video-content {
+ .video-content {
   flex: 1 1 45%;        /* ocupa aprox. la mitad del ancho, se adapta */
   display: flex;
   flex-direction: column;
@@ -705,15 +704,36 @@ width: 100%;
 height: 300px;
 }
 
+.full-video {
+border: none; 
+width: 80vw;
+height: 80vh;
+padding: 20px;
+}
 /* =============================
    IMG PORTFOLIO
    ============================= */
   .img-port {
       max-width: 400px;
-      padding-bottom: 20px;
-  width: 100%;
+      padding: 20px;
+      justify-content: center !important;
 }
 
+  .img-large {
+      width: 80vw;
+      padding: 20px;
+}
+
+  .img-long {
+      height: 70vh;
+      padding: 20px;
+}
+
+.img-figma {
+       width: 80vw;
+       height: 80vh;
+      padding: 20px;
+}
 /* =============================
    STUFFS NAV FOOTER NAV
    ============================= */
@@ -774,7 +794,6 @@ height: 300px;
   transform: rotateX(0deg) translateZ(calc(var(--height)/2)) !important;
 }
 
-
 /* Caras del botón */
 .stuffs-nav-effect .face {
   display: flex;
@@ -816,7 +835,10 @@ height: 300px;
   transform: rotateX(0deg) translateZ(calc(var(--height)/2));
 }
 
-
+.icon-footer {
+  height: 28px;
+  width: 28px;
+}
 
 
 

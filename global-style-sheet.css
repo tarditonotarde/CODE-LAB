@@ -148,6 +148,11 @@ footer {
   z-index: 100;
 }
 
+.icon-footer {
+  height: 28px;
+  width: 28px;
+}
+
 /* =============================
    LIST STYLES
    ============================= */
