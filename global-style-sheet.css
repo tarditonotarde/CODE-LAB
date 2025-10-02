@@ -1310,40 +1310,13 @@ background: #fdbdcf58;
    ============================= */
 
 
-.eye-me-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  align-items: center;
-  margin-bottom: 0px;
-}
-
-.eye-me svg.ojo-svg {
-  width: 80px;
-  /* antes 100px */
-  height: 60px;
-  /* antes 80px */
-}
-
-
-.eye-right {
-  transform: scaleX(-1);
-  transform-origin: center;
-}
-
-.ojo-svg #pupila {
-  transform-origin: center;
-  transition: transform 0.1s linear;
-}
-
-
 .typing-me-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
   flex-wrap: wrap;
-  flex-direction: row-reverse;
+  flex-direction: row;
   padding-top: 20px;
 }
 
@@ -1358,6 +1331,18 @@ background: #fdbdcf58;
   opacity: 0.6;
   display: block;
 
+}
+
+@media (max-width: 768px) {
+  .photo-me {
+  max-height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-me {
+      max-height: 120px;
+  }
 }
 
 .photo-me-wrapper::after {
@@ -1399,7 +1384,7 @@ background: #fdbdcf58;
 
 @media (max-width: 480px) {
   .typing-me {
-    font-size: 0.6em;
+    font-size: 0.5em;
   }
 }
 

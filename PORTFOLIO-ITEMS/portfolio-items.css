@@ -709,6 +709,8 @@ height: 300px;
    IMG PORTFOLIO
    ============================= */
   .img-port {
+      max-width: 400px;
+      padding-bottom: 20px;
   width: 100%;
 }
 
