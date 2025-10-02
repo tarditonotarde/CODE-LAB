@@ -393,40 +393,56 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* ------------------- PAGE TRANSITIONS ------------------- */
-document.addEventListener("DOMContentLoaded", () => {
-  /* ------------------- FADE IN ON LOAD ------------------- */
-  document.body.style.opacity = 0;
-  document.body.style.transition = "opacity 1s ease-in-out";
 
-  requestAnimationFrame(() => {
-    document.body.style.opacity = 1;
+
+/* ----------------- NAV EYE ----------------- */
+const eyes = document.querySelectorAll('.ojo-svg-header');
+
+// Movimiento normal según el mouse
+document.addEventListener('mousemove', (e) => {
+  eyes.forEach(eye => {
+    const pupil = eye.querySelector('#pupila');
+    if (eye.dataset.hovering === "true") return; // si está en hover no sigue el mouse
+
+    const rect = eye.getBoundingClientRect();
+    const eyeX = rect.left + rect.width / 2;
+    const eyeY = rect.top + rect.height / 2;
+
+    const dx = e.clientX - eyeX;
+    const dy = e.clientY - eyeY;
+    const angle = Math.atan2(dy, dx);
+    const distance = Math.min(15, Math.hypot(dx, dy) / 10);
+
+    // 👁️ Detectamos si es el ojo derecho
+    const isRightEye = eye.parentElement.classList.contains("eye-right");
+
+    // Si es el derecho, invertimos el movimiento en X
+    const offsetX = Math.cos(angle) * distance * (isRightEye ? -1 : 1);
+    const offsetY = Math.sin(angle) * distance;
+
+    pupil.setAttribute("transform", `translate(${offsetX}, ${offsetY})`);
+  });
+});
+
+// Hover → mirar hacia arriba fijo
+eyes.forEach(eye => {
+  const pupil = eye.querySelector('#pupila');
+  
+  eye.addEventListener("mouseenter", () => {
+    eye.dataset.hovering = "true";
+    pupil.setAttribute("transform", `translate(0, -12)`); // 👆 pupila hacia arriba
   });
 
-  /* ------------------- FADE OUT ON NAVIGATION ------------------- */
-  const links = document.querySelectorAll('a');
-  links.forEach(link => {
-    link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
+  eye.addEventListener("mouseleave", () => {
+    eye.dataset.hovering = "false";
+    pupil.setAttribute("transform", `translate(0,0)`); // vuelve al centro
+  });
 
-      // Ignorar enlaces internos o que abran en otra pestaña
-      if (
-        !href ||
-        href.startsWith("#") ||
-        href.startsWith("javascript:") ||
-        href.startsWith("mailto:") ||
-        href.startsWith("tel:") ||
-        link.target === "_blank"
-      ) return;
-
-      e.preventDefault();
-      document.body.style.transition = "opacity 0.5s ease-in-out";
-      document.body.style.opacity = 0;
-
-      setTimeout(() => {
-        window.location.href = href;
-      }, 500);
+  // Click → scroll top
+  eye.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
     });
   });
 });
-/* ------------------- ME PAGE RESUME LINK FIX ------------------- */
