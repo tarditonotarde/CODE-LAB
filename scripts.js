@@ -393,8 +393,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-
 /* ----------------- NAV EYE ----------------- */
 const eyes = document.querySelectorAll('.ojo-svg-header');
 
