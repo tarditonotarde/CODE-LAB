@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dark-mode.css">
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Scripts unificados -->
+        <script src="../scripts.js" defer></script>
+
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../ASSETS/IMG/favicom-contact.svg">
+    <link rel="apple-touch-icon" href="../ASSETS/IMG/favicom-contact.svg">
+
+    <title>contact</title>
+</head>
+
+<body>
+
+<!-- Video de fondo -->
+<video autoplay muted loop id="bg-video">
+  <source src="../ASSETS/IMG/galaxia.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<!-- Overlay negro semi-transparente -->
+<div id="bg-overlay"></div>
+
+
+
+    <main>
+
+        <!-- HEADER -->
+        <header>
+            <div class="head-items">
+
+                <div class="eye-header">
+                    <svg class="ojo-svg-header" viewBox="0 0 147 114" xmlns="http://www.w3.org/2000/svg">
+                        <g id="ojo">
+                            <g id="ojo-shape">
+                                <path id="Vector"
+                                    d="M146.43 70.244C135.159 45.6869 105.865 29.2171 73.4951 29.2171H73.3477C41.0566 29.2663 11.8118 45.7556 0.570321 70.244L0 71.4723L0.570321 72.7006C11.8415 97.2576 41.1355 113.728 73.5054 113.728H73.6528C105.934 113.678 135.189 97.189 146.43 72.7006L147 71.4723L146.43 70.244ZM73.6426 107.832H73.4951C43.9554 107.832 17.246 93.2882 6.5052 71.4723C17.226 49.7157 43.8766 35.1622 73.3574 35.1126H73.4951C103.045 35.1126 129.744 49.6563 140.485 71.4723C129.774 93.2294 103.123 107.783 73.6426 107.832Z"
+                                    fill="var(--color3)" />
+                            </g>
+                            <g id="parpado">
+                                <path id="parpado"
+                                    d="M143.61 71.117C63.9976 12.2394 -2.55961 84.4285 3.84004 71.117C10.2397 57.8055 28.9271 31.1826 70.6533 31.1826C112.38 31.1826 124.823 43.5461 143.61 71.117Z"
+                                    fill="var(--color3)" />
+                            </g>
+                            <g id="globulo">
+                                <path id="iris"
+                                    d="M73.4589 40.6542C56.3798 40.6542 42.4944 54.5499 42.4944 71.6285C42.4944 88.7076 56.3798 102.603 73.4589 102.603C90.538 102.603 104.433 88.7076 104.433 71.6285C104.433 54.5494 90.538 40.6542 73.4589 40.6542ZM73.4589 96.7063C59.6324 96.7063 48.3909 85.4545 48.3909 71.6285C48.3909 57.8025 59.6329 46.5507 73.4589 46.5507C87.2854 46.5507 98.5367 57.8025 98.5367 71.6285C98.5367 85.4545 87.2854 96.7063 73.4589 96.7063Z"
+                                    fill="var(--color3)" />
+                                <path id="pupila"
+                                    d="M73.367 54.4777C69.8293 54.4777 66.547 55.5487 63.8253 57.3965C65.2599 57.2587 66.7436 57.6222 68.0015 58.5366C70.7728 60.5313 71.4016 64.3932 69.4166 67.1548C67.4219 69.9261 63.5596 70.5451 60.7887 68.5402C59.1576 67.3708 58.2734 65.5528 58.2242 63.7056C57.0057 66.0443 56.3176 68.7076 56.3176 71.5276C56.3176 80.9419 63.9533 88.577 73.367 88.577C82.7813 88.577 90.4165 80.9414 90.4165 71.5276C90.4165 62.1133 82.7813 54.4777 73.367 54.4777ZM82.2898 81.5312C81.3565 82.8382 79.5384 83.1229 78.2314 82.1896C76.934 81.246 76.6396 79.4377 77.573 78.1311C78.5063 76.8343 80.3248 76.5491 81.6314 77.4824C82.9288 78.426 83.2237 80.2338 82.2898 81.5312ZM83.6164 76.9029C82.8893 76.3817 82.7219 75.3695 83.2528 74.6425C83.7735 73.9252 84.7857 73.7578 85.503 74.279C86.23 74.8099 86.3974 75.8123 85.8767 76.5394C85.3561 77.2664 84.3439 77.4236 83.6164 76.9029Z"
+                                    fill="var(--color1)" />
+                            </g>
+                            <g id="pestañas">
+                                <path id="pest-1" d="M19.3728 38.0232L9.64567 25.9568" stroke="var(--color1)" stroke-width="3" />
+                                <path id="pest-1" d="M36.2151 29.1603L27.7505 14.7148" stroke="var(--color1)" stroke-width="3" />
+                                <path id="pest-1" d="M55.353 23.6478L49.5006 6.88661" stroke="var(--color1)" stroke-width="3" />
+                                <path id="pest-1" d="M73.4966 22.0151V3.66835" stroke="var(--color1)" stroke-width="3" />
+                                <path id="pest-1" d="M127.621 38.0231L132.463 22.6535" stroke="var(--color1)" stroke-width="3" />
+                                <path id="pest-1" d="M110.778 29.1602L113.875 12.2752" stroke="var(--color1)" stroke-width="3" />
+                                <path id="pest-1" d="M91.6407 23.6478L91.7185 5.69679" stroke="var(--color1)" stroke-width="3" />
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <nav id="cubicle">
+                    <ul class="links">
+                        <li><a href="index-dark.html" title="hey!"></a></li>
+                        <li><a href="me-dark.html" title="it's me"></a></li>
+                        <li><a href="stuffs-dark.html" title="stuffs"></a></li>
+                        <li><a href="contact-dark.html" title="contact"></a></li>
+
+<li class="lamp-container">
+<svg id="dark-toggle" width="47" height="78" viewBox="0 0 47 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 2">
+<g id="lamp">
+<path id="Union" d="M24.6462 26.5296H25.0662C25.4985 26.5296 25.8493 26.8796 25.8494 27.3128V29.6624H29.7664C30.1988 29.6624 30.5496 30.0134 30.5496 30.4466V32.7962C30.5496 33.2294 30.1988 33.5794 29.7664 33.5794H28.9832V35.1458H30.5496C30.982 35.1458 31.3328 35.4968 31.3328 35.93V37.8167L46.5935 46.2102C46.9068 46.3826 47.0638 46.7449 46.9753 47.0911C46.8861 47.4365 46.5737 47.6789 46.2166 47.679H31.4753L32.783 55.5227C33.2381 58.2566 32.4719 61.0374 30.6804 63.1516C28.889 65.2666 26.2729 66.4797 23.5007 66.4798C20.7286 66.4798 18.1125 65.2665 16.321 63.1516C14.5288 61.0374 13.7626 58.2566 14.2185 55.5227L15.5251 47.679H0.782959C0.425884 47.6789 0.113445 47.4372 0.0241699 47.0911C-0.0643161 46.7449 0.0926905 46.3826 0.406006 46.2102L15.6667 37.8167V35.93C15.6667 35.4968 16.0176 35.1458 16.45 35.1458H18.0164V33.5794H17.2332C16.8008 33.5794 16.45 33.2293 16.45 32.7962V30.4466C16.45 30.0134 16.8008 29.6624 17.2332 29.6624H21.1501V27.3128C21.1502 26.8796 21.501 26.5296 21.9333 26.5296H22.3533V0.622345H24.6462V26.5296ZM17.113 47.679L15.7625 55.7796C15.3825 58.0583 16.0224 60.3765 17.5154 62.1389C19.0092 63.9021 21.1898 64.9124 23.4998 64.9124C25.8097 64.9124 27.9911 63.9021 29.4841 62.1389C30.9772 60.3765 31.617 58.0583 31.2371 55.7796L29.8865 47.679H24.283V49.2464H25.0662C26.3618 49.2464 27.4167 50.3004 27.4167 51.596C27.4167 52.8916 26.3618 53.9456 25.0662 53.9456H24.283V55.513H25.0662C26.3617 55.513 27.4167 56.567 27.4167 57.8626C27.4167 59.1582 26.3618 60.2132 25.0662 60.2132C24.6339 60.213 24.283 59.8621 24.283 59.429C24.2831 59.0231 24.5915 58.6899 24.9861 58.6497L25.1462 58.6419C25.5406 58.6018 25.8494 58.268 25.8494 57.8626C25.8493 57.4302 25.4977 57.0794 25.0662 57.0794H24.283V59.429C24.283 59.8622 23.9322 60.2132 23.4998 60.2132C23.0674 60.2131 22.7166 59.8622 22.7166 59.429V57.0794H21.9333C20.6378 57.0794 19.583 56.0252 19.5828 54.7298C19.5828 53.4341 20.6377 52.3792 21.9333 52.3792H22.7166V50.8128H21.9333C20.6379 50.8128 19.583 49.7586 19.5828 48.4632C19.5828 48.1874 19.6396 47.925 19.7273 47.679H17.113ZM21.9333 53.9456C21.5017 53.9456 21.1501 54.2974 21.1501 54.7298C21.1504 55.162 21.5019 55.513 21.9333 55.513H22.7166V53.9456H21.9333ZM24.283 50.8128V52.3792H25.0662C25.4978 52.3792 25.8494 52.0284 25.8494 51.596C25.8493 51.1636 25.4977 50.8128 25.0662 50.8128H24.283ZM21.9333 47.679C21.5017 47.679 21.1501 48.0308 21.1501 48.4632C21.1504 48.8954 21.5019 49.2464 21.9333 49.2464H22.7166V47.679H21.9333ZM16.6511 39.0628L3.83276 46.1126H43.1658L30.3484 39.0628H16.6511ZM17.2332 36.7132V37.4964H29.7664V36.7132H17.2332ZM19.5828 33.5794V35.1458H27.4167V33.5794H19.5828ZM18.0164 31.2298V32.013H28.9832V31.2298H18.0164ZM22.7166 28.096V29.6624H24.283V28.096H22.7166Z" 
+fill="var(--color1)"/>
+</g>
+<g id="shine">
+<rect id="Rectangle 2" x="22.927" y="69.4025" width="1.7195" height="8.59752" rx="0.859752"
+fill="var(--color3)"/>
+<rect id="Rectangle 4" x="17.543" y="68.2562" width="1.7195" height="8.59752" rx="0.859752" transform="rotate(45 17.543 68.2562)" fill="var(--color3)"/>
+<rect id="Rectangle 3" x="28.6587" y="69.472" width="1.7195" height="8.59752" rx="0.859752" transform="rotate(-45 28.6587 69.472)" fill="var(--color3)"/>
+</g>
+</g>
+</svg>                        
+</li>
+                    </ul>
+
+
+
+                </nav>
+            </div>
+        </header>
+        <!-- FIN HEADER -->
+
+        
+        <!-- TYPING CONTACT -->
+        <section>
+            <div class="typing-contact text-center">
+                <span class="typing-line-contact"></span>
+            </div>
+        </section>
+
+        <!-- CONTACT FORM -->
+        <section id="contact-form">
+            <form class="cubicle-form" action="https://formspree.io/f/xeolqlke" method="POST">
+                <ul class="links">
+                    <li>
+                        <input type="text" name="name" placeholder="Name" required>
+                    </li>
+                    <li>
+                        <input type="email" name="email" placeholder="Email" required>
+                    </li>
+                    <li>
+                        <textarea name="message" rows="4" placeholder="Message" required></textarea>
+                    </li>
+                    <li>
+                        <ul class="nav-list">
+                            <li>
+                                <button class="btn-nav-effect">
+                                    <span class="face front">Send 🚀</span>
+                                    <span class="face top">Send 🚀</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="footer-linear">
+        <!-- Juego serpiente -->
+        <div id="snakeGame"></div>
+
+        <!-- Iconos a la derecha -->
+        <ul class="icon-nav-linear-links">
+            <li>
+                <button class="icon-nav-effect" aria-label="Resume">
+                    <span class="icon-face icon-front">
+                        <img src="../ASSETS/IMG/icon-cv.svg" alt="Resume" class="icon-footer">
+                    </span>
+                    <span class="icon-face icon-top">c.v.</span>
+                </button>
+            </li>
+            <li>
+                <button class="icon-nav-effect" aria-label="Contact">
+                    <span class="icon-face icon-front">
+                        <img src="../ASSETS/IMG/favicom-contact.svg" alt="Contact" class="icon-footer">
+                    </span>
+                    <span class="icon-face icon-top">wsp</span>
+                </button>
+            </li>
+            <li>
+                <button class="icon-nav-effect" aria-label="Figma">
+                    <span class="icon-face icon-front">
+                        <img src="../ASSETS/IMG/Icon-figma.svg" alt="Figma" class="icon-footer">
+                    </span>
+                    <span class="icon-face icon-top">figma</span>
+                </button>
+            </li>
+        </ul>
+    </footer>
+
+    <!-- Popup MSN -->
+    <div id="msn-popup"
+        style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9990;">
+        <img src="../ASSETS/IMG/MSN DESK.svg" alt="MSN Popup" id="msn-window" style="max-width:400px; width:100%;">
+        <!-- Botón de cierre -->
+        <div id="msn-close"
+            style="position:absolute; width:50px; height:50px; top:10px; right:10px; cursor:pointer; z-index:10;"></div>
+        <!-- Área clicable WhatsApp -->
+        <div id="msn-whatsapp"
+            style="position:absolute; width:50%; height:50%; bottom:0; right:0; cursor:pointer; z-index:10;"></div>
+    </div>
+
+    <!-- Audio MSN -->
+    <audio id="msn-sound" src="../ASSETS/SOUNDS/msn-zumbido.mp3" preload="auto"></audio>
+
+</body>
+
+</html>

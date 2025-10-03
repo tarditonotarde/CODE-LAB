@@ -181,6 +181,29 @@ ul {
 /* =============================
    NAV HEADER
    ============================= */
+
+   /* CALAVERA */
+
+   .lamp-container {
+    align-items: flex-start;
+    display: flex;
+    width: 50px;
+    height: 80px;
+    cursor: pointer;
+    justify-content: center;
+   }
+
+  /* ocultamos el brillo */
+  #shine {
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+  }
+
+  /* cuando se hace hover en la lámpara, aparece */
+  #lamp:hover + #shine {
+    opacity: 1;
+  }
+
 #cubicle>.links a.active {
   transform: translateZ(calc(-1 * calc(var(--height) / 2))) rotateX(-90deg);
 }
@@ -1355,13 +1378,13 @@ background: #fdbdcf58;
 
 @media (max-width: 768px) {
   .photo-me {
-  max-height: 200px;
+  max-height: 210px;
   }
 }
 
 @media (max-width: 480px) {
   .photo-me {
-      max-height: 120px;
+      max-height: 200px;
   }
 }
 
@@ -1393,12 +1416,13 @@ background: #fdbdcf58;
   flex-direction: column;
   align-items: flex-start;
   max-width: 650px;
-  padding: 20px 20px 0 20px;
+  padding: 40px 40px 0 40px;
 }
 
 @media (max-width: 768px) {
   .typing-me {
     font-size: 0.8em;
+
   }
 }
 
@@ -1509,6 +1533,7 @@ background: #fdbdcf58;
    ============================= */
 
 
+
 .cards-section {
   padding: 20px;
   display: flex;
@@ -1582,3 +1607,111 @@ background: #fdbdcf58;
     justify-content: center;
   }
 }
+
+/* =============================
+   CARDS PLAYGROUND SECTION
+   ============================= */
+
+/* Contenedor de stuffs */
+.card-play-container {
+  margin: 40px;
+}
+
+/* Lista de stuffs */
+.card-play-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 700px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Cada item */
+.card-play-list li {
+  align-items: center;
+  display: flex;
+  border-radius: 0px !important;
+}
+
+/* Botón 3D stuffs */
+.card-play-nav-effect {
+  width: 150px;
+  height: 150px;
+  border: none;
+  background: transparent;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg);
+  transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
+  cursor: pointer;
+  padding: 0;
+}
+
+.card-play-nav-effect:hover {
+  transform: rotateX(-90deg);
+}
+
+
+/* Hover solo para los que NO están activos */
+.card-play-list li a.card-play-nav-effect:hover:not(.active) {
+  transform: rotateX(-90deg);
+}
+
+/* Aseguramos que el activo no rote */
+.card-play-list li a.card-play-nav-effect.active {
+  transform: rotateX(0deg) !important;
+}
+
+/* Las caras del activo quedan fijas */
+.card-play-list li a.card-play-nav-effect.active .front,
+.card-play-list li a.card-play-nav-effect.active .top {
+  transform: rotateX(0deg) translateZ(calc(var(--height)/2)) !important;
+}
+
+
+/* Caras del botón */
+.card-play-nav-effect .face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: var(--border) solid var(--color1);
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 0px !important;
+}
+
+.card-play-nav-effect .front {
+  background-color: transparent;
+  color: var(--color1);
+  transform: rotateX(0deg) translateZ(calc(var(--height)/2));
+}
+
+.card-play-nav-effect .top {
+  background-color: var(--color1);
+  color: var(--color2);
+  transform: rotateX(90deg) translateZ(calc(var(--height)/2));
+}
+
+/* Estado activo */
+.card-play-list a.active .front {
+  background-color: var(--color1);
+  color: var(--color2);
+}
+
+.card-play-list a.active .top {
+  background-color: var(--color1);
+  color: var(--color2);
+  transform: rotateX(0deg) translateZ(calc(var(--height)/2));
+}
+
+
+/* =============================
+   PLAYGROUND PAGE ITEMS
+   ============================= */
