@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "/" + file;  // Volver a raíz
       } else {
         const file = path.split("/").pop().replace(".html", "-dark.html");
-        window.location.href = "../DARK-MODE/" + file; // Ir a DARK-MODE
+        window.location.href = "DARK-MODE/" + file; // Ir a DARK-MODE
       }
     });
   }
