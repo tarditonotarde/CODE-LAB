@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 /* ----------------- INDEX PAGE EYES ----------------- */
 document.addEventListener('mousemove', (e) => {
   const eyes = document.querySelectorAll('.ojo-svg');
@@ -318,7 +317,7 @@ $(document).ready(function () {
    ME PAGE TYPING
    =========================== */
 document.addEventListener("DOMContentLoaded", () => {
-  const text = "I love solving problems and designing with impact.";
+  const text = "I solve problems with creativity, a bit of code, and the occasional existential crisis. Designing with impact is my thing — because if your product doesn’t spark joy, at least it should spark usability.";
   const output = document.getElementById("typing-text-me");
   const cursor = document.getElementById("cursor-me");
 
@@ -513,3 +512,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+
+
