@@ -1553,7 +1553,6 @@ background: none;
   height: 150px;
   position: relative;
   overflow: hidden;
-  opacity: 0;
   transform: translateY(20px);
   transition: transform 0.5s ease, opacity 0.5s ease;
   cursor: pointer;
