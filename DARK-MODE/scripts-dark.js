@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 /* ----------------- INDEX PAGE EYES ----------------- */
 document.addEventListener('mousemove', (e) => {
   const eyes = document.querySelectorAll('.ojo-svg');
@@ -318,7 +317,7 @@ $(document).ready(function () {
    ME PAGE TYPING
    =========================== */
 document.addEventListener("DOMContentLoaded", () => {
-  const text = "I love solving problems and designing with impact.";
+  const text = "I solve problems with creativity, a bit of code, and the occasional existential crisis. Designing with impact is my thing — because if your product doesn’t spark joy, at least it should spark usability.";
   const output = document.getElementById("typing-text-me");
   const cursor = document.getElementById("cursor-me");
 
@@ -428,7 +427,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Detectar si estamos en dark mode
   // ---------------------------
   const currentPath = window.location.pathname;
-  const isDark = currentPath.toLowerCase().includes("/dark-mode/") || /-dark\.html$/i.test(currentPath);
+  const isDark = currentPath.toLowerCase().includes("../dark-mode/") || /-dark\.html$/i.test(currentPath);
 
   // ---------------------------
   // Toggle dark mode (bombilla)
@@ -445,7 +444,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const filename = currentPath.split("/").pop();
         const base = filename.replace(/\.[^/.]+$/, "");
         const ext = filename.match(/\.[^/.]+$/)?.[0] || "";
-        newPath = "/DARK-MODE/" + base + "-dark" + ext;
+        newPath = "../DARK-MODE/" + base + "-dark" + ext;
       }
       window.location.href = newPath;
     });
@@ -459,7 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
     links.forEach(link => {
       let href = link.getAttribute("href");
       if (!href.includes("-dark")) {
-        let newHref = href.startsWith("/DARK-MODE/") ? href : "/DARK-MODE/" + href;
+        let newHref = href.startsWith("../DARK-MODE/") ? href : "../DARK-MODE/" + href;
         newHref = newHref.replace(/(\.[^/.]+)$/, "-dark$1");
         link.setAttribute("href", newHref);
       }
@@ -513,3 +512,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+
+
