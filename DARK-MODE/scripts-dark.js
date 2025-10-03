@@ -427,7 +427,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Detectar si estamos en dark mode
   // ---------------------------
   const currentPath = window.location.pathname;
-  const isDark = currentPath.toLowerCase().includes("/dark-mode/") || /-dark\.html$/i.test(currentPath);
+  const isDark = currentPath.toLowerCase().includes("../dark-mode/") || /-dark\.html$/i.test(currentPath);
 
   // ---------------------------
   // Toggle dark mode (bombilla)
@@ -444,7 +444,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const filename = currentPath.split("/").pop();
         const base = filename.replace(/\.[^/.]+$/, "");
         const ext = filename.match(/\.[^/.]+$/)?.[0] || "";
-        newPath = "/DARK-MODE/" + base + "-dark" + ext;
+        newPath = "../DARK-MODE/" + base + "-dark" + ext;
       }
       window.location.href = newPath;
     });
@@ -458,7 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
     links.forEach(link => {
       let href = link.getAttribute("href");
       if (!href.includes("-dark")) {
-        let newHref = href.startsWith("/DARK-MODE/") ? href : "/DARK-MODE/" + href;
+        let newHref = href.startsWith("../DARK-MODE/") ? href : "../DARK-MODE/" + href;
         newHref = newHref.replace(/(\.[^/.]+)$/, "-dark$1");
         link.setAttribute("href", newHref);
       }
