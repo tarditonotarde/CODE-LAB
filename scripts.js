@@ -77,7 +77,7 @@ document.addEventListener('mousemove', (e) => {
       }
     }
 
-    $typing.on('click', () => window.location.href = "stuffs-dark.html");
+    $typing.on('click', () => window.location.href = "stuffs.html");
     typeText(texts[index]);
   });
 })();
@@ -459,7 +459,7 @@ document.addEventListener("DOMContentLoaded", () => {
     links.forEach(link => {
       let href = link.getAttribute("href");
       if (!href.includes("-dark")) {
-        let newHref = href.startsWith("/DARK-MODE/") ? href : "/DARK-MODE/" + href;
+        let newHref = href.startsWith("/DARK-MODE/") ? href : "../DARK-MODE/" + href;
         newHref = newHref.replace(/(\.[^/.]+)$/, "-dark$1");
         link.setAttribute("href", newHref);
       }
