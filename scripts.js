@@ -450,24 +450,29 @@ eyes.forEach(eye => {
    DARK MODE & NAV UNIFIED
    =========================== */
 document.addEventListener("DOMContentLoaded", () => {
+  // ---------------------------
+  // Base path del proyecto (ej: /CODE-LAB/)
+  // ---------------------------
+  const basePath = window.location.pathname.split("/")[1]; // "CODE-LAB"
+  const projectBase = "/" + basePath + "/";
 
   // ---------------------------
-  // Función para normalizar ruta (quitar DARK y -dark)
+  // Función para normalizar ruta
   // ---------------------------
   const toNormalPath = (path) => {
-    path = path.replace(/\/?DARK-MODE\//i, "/");      // quitar carpeta DARK-MODE si existe
-    path = path.replace(/-dark(?=\.html$)/i, "");    // quitar -dark si existe
-    return path.replace(/\/+/g, "/");                // normalizar slashes
+    path = path.replace(/\/?DARK-MODE\//i, "/");     // quitar carpeta DARK-MODE
+    path = path.replace(/-dark(?=\.html$)/i, "");    // quitar -dark
+    return projectBase + path.replace(/^\//, "");    // añadir base del proyecto
   };
 
   // ---------------------------
-  // Detectar si estamos en dark mode
+  // Detectar dark mode
   // ---------------------------
   const currentPath = window.location.pathname;
   const isDark = currentPath.toLowerCase().includes("../dark-mode/") || /-dark\.html$/i.test(currentPath);
 
   // ---------------------------
-  // Toggle dark mode (bombilla)
+  // Toggle dark mode
   // ---------------------------
   const lampToggle = document.getElementById("dark-toggle");
   if (lampToggle) {
@@ -481,53 +486,37 @@ document.addEventListener("DOMContentLoaded", () => {
         const filename = currentPath.split("/").pop();
         const base = filename.replace(/\.[^/.]+$/, "");
         const ext = filename.match(/\.[^/.]+$/)?.[0] || "";
+<<<<<<< HEAD
         newPath = "../DARK-MODE/" + base + "-dark" + ext;
+=======
+        newPath = projectBase + "DARK-MODE/" + base + "-dark" + ext;
+>>>>>>> 2900458486df9314e87fc3748285e38f1f2182d8
       }
       window.location.href = newPath;
     });
   }
 
   // ---------------------------
-  // Auto-dark links (si estamos en dark)
+  // Auto-dark links
   // ---------------------------
   if (isDark) {
     const links = document.querySelectorAll("a[href$='.html']");
     links.forEach(link => {
       let href = link.getAttribute("href");
       if (!href.includes("-dark")) {
+<<<<<<< HEAD
         let newHref = href.startsWith("../DARK-MODE/") ? href : "../DARK-MODE/" + href;
+=======
+        let newHref = href.startsWith("DARK-MODE/") ? href : "DARK-MODE/" + href;
+>>>>>>> 2900458486df9314e87fc3748285e38f1f2182d8
         newHref = newHref.replace(/(\.[^/.]+)$/, "-dark$1");
-        link.setAttribute("href", newHref);
+        link.setAttribute("href", projectBase + newHref);
       }
     });
   }
 
   // ---------------------------
-  // Activar nav links (header, stuffs, footer)
-  // ---------------------------
-  const activateNavLinks = (selector) => {
-    const navLinks = document.querySelectorAll(selector);
-    let currentFile = currentPath.split("/").pop().replace("-dark", "");
-    if (!currentFile) currentFile = "index.html";
-
-    navLinks.forEach(link => {
-      let linkFile = link.getAttribute("href").split("/").pop().replace("-dark", "");
-      if (linkFile === currentFile || (linkFile === "index.html" && currentFile === "index.html")) {
-        link.classList.add("active");
-        if (link.parentElement) link.parentElement.classList.add("active");
-      } else {
-        link.classList.remove("active");
-        if (link.parentElement) link.parentElement.classList.remove("active");
-      }
-    });
-  };
-
-  activateNavLinks("#cubicle > .links a");      // header
-  activateNavLinks(".stuffs-list a");           // stuffs
-  activateNavLinks(".stuffooter-list a");       // footer
-
-  // ---------------------------
-  // STUFFS LINKS -> SALIR DARK MODE
+  // STUFFS LINKS -> salir dark
   // ---------------------------
   const stuffsLinks = document.querySelectorAll(".stuffs-list li a");
   stuffsLinks.forEach(link => {
@@ -535,17 +524,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (isDark) {
         e.preventDefault();
         let targetHref = link.getAttribute("href");
-
-        // Aseguramos ruta absoluta desde la raíz
-        if (!targetHref.startsWith("/")) targetHref = "/" + targetHref;
-
-        // Convertimos a versión normal
-        targetHref = toNormalPath(targetHref);
-
-        window.location.href = targetHref;
+        window.location.href = toNormalPath(targetHref);
       }
-      // si no estamos en dark mode, deja que funcione normalmente
     });
   });
-
 });
