@@ -28,6 +28,55 @@ document.addEventListener("DOMContentLoaded", () => {
   activateNavLinks(".stuffs-list a");           // stuffs
   activateNavLinks(".stuffooter-list a");       // footer
 
+  /* ===========================
+     DARK MODE DETECCIÓN
+     =========================== */
+  const isDark = window.location.pathname.toLowerCase().includes("/dark-mode/");
+
+  /* ===========================
+     DARK MODE TOGGLE
+     =========================== */
+  const lampToggle = document.getElementById("dark-toggle");
+  if (lampToggle) {
+    lampToggle.addEventListener("click", () => {
+      const path = window.location.pathname;
+      if (isDark) {
+        const file = path.split("/").pop().replace("-dark", "");
+        window.location.href = "/" + file;  // Volver a raíz
+      } else {
+        const file = path.split("/").pop().replace(".html", "-dark.html");
+        window.location.href = "/DARK-MODE/" + file; // Ir a DARK-MODE
+      }
+    });
+  }
+
+  /* ===========================
+     ACTUALIZAR LINKS EN DARK MODE
+     =========================== */
+  if (isDark) {
+    const navLinks = document.querySelectorAll("#cubicle > .links a, .stuffs-list a, .stuffooter-list a");
+    navLinks.forEach(link => {
+      const file = link.getAttribute("href").split("/").pop();
+      if (!file.includes("-dark")) {
+        link.setAttribute("href", "/DARK-MODE/" + file.replace(".html", "-dark.html"));
+      }
+    });
+  }
+
+  /* ===========================
+     STUFFS LINKS: SALIR DARK MODE
+     =========================== */
+  const stuffsLinks = document.querySelectorAll(".stuffs-list li a");
+  stuffsLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+      if (isDark) {
+        e.preventDefault();
+        let targetHref = link.getAttribute("href");
+        targetHref = "/" + targetHref.split("/").pop().replace("-dark", "");
+        window.location.href = targetHref;
+      }
+    });
+  });
 
   /* ===========================
      INDEX PAGE EYES
@@ -52,7 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
       pupil.setAttribute("transform", `translate(${offsetX}, ${offsetY})`);
     });
   });
-
 
   /* ===========================
      TYPING EFFECTS INDEX
@@ -86,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-
   /* ===========================
      LETTER EFFECTS (INDEX + CONTACT)
      =========================== */
@@ -96,7 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
     span.addEventListener('animationend', e => e.target.classList.remove('active'));
     setTimeout(() => span.classList.add('active'), 750 * (idx + 1));
   });
-
 
   /* ===========================
      CONTACT PAGE TYPING
@@ -129,7 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-
   /* ===========================
      FOOTER POPUP MSN
      =========================== */
@@ -139,7 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const msnPopup = document.getElementById("msn-popup");
   const closeArea = document.getElementById("msn-close");
   const whatsappArea = document.getElementById("msn-whatsapp");
-
   const msnSound = new Audio("ASSETS/SOUNDS/msn-zumbido.mp3");
   msnSound.preload = "auto";
 
@@ -149,12 +193,11 @@ document.addEventListener("DOMContentLoaded", () => {
       msnPopup.style.display = "block";
       msnPopup.classList.add("shake");
       msnSound.currentTime = 0;
-      msnSound.play().catch(() => { });
+      msnSound.play().catch(() => {});
     });
   }
 
   if (figmaBtn) figmaBtn.addEventListener("click", () => window.open("https://www.figma.com/proto/95WPIJoGGErxr5TYSXC9o0/Portfolio-Claudia-Tardito?page-id=2010%3A24768&node-id=2010-24769&viewport=115%2C74%2C0.31&t=llxvXUiUtBJnbqi1-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2010%3A24769", "_blank"));
-
   if (resumeBtn) resumeBtn.addEventListener("click", () => window.open("https://drive.google.com/file/d/1BSFvcdQJjesg4U2r8i4tGjXFQhhCA5L5/view", "_blank"));
 
   if (msnPopup && closeArea) {
@@ -162,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation();
       msnPopup.style.display = "none";
       msnSound.currentTime = 0;
-      msnSound.play().catch(() => { });
+      msnSound.play().catch(() => {});
     });
   }
 
@@ -173,14 +216,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("click", e => {
     if (msnPopup && msnPopup.style.display === "block" &&
-      !msnPopup.contains(e.target) &&
-      !(contactBtn && contactBtn.contains(e.target))) {
+        !msnPopup.contains(e.target) &&
+        !(contactBtn && contactBtn.contains(e.target))) {
       msnPopup.style.display = "none";
       msnSound.currentTime = 0;
-      msnSound.play().catch(() => { });
+      msnSound.play().catch(() => {});
     }
   });
-
 
   /* ===========================
      SNAKE GAME
@@ -191,7 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const cols = 200 / gridSize;
     const rows = 40 / gridSize;
     let snake = [{ x: 2, y: 2 }], direction, foods;
-
     const maxFood = 10;
 
     const resetGame = () => {
@@ -206,18 +247,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const placeFood = () => {
       if (foods.length >= maxFood) return;
       let food;
-      do {
-        food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
-      } while (snake.some(seg => seg.x === food.x && seg.y === food.y));
+      do { food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) }; }
+      while (snake.some(seg => seg.x === food.x && seg.y === food.y));
       foods.push(food);
     };
 
     const moveFoodRandomly = () => {
       foods.forEach((food, index) => {
         let newFood;
-        do {
-          newFood = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
-        } while (snake.some(seg => seg.x === newFood.x && seg.y === newFood.y));
+        do { newFood = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) }; }
+        while (snake.some(seg => seg.x === newFood.x && seg.y === newFood.y));
         foods[index] = newFood;
       });
     };
@@ -256,7 +295,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (head.y >= rows) head.y = rows - 1;
 
       snake.unshift(head);
-
       const foodIndex = foods.findIndex(f => f.x === head.x && f.y === head.y);
       if (foodIndex !== -1) {
         foods.splice(foodIndex, 1);
@@ -271,7 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(moveFoodRandomly, 3000);
   }
 
-
   /* ===========================
      FOOTER ARROWS
      =========================== */
@@ -280,7 +317,6 @@ document.addEventListener("DOMContentLoaded", () => {
     $(".arrow.next").click(() => window.history.forward());
     $(".arrow.scroll-top").click(() => $("html, body").animate({ scrollTop: 0 }, "slow"));
   }
-
 
   /* ===========================
      ME PAGE TYPING
@@ -295,13 +331,10 @@ document.addEventListener("DOMContentLoaded", () => {
         output.textContent += text.charAt(i);
         i++;
         setTimeout(typeWriter, 100);
-      } else {
-        cursor.style.display = "inline";
-      }
+      } else cursor.style.display = "inline";
     };
     typeWriter();
   }
-
 
   /* ===========================
      NAV EYE MOVEMENT + HOVER HEADER
@@ -342,62 +375,4 @@ document.addEventListener("DOMContentLoaded", () => {
     eye.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
   });
 
-
-  /* ===========================
-     DARK MODE & NAV UNIFIED
-     =========================== */
-  const toNormalPath = (path) => {
-    path = path.replace(/\/?DARK-MODE\//i, "/");
-    path = path.replace(/-dark(?=\.html$)/i, "");
-    return path.replace(/\/+/g, "/");
-  };
-
-  const currentPath = window.location.pathname;
-  const isDark = currentPath.toLowerCase().includes("/dark-mode/") || /-dark\.html$/i.test(currentPath);
-
-  const lampToggle = document.getElementById("dark-toggle");
-  if (lampToggle) {
-    lampToggle.addEventListener("click", () => {
-      let newPath;
-      if (isDark) {
-        newPath = toNormalPath(currentPath);
-      } else {
-        const filename = currentPath.split("/").pop();
-        const base = filename.replace(/\.[^/.]+$/, "");
-        const ext = filename.match(/\.[^/.]+$/)?.[0] || "";
-        newPath = "../DARK-MODE/" + base + "-dark" + ext;
-      }
-      window.location.href = newPath;
-    });
-  }
-
-  // SOLO Afecta los links de navegación, NO imágenes ni audios
-  if (isDark) {
-    const navLinks = document.querySelectorAll("#cubicle > .links a, .stuffs-list a, .stuffooter-list a");
-    navLinks.forEach(link => {
-      let href = link.getAttribute("href");
-      if (!href.includes("-dark") && href.endsWith(".html")) {
-        let newHref = href.startsWith("DARK-MODE/") ? href : "DARK-MODE/" + href;
-        newHref = newHref.replace(/(\.[^/.]+)$/, "-dark$1");
-        link.setAttribute("href", newHref);
-      }
-    });
-  }
-
-  // Stuffs links: salir de dark mode si clickeas
-  const stuffsLinks = document.querySelectorAll(".stuffs-list li a");
-  stuffsLinks.forEach(link => {
-    link.addEventListener("click", (e) => {
-      if (isDark) {
-        e.preventDefault();
-        let targetHref = link.getAttribute("href");
-        if (!targetHref.startsWith("/")) targetHref = "/" + targetHref;
-        targetHref = toNormalPath(targetHref);
-        window.location.href = targetHref;
-      }
-    });
-  });
-
 }); // FIN DOMContentLoaded
-
-
