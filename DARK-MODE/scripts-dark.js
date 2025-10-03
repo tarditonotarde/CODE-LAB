@@ -416,12 +416,18 @@ eyesHeader.forEach(eye => {
 document.addEventListener("DOMContentLoaded", () => {
 
   // ---------------------------
-  // Función para normalizar ruta (quitar DARK y -dark)
+  // Detectar carpeta base del proyecto (ej: /CODE-LAB/)
+  // ---------------------------
+  const basePath = window.location.pathname.split("/")[1]; // "CODE-LAB"
+  const projectBase = "/" + basePath + "/";
+
+  // ---------------------------
+  // Función para normalizar ruta (quitar DARK y -dark, añadir base)
   // ---------------------------
   const toNormalPath = (path) => {
-    path = path.replace(/\/?DARK-MODE\//i, "/");      // quitar carpeta DARK-MODE si existe
-    path = path.replace(/-dark(?=\.html$)/i, "");    // quitar -dark si existe
-    return path.replace(/\/+/g, "/");                // normalizar slashes
+    path = path.replace(/\/?DARK-MODE\//i, "/");     // quitar carpeta DARK-MODE
+    path = path.replace(/-dark(?=\.html$)/i, "");    // quitar -dark
+    return projectBase + path.replace(/^\//, "");    // añadir base del proyecto
   };
 
   // ---------------------------
@@ -445,7 +451,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const filename = currentPath.split("/").pop();
         const base = filename.replace(/\.[^/.]+$/, "");
         const ext = filename.match(/\.[^/.]+$/)?.[0] || "";
-        newPath = "/DARK-MODE/" + base + "-dark" + ext;
+        newPath = projectBase + "DARK-MODE/" + base + "-dark" + ext;
       }
       window.location.href = newPath;
     });
@@ -459,9 +465,9 @@ document.addEventListener("DOMContentLoaded", () => {
     links.forEach(link => {
       let href = link.getAttribute("href");
       if (!href.includes("-dark")) {
-        let newHref = href.startsWith("/DARK-MODE/") ? href : "/DARK-MODE/" + href;
+        let newHref = href.startsWith("DARK-MODE/") ? href : "DARK-MODE/" + href;
         newHref = newHref.replace(/(\.[^/.]+)$/, "-dark$1");
-        link.setAttribute("href", newHref);
+        link.setAttribute("href", projectBase + newHref.replace(/^\//, ""));
       }
     });
   }
@@ -499,20 +505,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (isDark) {
         e.preventDefault();
         let targetHref = link.getAttribute("href");
-
-        // Aseguramos ruta absoluta desde la raíz
-        if (!targetHref.startsWith("/")) targetHref = "/" + targetHref;
-
-        // Convertimos a versión normal
-        targetHref = toNormalPath(targetHref);
-
-        window.location.href = targetHref;
+        window.location.href = toNormalPath(targetHref);
       }
-      // si no estamos en dark mode, deja que funcione normalmente
     });
   });
 
 });
-
-
-
