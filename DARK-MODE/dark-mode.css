@@ -260,7 +260,7 @@ ul {
 
 #cubicle>.links a::before {
   background-color: transparent;
-  color: var(--color1);
+  color: var(--color3);
   transform: rotateY(0deg) translateZ(calc(var(--height) / 2));
 }
 
