@@ -491,26 +491,29 @@ document.addEventListener("DOMContentLoaded", () => {
   activateNavLinks(".stuffooter-list a");       // footer
 
 
+
+  
 /* ===========================
    STUFFS LINKS -> FORZAR /CODE-LAB/
    =========================== */
 const stuffsLinks = document.querySelectorAll(".stuffs-list li a");
+
 stuffsLinks.forEach(link => {
   link.addEventListener("click", (e) => {
     const href = link.getAttribute("href") || "";
 
-    // Si es enlace externo o ancla, no interferimos
+    // ignoramos anclas o enlaces externos
     if (href.startsWith("#") || /^https?:\/\//i.test(href)) return;
 
     e.preventDefault();
 
-    // Tomamos sólo el filename y quitamos posible sufijo -dark
+    // obtenemos solo el archivo (ux.html, brand.html, etc.)
     const filename = href.split("/").pop().replace("-dark", "");
 
-    // Ruta absoluta en tu dominio apuntando a CODE-LAB
+    // construimos ruta absoluta en CODE-LAB
     const target = "/CODE-LAB/" + filename;
 
-    // Soporte para abrir en nueva pestaña si el usuario usa ctrl/cmd/shift o middle-click
+    // si el usuario hace ctrl/cmd/shift-click → abrir en nueva pestaña
     if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) {
       window.open(target, "_blank");
     } else {
@@ -518,3 +521,5 @@ stuffsLinks.forEach(link => {
     }
   });
 });
+
+}); 
