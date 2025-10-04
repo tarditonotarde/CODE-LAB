@@ -376,3 +376,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 }); // FIN DOMContentLoaded
+
+  /* ===========================
+    CARD EFFECTS PORTFOLIO ITEMS
+     =========================== */
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll('.card');
+    setTimeout(() => {
+      cards.forEach(card => card.classList.add('visible'));
+    }, 500); // espera 0.5 segundos antes de aplicar
+  });
