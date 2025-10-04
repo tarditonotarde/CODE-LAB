@@ -516,18 +516,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ===========================
-   STUFFS LINKS: SALIR DARK MODE
+   STUFFS LINKS -> FORZAR /CODE-LAB/
    =========================== */
 const stuffsLinks = document.querySelectorAll(".stuffs-list li a");
 stuffsLinks.forEach(link => {
   link.addEventListener("click", (e) => {
-    if (isDark) {
-      e.preventDefault();
-      let targetHref = link.getAttribute("href");
-      // 🔧 aquí lo forzamos a la raíz, sin /DARK-MODE/
-      targetHref = "/" + targetHref.split("/").pop().replace("-dark", "");
-      window.location.href = targetHref;
+    const href = link.getAttribute("href") || "";
+
+    // Si es enlace externo o ancla, no interferimos
+    if (href.startsWith("#") || /^https?:\/\//i.test(href)) return;
+
+    e.preventDefault();
+
+    // Tomamos sólo el filename y quitamos posible sufijo -dark
+    const filename = href.split("/").pop().replace("-dark", "");
+
+    // Ruta absoluta en tu dominio apuntando a CODE-LAB
+    const target = "/CODE-LAB/" + filename;
+
+    // Soporte para abrir en nueva pestaña si el usuario usa ctrl/cmd/shift o middle-click
+    if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) {
+      window.open(target, "_blank");
+    } else {
+      window.location.href = target;
     }
   });
 });
-// si no estamos en dark mode, deja que funcione normalmente
