@@ -387,3 +387,21 @@ document.addEventListener("DOMContentLoaded", () => {
       cards.forEach(card => card.classList.add('visible'));
     }, 500); // espera 0.5 segundos antes de aplicar
   });
+
+
+  /* ===========================
+   STUFFS LINKS: SALIR DARK MODE
+   =========================== */
+const stuffsLinks = document.querySelectorAll(".stuffs-list li a");
+stuffsLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+    if (isDark) {
+      e.preventDefault();
+      let targetHref = link.getAttribute("href");
+      // 🔧 aquí lo forzamos a la raíz, sin /DARK-MODE/
+      targetHref = "/" + targetHref.split("/").pop().replace("-dark", "");
+      window.location.href = targetHref;
+    }
+  });
+});
+// si no estamos en dark mode, deja que funcione normalmente
