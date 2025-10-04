@@ -180,7 +180,7 @@ ul {
     width: 50px;
     height: 80px;
   cursor: url('../ASSETS/IMG/cursor-dark-pointer.svg') 0 0, auto !important;
-    justify-content: center;
+    justify-content: flex-end;
    }
 
   /* ocultamos el brillo */
@@ -362,12 +362,14 @@ ul {
 @media (max-width: 768px) {
   .typing-contact {
     font-size: 1.1em;
+    padding-top: 100px;
   }
 }
 
 @media (max-width: 480px) {
   .typing-contact {
     font-size: 0.8em;
+    padding-top: 200px;
   }
 }
 
@@ -667,6 +669,18 @@ background: none;
 .all-block-svg {
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .all-block-svg {
+    padding-top: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .all-block-svg {
+    padding-top: 200px;
+  }
 }
 
 .all-svg {
