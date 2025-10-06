@@ -218,7 +218,6 @@ footer {
   border-top: 2px solid black;
   height: 50px;
 background: #fdbdcf58; 
-   display: flex;
   box-sizing: border-box;
 }
 
@@ -744,7 +743,8 @@ padding: 20px;
    IMG PORTFOLIO
    ============================= */
   .img-port {
-      max-width: 400px;
+    width: 400px;
+      max-width: 80vw;
       padding: 20px;
       justify-content: center !important;
 }
