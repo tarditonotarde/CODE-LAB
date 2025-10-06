@@ -318,7 +318,7 @@ $(document).ready(function () {
    ME PAGE TYPING
    =========================== */
 document.addEventListener("DOMContentLoaded", () => {
-  const text = "I solve problems with creativity, a bit of code, and the occasional existential crisis. Designing with impact is my thing — because if your product doesn’t spark joy, at least it should spark usability.";
+  const text = "because if your product can’t make users happy, it should at least make them feel something.";
   const output = document.getElementById("typing-text-me");
   const cursor = document.getElementById("cursor-me");
 
