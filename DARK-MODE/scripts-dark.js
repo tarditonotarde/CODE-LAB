@@ -523,3 +523,68 @@ stuffsLinks.forEach(link => {
 });
 
 }); 
+
+/* ===========================
+   GHOST EYES MOVEMENT (ME PAGE)
+   =========================== */
+
+const ghost = document.querySelector(".ghosting svg");
+const eyeLeft = ghost.querySelector("#eyeleft path");
+const eyeRight = ghost.querySelector("#eyeright path");
+
+// Seleccionamos específicamente el párpado dentro del ghost
+const eyelidLayer = ghost.querySelector("g#parpado");
+
+// Variables para flotación
+let floatAngle = 0;
+const floatSpeed = 0.02;
+const floatAmplitude = 15;
+
+// Variables para ojos
+let mouseX = 0;
+let mouseY = 0;
+
+document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+// Función para parpadear solo dentro del SVG
+function blink() {
+    if (!eyelidLayer) return;
+
+    eyelidLayer.style.transition = "transform 0.1s";
+    eyelidLayer.style.transform = "scaleY(1)"; // cierra
+    setTimeout(() => {
+        eyelidLayer.style.transform = "scaleY(0)"; // abre
+    }, 150);
+
+    // Próximo parpadeo aleatorio entre 2 y 6 segundos
+    setTimeout(blink, Math.random() * 4000 + 2000);
+}
+
+// Iniciar primer parpadeo
+setTimeout(blink, 2000 + Math.random() * 2000);
+
+function animate() {
+    // Movimiento flotante
+    floatAngle += floatSpeed;
+    const floatX = Math.sin(floatAngle) * 5;
+    const floatY = Math.sin(floatAngle * 1.5) * floatAmplitude;
+    ghost.style.transform = `translate(${floatX}px, ${floatY}px)`;
+
+    // Movimiento de ojos
+    const rect = ghost.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const offsetX = (mouseX - centerX) / rect.width * 10;
+    const offsetY = (mouseY - centerY) / rect.height * 10;
+
+    eyeLeft.setAttribute("transform", `translate(${offsetX}, ${offsetY})`);
+    eyeRight.setAttribute("transform", `translate(${offsetX}, ${offsetY})`);
+
+    requestAnimationFrame(animate);
+}
+
+animate();
