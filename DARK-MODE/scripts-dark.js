@@ -55,7 +55,7 @@ document.addEventListener('mousemove', (e) => {
     if (!$typing.length) return;
 
     let typingLine = $('.typing-line');
-    const texts = ["crap-codes.", "tonterías.", "experiments.", "labs.", "playgrounds.", "bullshits.", "nonsenses.", "stupidities.", "projects.", "silly-stuffs."];
+    const texts = ["deathcodes.", "sins.", "rituals.", "crypts.", "pits.", "nightmares.", "voids.", "curses.", "ruins.", "ashes."];
     let index = 0;
 
     function typeText(text, i = 0) {
