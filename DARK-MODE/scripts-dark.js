@@ -529,62 +529,64 @@ stuffsLinks.forEach(link => {
    =========================== */
 
 const ghost = document.querySelector(".ghosting svg");
-const eyeLeft = ghost.querySelector("#eyeleft path");
-const eyeRight = ghost.querySelector("#eyeright path");
+const eyeLeft = ghost.querySelector("#eyeleft");
+const eyeRight = ghost.querySelector("#eyeright");
 
-// Seleccionamos específicamente el párpado dentro del ghost
-const eyelidLayer = ghost.querySelector("g#parpado");
-
-// Variables para flotación
+// Variables para flotación y respiración
 let floatAngle = 0;
 const floatSpeed = 0.02;
 const floatAmplitude = 15;
 
 // Variables para ojos
-let mouseX = 0;
-let mouseY = 0;
+let mouseX = 0, mouseY = 0;
 
-document.addEventListener("mousemove", (e) => {
+document.addEventListener("mousemove", e => {
     mouseX = e.clientX;
     mouseY = e.clientY;
 });
 
-// Función para parpadear solo dentro del SVG
-function blink() {
-    if (!eyelidLayer) return;
-
-    eyelidLayer.style.transition = "transform 0.1s";
-    eyelidLayer.style.transform = "scaleY(1)"; // cierra
-    setTimeout(() => {
-        eyelidLayer.style.transform = "scaleY(0)"; // abre
-    }, 150);
-
-    // Próximo parpadeo aleatorio entre 2 y 6 segundos
-    setTimeout(blink, Math.random() * 4000 + 2000);
-}
-
-// Iniciar primer parpadeo
-setTimeout(blink, 2000 + Math.random() * 2000);
-
+// Animación principal
 function animate() {
-    // Movimiento flotante
+    // Movimiento flotante y respiración
     floatAngle += floatSpeed;
     const floatX = Math.sin(floatAngle) * 5;
     const floatY = Math.sin(floatAngle * 1.5) * floatAmplitude;
+    const opacity = 0.6 + Math.sin(floatAngle * 1.3) * 0.4; // opacidad entre 0.2 y 1
     ghost.style.transform = `translate(${floatX}px, ${floatY}px)`;
+    ghost.style.opacity = opacity;
 
     // Movimiento de ojos
     const rect = ghost.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-
     const offsetX = (mouseX - centerX) / rect.width * 10;
     const offsetY = (mouseY - centerY) / rect.height * 10;
 
-    eyeLeft.setAttribute("transform", `translate(${offsetX}, ${offsetY})`);
-    eyeRight.setAttribute("transform", `translate(${offsetX}, ${offsetY})`);
+    eyeLeft.setAttribute("transform", `translate(${offsetX}, ${offsetY}) scale(1,1)`);
+    eyeRight.setAttribute("transform", `translate(${offsetX}, ${offsetY}) scale(1,1)`);
 
     requestAnimationFrame(animate);
 }
 
+// Función de parpadeo más natural
+function blink() {
+    const duration = 100 + Math.random() * 100; // tiempo de cierre
+    const scaleY = 0.1 + Math.random() * 0.1; // cierre parcial natural
+
+    // Cerramos los ojos
+    eyeLeft.setAttribute("transform", `scale(1,${scaleY})`);
+    eyeRight.setAttribute("transform", `scale(1,${scaleY})`);
+
+    setTimeout(() => {
+        // Abrimos los ojos suavemente
+        eyeLeft.setAttribute("transform", "scale(1,1)");
+        eyeRight.setAttribute("transform", "scale(1,1)");
+    }, duration);
+
+    // Próximo parpadeo aleatorio entre 2 y 6 segundos
+    setTimeout(blink, 2000 + Math.random() * 4000);
+}
+
+// Iniciar animaciones
 animate();
+setTimeout(blink, 2000 + Math.random() * 2000);
