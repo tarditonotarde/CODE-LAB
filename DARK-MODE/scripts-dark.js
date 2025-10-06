@@ -107,7 +107,8 @@ document.addEventListener('mousemove', (e) => {
     if (!$typingcontact.length) return;
 
     let typingLineContact = $('.typing-line-contact');
-    const texts = ["aliens?", "weather?", "design?", "zommbies?", "feetpics?", "coffee?", "code?", "punk", "cryptos?"];
+    const texts = ["glitch?", "haxx0r?", "darknet?", "rituals?", "voidcall?", "neonblood?", "cryptic?", "shadowcode?", "phantoms?"
+];
     let index = 0;
 
     function typeText(text, i = 0) {
@@ -145,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeArea = document.getElementById("msn-close");
   const whatsappArea = document.getElementById("msn-whatsapp");
 
-  const msnSound = new Audio("ASSETS/SOUNDS/msn-zumbido.mp3");
+  const msnSound = new Audio("../ASSETS/SOUNDS/msn-zumbido.mp3");
   msnSound.preload = "auto";
 
   if (contactBtn) {
