@@ -1664,7 +1664,6 @@ background: #fdbdcf58;
 
 .card-label {
   margin-top: 0.5rem;    /* separa un poco el texto de la imagen */
-  font-weight: bold;
   text-transform: uppercase; /* convierte el texto a mayúsculas */
   font-family: 'Montserrat', sans-serif;
   font-size: 1em;
