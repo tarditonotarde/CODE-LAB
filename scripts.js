@@ -395,9 +395,16 @@ if (game) {
     }, 500); // espera 0.5 segundos antes de aplicar
   });
 
+    /* ===========================
+    CARD EFFECTS PLAYGROUND ITEMS
+     =========================== */
 
-
-
+  document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll('.card-play');
+    setTimeout(() => {
+      cards.forEach(card => card.classList.add('visible'));
+    }, 500); // espera 0.5 segundos antes de aplicar
+  });
 
   /* ===========================
    STUFFS LINKS: SALIR DARK MODE
