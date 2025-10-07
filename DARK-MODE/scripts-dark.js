@@ -206,35 +206,42 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ===========================
    SNAKE GAME
    =========================== */
-document.addEventListener("DOMContentLoaded", () => {
-  const game = document.getElementById("snakeGame");
-  if (!game) return;
+const game = document.getElementById("snakeGame");
+
+if (game) {
+  // Hacer que el cursor sea pointer
+  game.style.cursor = "pointer";
+
+  // Cuando hagan click, se abre playground.html
+  game.addEventListener("click", () => {
+    window.location.href = "/CODE-LAB/playground.html";
+  });
+
   const gridSize = 5;
   const cols = 200 / gridSize;
   const rows = 40 / gridSize;
-
-  let snake, direction, foods;
+  let snake = [{ x: 2, y: 2 }], direction, foods;
   const maxFood = 10;
 
-  function resetGame() {
+  const resetGame = () => {
     const startX = Math.floor(Math.random() * cols);
     const startY = Math.floor(Math.random() * rows);
-    snake = [{ x: startX, y: startY }, ...snake.slice(0, snake.length - 1)];
+    snake = [{ x: startX, y: startY }];
     direction = { x: 1, y: 0 };
     foods = [];
     for (let i = 0; i < maxFood; i++) placeFood();
-  }
+  };
 
-  function placeFood() {
+  const placeFood = () => {
     if (foods.length >= maxFood) return;
     let food;
     do {
       food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
     } while (snake.some(seg => seg.x === food.x && seg.y === food.y));
     foods.push(food);
-  }
+  };
 
-  function moveFoodRandomly() {
+  const moveFoodRandomly = () => {
     foods.forEach((food, index) => {
       let newFood;
       do {
@@ -242,9 +249,9 @@ document.addEventListener("DOMContentLoaded", () => {
       } while (snake.some(seg => seg.x === newFood.x && seg.y === newFood.y));
       foods[index] = newFood;
     });
-  }
+  };
 
-  function draw() {
+  const draw = () => {
     game.innerHTML = "";
     snake.forEach(seg => {
       const el = document.createElement("div");
@@ -260,9 +267,9 @@ document.addEventListener("DOMContentLoaded", () => {
       el.style.top = f.y * gridSize + "px";
       game.appendChild(el);
     });
-  }
+  };
 
-  function move() {
+  const move = () => {
     const head = { ...snake[0] };
     head.x += direction.x;
     head.y += direction.y;
@@ -278,23 +285,19 @@ document.addEventListener("DOMContentLoaded", () => {
     if (head.y >= rows) head.y = rows - 1;
 
     snake.unshift(head);
-
     const foodIndex = foods.findIndex(f => f.x === head.x && f.y === head.y);
     if (foodIndex !== -1) {
       foods.splice(foodIndex, 1);
       if (foods.length === 0) resetGame();
-    } else {
-      snake.pop();
-    }
+    } else snake.pop();
 
     draw();
-  }
+  };
 
-  snake = [{ x: 2, y: 2 }];
   resetGame();
   setInterval(move, 60);
   setInterval(moveFoodRandomly, 3000);
-});
+}
 
 
 /* ===========================
