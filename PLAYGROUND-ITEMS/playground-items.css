@@ -978,7 +978,6 @@ padding: 20px;
   transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
   transform: translateZ(calc(-1 * var(--height-btn) / 2)); /* Posición fija */
   transform-origin: center bottom; /* ✅ evita el salto vertical */
-  padding: 40px;
 }
 
 
