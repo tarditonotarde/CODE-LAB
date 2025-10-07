@@ -110,14 +110,14 @@ header {
   z-index: 100;
   display: flex;
   flex-direction: column;
-    align-items: flex-end;
+  align-items: flex-end;
 }
 
 .head-items {
-      display: flex;
-    gap: 20px;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-direction: column;
 }
 
 .ojo-svg-header {
@@ -139,7 +139,7 @@ main {
   flex-direction: column;
   position: relative;
   flex-wrap: wrap;
-    justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 section {
@@ -170,7 +170,8 @@ h2 {
   font-weight: 300;
   font-size: 1.5em;
   line-height: 1.2em;
-  padding: 20px 20px 0px 20px;}
+  padding: 20px 20px 0px 20px;
+}
 
 h3 {
   font-family: 'Montserrat', sans-serif;
@@ -217,7 +218,7 @@ footer {
   padding: 10px;
   border-top: 2px solid black;
   height: 50px;
-background: #fdbdcf58; 
+  background: #fdbdcf58;
   box-sizing: border-box;
 }
 
@@ -456,24 +457,35 @@ ul {
    PORTFOLIO ITEMS
    ============================= */
 
-   /* =============================
+/* =============================
    MAIN TITLE
    ============================= */
 
-   #typing-title {
-    padding-bottom: 20px;
-   }
+#typing-title {
+  padding-bottom: 20px;
+}
 
 #cursor-title {
   color: black;
-  display: inline; /* necesario para que se vea */
+  display: inline;
+  /* necesario para que se vea */
   animation: blink-me 1s step-start infinite;
-  margin-left: 0px; /* ajusta según tu preferencia */
+  margin-left: 0px;
+  /* ajusta según tu preferencia */
 }
 
 @keyframes blink-me {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
+
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
 }
 
 
@@ -483,13 +495,13 @@ ul {
 
 @media (max-width: 768px) {
   .main-title-container {
-  padding-top: 200px;
+    padding-top: 200px;
   }
 }
 
 @media (max-width: 480px) {
   .main-title-container {
-  padding-top: 250px;
+    padding-top: 250px;
   }
 }
 
@@ -517,7 +529,8 @@ ul {
   flex-wrap: wrap;
   gap: 20px;
   max-width: 100%;
-  justify-content: center; /* 👈 ahora alineados a la izquierda */
+  justify-content: center;
+  /* 👈 ahora alineados a la izquierda */
   padding: 20px;
 }
 
@@ -610,7 +623,8 @@ ul {
 .tags-list li {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* 👈 ahora al inicio, no centrado */
+  align-items: flex-start;
+  /* 👈 ahora al inicio, no centrado */
   gap: 6px;
 }
 
@@ -643,19 +657,24 @@ li.open .tag-content {
 /* =============================
    PORTFOLIO ITEMS GRID
    ============================= */
-  
+
 .text-blocks-container {
   display: flex;
   align-content: center;
-  flex-wrap: wrap;       /* permite que los bloques bajen cuando no caben */
-  gap: 6em;             /* espacio entre bloques */
-  width: 80%;           /* ocupar todo el ancho */
+  flex-wrap: wrap;
+  /* permite que los bloques bajen cuando no caben */
+  gap: 6em;
+  /* espacio entre bloques */
+  width: 80%;
+  /* ocupar todo el ancho */
   padding: 20px;
-  justify-content: space-between; /* separa los bloques uniformemente */
+  justify-content: space-between;
+  /* separa los bloques uniformemente */
 }
 
 .text-block {
-  flex: 1 1 45%;        /* ocupa aprox. la mitad del ancho, se adapta */
+  flex: 1 1 45%;
+  /* ocupa aprox. la mitad del ancho, se adapta */
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -663,7 +682,8 @@ li.open .tag-content {
 
 .block-content {
   display: flex;
-  flex-direction: column; /* una columna de texto */
+  flex-direction: column;
+  /* una columna de texto */
 }
 
 .text-block-list {
@@ -674,8 +694,10 @@ li.open .tag-content {
 }
 
 .text-block-list::marker {
-  font-size: 2em; /* ajusta el tamaño de la viñeta */
-  color: black; /* opcional: color de la viñeta */
+  font-size: 2em;
+  /* ajusta el tamaño de la viñeta */
+  color: black;
+  /* opcional: color de la viñeta */
 }
 
 
@@ -697,73 +719,80 @@ li.open .tag-content {
    ============================= */
 
 .fp-iframe {
-border: none; 
-width: 80vw; 
-height: 80vh;
-border: 0px ; 
-padding: 20px;
-justify-content: center;
+  border: none;
+  width: 80vw;
+  height: 80vh;
+  border: 0px;
+  padding: 20px;
+  justify-content: center;
 }
 
 /* =============================
    VIDEOS PORTFOLIO
    ============================= */
-  
-  .video-container {
+
+.video-container {
   display: flex;
   align-content: center;
-  flex-wrap: wrap;       /* permite que los bloques bajen cuando no caben */
-  gap: 6em;             /* espacio entre bloques */
-  width: 80%;           /* ocupar todo el ancho */
+  flex-wrap: wrap;
+  /* permite que los bloques bajen cuando no caben */
+  gap: 6em;
+  /* espacio entre bloques */
+  width: 80%;
+  /* ocupar todo el ancho */
   padding: 20px;
   align-items: center;
-  justify-content: space-between; /* separa los bloques uniformemente */
+  justify-content: space-between;
+  /* separa los bloques uniformemente */
 }
 
- .video-content {
-  flex: 1 1 45%;        /* ocupa aprox. la mitad del ancho, se adapta */
+.video-content {
+  flex: 1 1 45%;
+  /* ocupa aprox. la mitad del ancho, se adapta */
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
 
 .video-iframe {
-border: none; 
-width: 100%;
-height: 300px;
+  border: none;
+  width: 100%;
+  height: 300px;
 }
 
 .full-video {
-border: none; 
-width: 80vw;
-height: 80vh;
-padding: 20px;
+  border: none;
+  width: 80vw;
+  height: 80vh;
+  padding: 20px;
 }
+
 /* =============================
    IMG PORTFOLIO
    ============================= */
-  .img-port {
-    width: 400px;
-      max-width: 80vw;
-      padding: 20px;
-      justify-content: center !important;
+.img-port {
+  width: 400px;
+  max-width: 80vw;
+  padding: 20px;
+  justify-content: center !important;
 }
 
-  .img-large {
-      width: 80vw;
-      padding: 20px;
+.img-large {
+  width: 80vw;
+  padding: 20px;
 }
 
-  .img-long {
-      height: 70vh;
-      padding: 20px;
+.img-long {
+  height: 70vh;
+  padding: 20px;
 }
 
 .img-figma {
-       width: 80vw;
-       height: 80vh;
-      padding: 20px;
+  width: 80vw;
+  height: 80vh;
+  padding: 20px;
 }
+
 /* =============================
    STUFFS NAV FOOTER NAV
    ============================= */
@@ -886,13 +915,13 @@ padding: 20px;
 
 /* Filas de cartas */
 .uno-tarot-row {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    justify-items: start;
-    flex-direction: row;
-    max-width: 90vw;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  justify-items: start;
+  flex-direction: row;
+  max-width: 90vw;
+  flex-wrap: wrap;
 }
 
 /* Wrapper de cada carta */
@@ -953,7 +982,8 @@ padding: 20px;
   font-size: 0.7em;
   text-align: left;
   max-width: 100px;
-  text-transform: uppercase; /* convierte el texto a mayúsculas */
+  text-transform: uppercase;
+  /* convierte el texto a mayúsculas */
   font-weight: 600;
 }
 
@@ -978,8 +1008,11 @@ padding: 20px;
   transform-style: preserve-3d;
   cursor: pointer;
   transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
-  transform: translateZ(calc(-1 * var(--height-btn) / 2)); /* Posición fija */
-  transform-origin: center bottom; /* ✅ evita el salto vertical */
+  transform: translateZ(calc(-1 * var(--height-btn) / 2));
+  /* Posición fija */
+  transform-origin: center bottom;
+  /* ✅ evita el salto vertical */
+  margin: 0px 0px 40px 0px;
 }
 
 
@@ -987,7 +1020,9 @@ padding: 20px;
 /* Hover solo efecto 3D, sin desplazar */
 .uno-tarot-button:hover {
   transform: translateZ(calc(-1 * var(--height-btn) / 2)) rotateX(-90deg);
-  transform-origin: center bottom; /* ✅ mantiene el punto fijo */
+  transform-origin: center bottom;
+  /* ✅ mantiene el punto fijo */
+
 }
 
 

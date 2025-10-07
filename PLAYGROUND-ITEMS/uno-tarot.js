@@ -3,15 +3,15 @@
    =========================== */
 
 const cards = [
-  "Yellow-0","Yellow-1","Yellow-2","Yellow-3","Yellow-4","Yellow-5","Yellow-6","Yellow-7","Yellow-8","Yellow-9",
-  "Yellow-Draw2-1","Yellow-Draw2-2","Yellow-Skip-1","Yellow-Skip-2","Yellow-Reverse-1","Yellow-Reverse-2",
-  "Blue-0","Blue-1","Blue-2","Blue-3","Blue-4","Blue-5","Blue-6","Blue-7","Blue-8","Blue-9",
-  "Blue-Draw2-1","Blue-Draw2-2","Blue-Skip-1","Blue-Skip-2","Blue-Reverse-1","Blue-Reverse-2",
-  "Red-0","Red-1","Red-2","Red-3","Red-4","Red-5","Red-6","Red-7","Red-8","Red-9",
-  "Red-Draw2-1","Red-Draw2-2","Red-Skip-1","Red-Skip-2","Red-Reverse-1","Red-Reverse-2",
-  "Green-0","Green-1","Green-2","Green-3","Green-4","Green-5","Green-6","Green-7","Green-8","Green-9",
-  "Green-Draw2-1","Green-Draw2-2","Green-Skip-1","Green-Skip-2","Green-Reverse-1","Green-Reverse-2",
-  "Wild-1","Wild-2","Wild-3","Wild-4","Draw4-1","Draw4-2","Draw4-3","Draw4-4"
+  "Yellow-0", "Yellow-1", "Yellow-2", "Yellow-3", "Yellow-4", "Yellow-5", "Yellow-6", "Yellow-7", "Yellow-8", "Yellow-9",
+  "Yellow-Draw2-1", "Yellow-Draw2-2", "Yellow-Skip-1", "Yellow-Skip-2", "Yellow-Reverse-1", "Yellow-Reverse-2",
+  "Blue-0", "Blue-1", "Blue-2", "Blue-3", "Blue-4", "Blue-5", "Blue-6", "Blue-7", "Blue-8", "Blue-9",
+  "Blue-Draw2-1", "Blue-Draw2-2", "Blue-Skip-1", "Blue-Skip-2", "Blue-Reverse-1", "Blue-Reverse-2",
+  "Red-0", "Red-1", "Red-2", "Red-3", "Red-4", "Red-5", "Red-6", "Red-7", "Red-8", "Red-9",
+  "Red-Draw2-1", "Red-Draw2-2", "Red-Skip-1", "Red-Skip-2", "Red-Reverse-1", "Red-Reverse-2",
+  "Green-0", "Green-1", "Green-2", "Green-3", "Green-4", "Green-5", "Green-6", "Green-7", "Green-8", "Green-9",
+  "Green-Draw2-1", "Green-Draw2-2", "Green-Skip-1", "Green-Skip-2", "Green-Reverse-1", "Green-Reverse-2",
+  "Wild-1", "Wild-2", "Wild-3", "Wild-4", "Draw4-1", "Draw4-2", "Draw4-3", "Draw4-4"
 ];
 
 const meanings = {
@@ -97,7 +97,7 @@ function initUnoTarot() {
   const tarotContainer = document.getElementById("uno-tarot");
   if (!tarotContainer) return;
 
-  tarotContainer.innerHTML = ""; 
+  tarotContainer.innerHTML = "";
 
   const mainContainer = document.createElement("div");
   mainContainer.classList.add("uno-tarot-main");

@@ -112,14 +112,14 @@ header {
   z-index: 100;
   display: flex;
   flex-direction: column;
-    align-items: flex-end;
+  align-items: flex-end;
 }
 
 .head-items {
-      display: flex;
-    gap: 20px;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-direction: column;
 }
 
 .ojo-svg-header {
@@ -183,27 +183,27 @@ ul {
    NAV HEADER
    ============================= */
 
-   /* CALAVERA */
+/* CALAVERA */
 
-   .lamp-container {
-    align-items: flex-start;
-    display: flex;
-    width: 50px;
-    height: 80px;
-    cursor: pointer;
-justify-content: flex-end;   
+.lamp-container {
+  align-items: flex-start;
+  display: flex;
+  width: 50px;
+  height: 80px;
+  cursor: pointer;
+  justify-content: flex-end;
 }
 
-  /* ocultamos el brillo */
-  #shine {
-    opacity: 0;
-    transition: opacity 0.1s ease-in-out;
-  }
+/* ocultamos el brillo */
+#shine {
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
 
-  /* cuando se hace hover en la lámpara, aparece */
-  #lamp:hover + #shine {
-    opacity: 1;
-  }
+/* cuando se hace hover en la lámpara, aparece */
+#lamp:hover+#shine {
+  opacity: 1;
+}
 
 #cubicle>.links a.active {
   transform: translateZ(calc(-1 * calc(var(--height) / 2))) rotateX(-90deg);
@@ -577,7 +577,7 @@ justify-content: flex-end;
   padding: 10px;
   border-top: 2px solid black;
   height: 50px;
-background: #fdbdcf58; 
+  background: #fdbdcf58;
   box-sizing: border-box;
 }
 
@@ -673,9 +673,10 @@ background: #fdbdcf58;
   height: auto;
   /* tamaño máximo por defecto */
 }
+
 .all-block-svg {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {
@@ -692,7 +693,7 @@ background: #fdbdcf58;
 
 
 .all-svg {
-    width: 100%;
+  width: 100%;
   height: auto;
 }
 
@@ -1394,13 +1395,13 @@ background: #fdbdcf58;
 
 @media (max-width: 768px) {
   .photo-me {
-  max-height: 210px;
+    max-height: 210px;
   }
 }
 
 @media (max-width: 480px) {
   .photo-me {
-      max-height: 200px;
+    max-height: 200px;
   }
 }
 
@@ -1460,7 +1461,7 @@ background: #fdbdcf58;
   font-weight: bold;
   color: black;
   animation: blink-me 1s infinite;
- margin-left: -10px;
+  margin-left: -10px;
 
 }
 
@@ -1653,18 +1654,23 @@ background: #fdbdcf58;
 }
 
 .button-img {
-  vertical-align: middle; /* alinea con el texto */
+  vertical-align: middle;
+  /* alinea con el texto */
 }
 
 .face {
   display: flex;
-  flex-direction: column; /* apila verticalmente la imagen y el texto */
-  align-items: center;    /* centra horizontalmente */
+  flex-direction: column;
+  /* apila verticalmente la imagen y el texto */
+  align-items: center;
+  /* centra horizontalmente */
 }
 
 .card-label {
-  margin-top: 0.5rem;    /* separa un poco el texto de la imagen */
-  text-transform: uppercase; /* convierte el texto a mayúsculas */
+  margin-top: 0.5rem;
+  /* separa un poco el texto de la imagen */
+  text-transform: uppercase;
+  /* convierte el texto a mayúsculas */
   font-family: 'Montserrat', sans-serif;
   font-size: 1em;
   font-weight: 300;
