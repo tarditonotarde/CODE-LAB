@@ -108,11 +108,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* ===========================
+ /* ===========================
      SNAKE GAME
      =========================== */
+
   const game = document.getElementById("snakeGame");
+
   if (game) {
+    // Hacer que el cursor sea pointer
+    game.style.cursor = "pointer";
+
+    // Cuando hagan click, se abre playground.html
+    game.addEventListener("click", () => {
+      window.location.href = "../playground.html";
+    });
+
     const gridSize = 5;
     const cols = 200 / gridSize;
     const rows = 40 / gridSize;
@@ -131,16 +141,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const placeFood = () => {
       if (foods.length >= maxFood) return;
       let food;
-      do { food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) }; }
-      while (snake.some(seg => seg.x === food.x && seg.y === food.y));
+      do {
+        food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
+      } while (snake.some(seg => seg.x === food.x && seg.y === food.y));
       foods.push(food);
     };
 
     const moveFoodRandomly = () => {
       foods.forEach((food, index) => {
         let newFood;
-        do { newFood = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) }; }
-        while (snake.some(seg => seg.x === newFood.x && seg.y === newFood.y));
+        do {
+          newFood = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
+        } while (snake.some(seg => seg.x === newFood.x && seg.y === newFood.y));
         foods[index] = newFood;
       });
     };

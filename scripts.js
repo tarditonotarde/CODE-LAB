@@ -224,6 +224,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+ /* ===========================
+     SNAKE GAME
+     =========================== */
+
   const game = document.getElementById("snakeGame");
 
   if (game) {
@@ -316,6 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(move, 60);
     setInterval(moveFoodRandomly, 3000);
   }
+  
   /* ===========================
      FOOTER ARROWS
      =========================== */
