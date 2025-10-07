@@ -206,11 +206,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===========================
-     FOOTER ARROWS
+     NAV EYE MOVEMENT + HOVER HEADER
      =========================== */
-  if (window.jQuery) {
-    $(".arrow.prev").click(() => window.history.back());
-    $(".arrow.next").click(() => window.history.forward());
-    $(".arrow.scroll-top").click(() => $("html, body").animate({ scrollTop: 0 }, "slow"));
-  }
+  const eyesHeader = document.querySelectorAll('.ojo-svg-header');
+  document.addEventListener('mousemove', (e) => {
+    eyesHeader.forEach(eye => {
+      const pupil = eye.querySelector('#pupila');
+      if (eye.dataset.hovering === "true") return;
+
+      const rect = eye.getBoundingClientRect();
+      const eyeX = rect.left + rect.width / 2;
+      const eyeY = rect.top + rect.height / 2;
+
+      const dx = e.clientX - eyeX;
+      const dy = e.clientY - eyeY;
+      const angle = Math.atan2(dy, dx);
+      const distance = Math.min(15, Math.hypot(dx, dy) / 10);
+
+      const isRightEye = eye.parentElement.classList.contains("eye-right");
+      const offsetX = Math.cos(angle) * distance * (isRightEye ? -1 : 1);
+      const offsetY = Math.sin(angle) * distance;
+
+      pupil.setAttribute("transform", `translate(${offsetX}, ${offsetY})`);
+    });
+  });
+
+  eyesHeader.forEach(eye => {
+    const pupil = eye.querySelector('#pupila');
+    eye.addEventListener("mouseenter", () => {
+      eye.dataset.hovering = "true";
+      pupil.setAttribute("transform", `translate(0, -12)`);
+    });
+    eye.addEventListener("mouseleave", () => {
+      eye.dataset.hovering = "false";
+      pupil.setAttribute("transform", `translate(0,0)`);
+    });
+    eye.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  });
+
+
 
