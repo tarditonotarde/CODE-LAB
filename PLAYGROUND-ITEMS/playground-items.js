@@ -3,7 +3,7 @@
    ============================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const text = "■ game";
+  const text = "■ just for fun";
   const output = document.getElementById("typing-text-title");
   const cursor = document.getElementById("cursor-title");
 
