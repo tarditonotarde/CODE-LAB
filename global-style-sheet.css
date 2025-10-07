@@ -1665,8 +1665,12 @@ background: #fdbdcf58;
 .card-label {
   margin-top: 0.5rem;    /* separa un poco el texto de la imagen */
   font-weight: bold;
-  font-size: 1rem;
+  text-transform: uppercase; /* convierte el texto a mayúsculas */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
 }
+
 
 /* Contenedor de stuffs */
 .card-play-container {

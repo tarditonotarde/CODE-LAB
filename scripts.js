@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
       msnPopup.style.display = "block";
       msnPopup.classList.add("shake");
       msnSound.currentTime = 0;
-      msnSound.play().catch(() => {});
+      msnSound.play().catch(() => { });
     });
   }
 
@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation();
       msnPopup.style.display = "none";
       msnSound.currentTime = 0;
-      msnSound.play().catch(() => {});
+      msnSound.play().catch(() => { });
     });
   }
 
@@ -216,106 +216,106 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("click", e => {
     if (msnPopup && msnPopup.style.display === "block" &&
-        !msnPopup.contains(e.target) &&
-        !(contactBtn && contactBtn.contains(e.target))) {
+      !msnPopup.contains(e.target) &&
+      !(contactBtn && contactBtn.contains(e.target))) {
       msnPopup.style.display = "none";
       msnSound.currentTime = 0;
-      msnSound.play().catch(() => {});
+      msnSound.play().catch(() => { });
     }
   });
 
-const game = document.getElementById("snakeGame");
+  const game = document.getElementById("snakeGame");
 
-if (game) {
-  // Hacer que el cursor sea pointer
-  game.style.cursor = "pointer";
+  if (game) {
+    // Hacer que el cursor sea pointer
+    game.style.cursor = "pointer";
 
-  // Cuando hagan click, se abre playground.html
-  game.addEventListener("click", () => {
-    window.location.href = "playground.html";
-  });
+    // Cuando hagan click, se abre playground.html
+    game.addEventListener("click", () => {
+      window.location.href = "playground.html";
+    });
 
-  const gridSize = 5;
-  const cols = 200 / gridSize;
-  const rows = 40 / gridSize;
-  let snake = [{ x: 2, y: 2 }], direction, foods;
-  const maxFood = 10;
+    const gridSize = 5;
+    const cols = 200 / gridSize;
+    const rows = 40 / gridSize;
+    let snake = [{ x: 2, y: 2 }], direction, foods;
+    const maxFood = 10;
 
-  const resetGame = () => {
-    const startX = Math.floor(Math.random() * cols);
-    const startY = Math.floor(Math.random() * rows);
-    snake = [{ x: startX, y: startY }];
-    direction = { x: 1, y: 0 };
-    foods = [];
-    for (let i = 0; i < maxFood; i++) placeFood();
-  };
+    const resetGame = () => {
+      const startX = Math.floor(Math.random() * cols);
+      const startY = Math.floor(Math.random() * rows);
+      snake = [{ x: startX, y: startY }];
+      direction = { x: 1, y: 0 };
+      foods = [];
+      for (let i = 0; i < maxFood; i++) placeFood();
+    };
 
-  const placeFood = () => {
-    if (foods.length >= maxFood) return;
-    let food;
-    do {
-      food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
-    } while (snake.some(seg => seg.x === food.x && seg.y === food.y));
-    foods.push(food);
-  };
-
-  const moveFoodRandomly = () => {
-    foods.forEach((food, index) => {
-      let newFood;
+    const placeFood = () => {
+      if (foods.length >= maxFood) return;
+      let food;
       do {
-        newFood = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
-      } while (snake.some(seg => seg.x === newFood.x && seg.y === newFood.y));
-      foods[index] = newFood;
-    });
-  };
+        food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
+      } while (snake.some(seg => seg.x === food.x && seg.y === food.y));
+      foods.push(food);
+    };
 
-  const draw = () => {
-    game.innerHTML = "";
-    snake.forEach(seg => {
-      const el = document.createElement("div");
-      el.classList.add("segment");
-      el.style.left = seg.x * gridSize + "px";
-      el.style.top = seg.y * gridSize + "px";
-      game.appendChild(el);
-    });
-    foods.forEach(f => {
-      const el = document.createElement("div");
-      el.classList.add("food");
-      el.style.left = f.x * gridSize + "px";
-      el.style.top = f.y * gridSize + "px";
-      game.appendChild(el);
-    });
-  };
+    const moveFoodRandomly = () => {
+      foods.forEach((food, index) => {
+        let newFood;
+        do {
+          newFood = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
+        } while (snake.some(seg => seg.x === newFood.x && seg.y === newFood.y));
+        foods[index] = newFood;
+      });
+    };
 
-  const move = () => {
-    const head = { ...snake[0] };
-    head.x += direction.x;
-    head.y += direction.y;
+    const draw = () => {
+      game.innerHTML = "";
+      snake.forEach(seg => {
+        const el = document.createElement("div");
+        el.classList.add("segment");
+        el.style.left = seg.x * gridSize + "px";
+        el.style.top = seg.y * gridSize + "px";
+        game.appendChild(el);
+      });
+      foods.forEach(f => {
+        const el = document.createElement("div");
+        el.classList.add("food");
+        el.style.left = f.x * gridSize + "px";
+        el.style.top = f.y * gridSize + "px";
+        game.appendChild(el);
+      });
+    };
 
-    if (Math.random() < 0.15) {
-      const dirs = [{ x: 1, y: 0 }, { x: -1, y: 0 }, { x: 0, y: 1 }, { x: 0, y: -1 }];
-      direction = dirs[Math.floor(Math.random() * dirs.length)];
-    }
+    const move = () => {
+      const head = { ...snake[0] };
+      head.x += direction.x;
+      head.y += direction.y;
 
-    if (head.x < 0) head.x = 0;
-    if (head.x >= cols) head.x = cols - 1;
-    if (head.y < 0) head.y = 0;
-    if (head.y >= rows) head.y = rows - 1;
+      if (Math.random() < 0.15) {
+        const dirs = [{ x: 1, y: 0 }, { x: -1, y: 0 }, { x: 0, y: 1 }, { x: 0, y: -1 }];
+        direction = dirs[Math.floor(Math.random() * dirs.length)];
+      }
 
-    snake.unshift(head);
-    const foodIndex = foods.findIndex(f => f.x === head.x && f.y === head.y);
-    if (foodIndex !== -1) {
-      foods.splice(foodIndex, 1);
-      if (foods.length === 0) resetGame();
-    } else snake.pop();
+      if (head.x < 0) head.x = 0;
+      if (head.x >= cols) head.x = cols - 1;
+      if (head.y < 0) head.y = 0;
+      if (head.y >= rows) head.y = rows - 1;
 
-    draw();
-  };
+      snake.unshift(head);
+      const foodIndex = foods.findIndex(f => f.x === head.x && f.y === head.y);
+      if (foodIndex !== -1) {
+        foods.splice(foodIndex, 1);
+        if (foods.length === 0) resetGame();
+      } else snake.pop();
 
-  resetGame();
-  setInterval(move, 60);
-  setInterval(moveFoodRandomly, 3000);
-}
+      draw();
+    };
+
+    resetGame();
+    setInterval(move, 60);
+    setInterval(moveFoodRandomly, 3000);
+  }
   /* ===========================
      FOOTER ARROWS
      =========================== */
@@ -384,31 +384,31 @@ if (game) {
 
 }); // FIN DOMContentLoaded
 
-  /* ===========================
-    CARD EFFECTS PORTFOLIO ITEMS
-     =========================== */
-
-  document.addEventListener("DOMContentLoaded", function () {
-    const cards = document.querySelectorAll('.card');
-    setTimeout(() => {
-      cards.forEach(card => card.classList.add('visible'));
-    }, 500); // espera 0.5 segundos antes de aplicar
-  });
-
-    /* ===========================
-    CARD EFFECTS PLAYGROUND ITEMS
-     =========================== */
-
-  document.addEventListener("DOMContentLoaded", function () {
-    const cards = document.querySelectorAll('.card-play');
-    setTimeout(() => {
-      cards.forEach(card => card.classList.add('visible'));
-    }, 500); // espera 0.5 segundos antes de aplicar
-  });
-
-  /* ===========================
-   STUFFS LINKS: SALIR DARK MODE
+/* ===========================
+  CARD EFFECTS PORTFOLIO ITEMS
    =========================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cards = document.querySelectorAll('.card');
+  setTimeout(() => {
+    cards.forEach(card => card.classList.add('visible'));
+  }, 500); // espera 0.5 segundos antes de aplicar
+});
+
+/* ===========================
+CARD EFFECTS PLAYGROUND ITEMS
+ =========================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cards = document.querySelectorAll('.card-play');
+  setTimeout(() => {
+    cards.forEach(card => card.classList.add('visible'));
+  }, 500); // espera 0.5 segundos antes de aplicar
+});
+
+/* ===========================
+ STUFFS LINKS: SALIR DARK MODE
+ =========================== */
 const stuffsLinks = document.querySelectorAll(".stuffs-list li a");
 stuffsLinks.forEach(link => {
   link.addEventListener("click", (e) => {
