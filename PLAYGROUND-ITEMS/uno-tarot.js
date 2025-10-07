@@ -15,82 +15,82 @@ const cards = [
 ];
 
 const meanings = {
-  "Yellow-0": "Nada cambia, igual vas a fracasar hoy.",
-  "Yellow-1": "Un intento mínimo, pero sigue siendo insuficiente.",
-  "Yellow-2": "Dos caminos, ambos llevan al desastre.",
-  "Yellow-3": "Tres errores consecutivos que ignoraste.",
-  "Yellow-4": "Cuatro razones por las que nadie te llama.",
-  "Yellow-5": "Cinco oportunidades perdidas y contando.",
-  "Yellow-6": "Seis recordatorios de que tu plan apesta.",
-  "Yellow-7": "Siete veces que dijiste 'no pasa nada', mentira.",
-  "Yellow-8": "Ocho excusas para no enfrentar tu vida.",
-  "Yellow-9": "Nueve promesas rotas, incluyendo la tuya.",
-  "Yellow-Draw2-1": "Toma dos problemas más, porque uno no basta.",
-  "Yellow-Draw2-2": "Otro par de desastres, que no te tomen por sorpresa.",
-  "Yellow-Skip-1": "Saltar responsabilidades no funcionará, lo siento.",
-  "Yellow-Skip-2": "Otra oportunidad de ignorar la realidad.",
-  "Yellow-Reverse-1": "Gira tu vida… directamente hacia el abismo.",
-  "Yellow-Reverse-2": "Otro giro que solo empeorará las cosas.",
-  
-  "Blue-0": "Nada azul, solo tristeza silenciosa.",
-  "Blue-1": "Un día normal lleno de decepciones leves.",
-  "Blue-2": "Dos problemas nuevos, no lo mereces, pero los tendrás.",
-  "Blue-3": "Tres suspiros inútiles frente al espejo.",
-  "Blue-4": "Cuatro señales de que alguien te odia en secreto.",
-  "Blue-5": "Cinco mensajes ignorados, incluyendo los tuyos.",
-  "Blue-6": "Seis tareas que empezarás y nunca terminarás.",
-  "Blue-7": "Siete quejas que nadie escuchará.",
-  "Blue-8": "Ocho mentiras blancas que te destruyen lentamente.",
-  "Blue-9": "Nueve oportunidades para arruinarlo todo más rápido.",
-  "Blue-Draw2-1": "Dos problemas inesperados, disfruta el caos.",
-  "Blue-Draw2-2": "Otra dosis de mala suerte azul.",
-  "Blue-Skip-1": "Salta algo, probablemente tu dignidad.",
-  "Blue-Skip-2": "Ignorar otra vez no arreglará nada.",
-  "Blue-Reverse-1": "Reversa… tu esperanza se va de vacaciones.",
-  "Blue-Reverse-2": "Otro giro inútil hacia la desesperación.",
-  
-  "Red-0": "Cero pasión, solo ira contenida.",
-  "Red-1": "Una pelea que tú provocaste, obviamente.",
-  "Red-2": "Dos errores que harán arder todo.",
-  "Red-3": "Tres mentiras que ya no sorprenden a nadie.",
-  "Red-4": "Cuatro insultos listos para explotar.",
-  "Red-5": "Cinco malas decisiones que repetirás.",
-  "Red-6": "Seis bofetadas metafóricas del destino.",
-  "Red-7": "Siete veces que tu temperamento falla.",
-  "Red-8": "Ocho señales de que deberías irte ya.",
-  "Red-9": "Nueve maneras de arruinar la noche.",
-  "Red-Draw2-1": "Toma dos problemas más, roja calamidad.",
-  "Red-Draw2-2": "Dos cargas más, porque la vida es cruel.",
-  "Red-Skip-1": "Saltas algo… tu cordura probablemente.",
-  "Red-Skip-2": "Otro salto hacia el caos.",
-  "Red-Reverse-1": "Vuelves, pero todo sigue mal.",
-  "Red-Reverse-2": "Giro inútil, tu drama sigue intacto.",
-  
-  "Green-0": "Cero esperanza, todo verde y mohoso.",
-  "Green-1": "Un día aburrido lleno de envidia ajena.",
-  "Green-2": "Dos opciones malas, elige a ciegas.",
-  "Green-3": "Tres críticas que nadie pidió.",
-  "Green-4": "Cuatro recuerdos vergonzosos que vuelven.",
-  "Green-5": "Cinco excusas que no convencen a nadie.",
-  "Green-6": "Seis pasos hacia el desastre natural de tu vida.",
-  "Green-7": "Siete consejos inútiles, como siempre.",
-  "Green-8": "Ocho problemas verdes, no comestibles.",
-  "Green-9": "Nueve intentos fallidos de ser normal.",
-  "Green-Draw2-1": "Dos obstáculos más, bienvenida la desdicha.",
-  "Green-Draw2-2": "Otro par de problemas verdes y pegajosos.",
-  "Green-Skip-1": "Saltar no evitará la vergüenza.",
-  "Green-Skip-2": "Ignorar otra vez solo empeora todo.",
-  "Green-Reverse-1": "Giro inesperado… tu plan fracasa.",
-  "Green-Reverse-2": "Otro giro para perder el control.",
-  
-  "Wild-1": "Tu libertad es una ilusión.",
-  "Wild-2": "Caos salvaje, sin sentido ni gracia.",
-  "Wild-3": "Locura pura, disfrútala mientras puedas.",
-  "Wild-4": "Todo arderá, y tú serás responsable.",
-  "Draw4-1": "Toma cuatro problemas de golpe, suerte.",
-  "Draw4-2": "Otro cuarteto de calamidades.",
-  "Draw4-3": "Cuatro disgustos nuevos para ti.",
-  "Draw4-4": "El gran combo de la mala suerte: cuatro golpes letales."
+  "Yellow-0": "Nothing changes. You’ll still fail spectacularly today.",
+  "Yellow-1": "A tiny attempt at life… doomed from the start.",
+  "Yellow-2": "Two paths, both ending in glorious disaster.",
+  "Yellow-3": "Three mistakes you ignored like a genius idiot.",
+  "Yellow-4": "Four reasons nobody gives a damn about you.",
+  "Yellow-5": "Five chances you blew, keep it up.",
+  "Yellow-6": "Six reminders that your existence is a bad plan.",
+  "Yellow-7": "Seven times you lied to yourself. Pathetic.",
+  "Yellow-8": "Eight excuses to keep screwing up your life.",
+  "Yellow-9": "Nine broken promises, including the one to yourself.",
+  "Yellow-Draw2-1": "Draw two more disasters, you’ll need them.",
+  "Yellow-Draw2-2": "Another pair of fails, your misery expands.",
+  "Yellow-Skip-1": "Skipping responsibilities? Hilarious, try harder.",
+  "Yellow-Skip-2": "Another ignore-fest, your life rots faster.",
+  "Yellow-Reverse-1": "Spin your life… straight into the void.",
+  "Yellow-Reverse-2": "Another turn… your luck died long ago.",
+
+  "Blue-0": "Nothing blue, just silent existential dread.",
+  "Blue-1": "A mediocre day filled with minor torment.",
+  "Blue-2": "Two new annoyances for your fragile ego.",
+  "Blue-3": "Three pointless sighs wasted at your reflection.",
+  "Blue-4": "Four signs someone secretly wishes you were dead.",
+  "Blue-5": "Five ignored messages, like your existence itself.",
+  "Blue-6": "Six tasks doomed to fail from the start.",
+  "Blue-7": "Seven complaints no one gives a damn about.",
+  "Blue-8": "Eight tiny lies crushing your soul like cement.",
+  "Blue-9": "Nine perfect chances to ruin everything, take them.",
+  "Blue-Draw2-1": "Draw two more failures, chaos included.",
+  "Blue-Draw2-2": "Another dose of blue misery, enjoy it.",
+  "Blue-Skip-1": "Skip something… probably your dignity.",
+  "Blue-Skip-2": "Ignoring again won’t save your soul.",
+  "Blue-Reverse-1": "Reverse… hope abandoned ship years ago.",
+  "Blue-Reverse-2": "Another pointless turn to total despair.",
+
+  "Red-0": "Zero passion, maximum rage contained.",
+  "Red-1": "One fight, fully your fault, naturally.",
+  "Red-2": "Two mistakes that will torch everything.",
+  "Red-3": "Three lies, no one even blinks anymore.",
+  "Red-4": "Four insults ready to demolish reality.",
+  "Red-5": "Five idiotic decisions you’ll repeat gladly.",
+  "Red-6": "Six destiny slaps, metaphoric but painful.",
+  "Red-7": "Seven times your temper tanked spectacularly.",
+  "Red-8": "Eight signs screaming: ‘leave now, dummy.’",
+  "Red-9": "Nine ways to ruin the night, all achieved.",
+  "Red-Draw2-1": "Draw two more reds, crimson chaos incoming.",
+  "Red-Draw2-2": "Two extra disasters, life hates you.",
+  "Red-Skip-1": "Skip something… sanity probably.",
+  "Red-Skip-2": "Another leap into utter chaos.",
+  "Red-Reverse-1": "You return… nothing improved, naturally.",
+  "Red-Reverse-2": "Another spin, drama remains undefeated.",
+
+  "Green-0": "Zero hope, everything festers in moldy green.",
+  "Green-1": "A boring day, fueled by someone else’s envy.",
+  "Green-2": "Two bad choices, pick, it won’t matter.",
+  "Green-3": "Three unsolicited critiques, painfully accurate.",
+  "Green-4": "Four shameful memories stalking you relentlessly.",
+  "Green-5": "Five pathetic excuses that convince no one.",
+  "Green-6": "Six steps straight into your personal apocalypse.",
+  "Green-7": "Seven useless tips, as meaningless as you.",
+  "Green-8": "Eight green problems, all non-edible, like your life.",
+  "Green-9": "Nine failed attempts to blend in with society.",
+  "Green-Draw2-1": "Two extra hurdles, misery upgraded.",
+  "Green-Draw2-2": "Another sticky pair of green catastrophes.",
+  "Green-Skip-1": "Skipping won’t save you from humiliation.",
+  "Green-Skip-2": "Ignore again, watch things rot faster.",
+  "Green-Reverse-1": "Unexpected spin… your plan collapses spectacularly.",
+  "Green-Reverse-2": "Another twist to watch everything crumble.",
+
+  "Wild-1": "Your freedom? A laughable illusion.",
+  "Wild-2": "Wild chaos, meaningless, perfectly designed for you.",
+  "Wild-3": "Pure madness. Enjoy it before it devours you.",
+  "Wild-4": "Everything burns, guess who’s culpable? You.",
+  "Draw4-1": "Four catastrophes, straight to your lap. Lucky.",
+  "Draw4-2": "Another foursome of calamities, add to your misery.",
+  "Draw4-3": "Four fresh disasters, just for you, ego intact.",
+  "Draw4-4": "Ultimate unlucky combo: four lethal hits, no mercy."
 };
 
 function initUnoTarot() {
@@ -107,10 +107,10 @@ function initUnoTarot() {
     return array.sort(() => Math.random() - 0.5);
   }
 
-  function drawCards(num = 7) {
+  function drawCards(num = 6) {
     mainContainer.innerHTML = "";
     const drawn = shuffle(cards).slice(0, num);
-    const rows = [3, 3, 1];
+    const rows = [1, 5, 0];
     let index = 0;
 
     rows.forEach(count => {
@@ -124,8 +124,8 @@ function initUnoTarot() {
 
         const cardElement = document.createElement("div");
         cardElement.classList.add("uno-card");
-        cardElement.style.width = "150px";
-        cardElement.style.height = "210px";
+        cardElement.style.width = "100px";
+        cardElement.style.height = "165px";
 
         const inner = document.createElement("div");
         inner.classList.add("uno-card-inner");
@@ -176,11 +176,11 @@ function initUnoTarot() {
 
   const frontBtn = document.createElement("span");
   frontBtn.classList.add("face", "front");
-  frontBtn.innerText = "Sacar cartas 🔮";
+  frontBtn.innerText = "draw your doom 🔮";
 
   const topBtn = document.createElement("span");
   topBtn.classList.add("face", "top");
-  topBtn.innerText = "Sacar cartas 🔮";
+  topBtn.innerText = "draw your doom 🔮";
 
   button.appendChild(frontBtn);
   button.appendChild(topBtn);

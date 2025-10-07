@@ -886,9 +886,13 @@ padding: 20px;
 
 /* Filas de cartas */
 .uno-tarot-row {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    justify-items: start;
+    flex-direction: row;
+    max-width: 90vw;
+    flex-wrap: wrap;
 }
 
 /* Wrapper de cada carta */
@@ -898,8 +902,8 @@ padding: 20px;
 
 /* Carta */
 .uno-card {
-  width: 150px;
-  height: 210px;
+  width: 100px;
+  height: 165px;
   transform-style: preserve-3d;
   transition: transform 0.8s;
   cursor: pointer;
@@ -927,7 +931,6 @@ padding: 20px;
   height: 100%;
   backface-visibility: hidden;
   border-radius: 10px;
-  object-fit: cover;
 }
 
 /* Cara trasera */
@@ -937,18 +940,19 @@ padding: 20px;
 
 /* Glow solo al hover, sin girar */
 .uno-card:hover {
-  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.7);
-  transform: scale(1.05);
+  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.6);
   transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 10px;
 }
+
 
 /* Significado */
 .uno-meaning {
-  margin-top: 8px;
+  margin-top: 10px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  text-align: center;
-  max-width: 150px;
+  font-size: 0.8em;
+  text-align: left;
+  max-width: 100px;
 }
 
 /* ===========================
@@ -959,7 +963,7 @@ padding: 20px;
   --color1: #000;
   --color2: #fff;
   --height-btn: 50px;
-  --width-btn: 150px;
+  --width-btn: 200px;
   --border-btn: 2px;
 }
 
@@ -973,12 +977,17 @@ padding: 20px;
   cursor: pointer;
   transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
   transform: translateZ(calc(-1 * var(--height-btn) / 2)); /* Posición fija */
+  transform-origin: center bottom; /* ✅ evita el salto vertical */
 }
 
+
+/* Hover solo efecto 3D, sin desplazar */
 /* Hover solo efecto 3D, sin desplazar */
 .uno-tarot-button:hover {
   transform: translateZ(calc(-1 * var(--height-btn) / 2)) rotateX(-90deg);
+  transform-origin: center bottom; /* ✅ mantiene el punto fijo */
 }
+
 
 /* Caras del botón */
 .uno-tarot-button .face {
