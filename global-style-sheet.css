@@ -1590,24 +1590,6 @@ background: #fdbdcf58;
   transform: translateY(0);
 }
 
-.card-play {
-  width: 150px;
-  height: 150px;
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
-  cursor: pointer;
-  background: transparent;
-}
-
-/* Efecto de aparición */
-.card-play.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .card img {
   width: 100%;
   height: 100%;
@@ -1652,6 +1634,39 @@ background: #fdbdcf58;
 /* =============================
    CARDS PLAYGROUND SECTION
    ============================= */
+.card-play {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+  cursor: pointer;
+  background: transparent;
+}
+
+/* Efecto de aparición */
+.card-play.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.button-img {
+  vertical-align: middle; /* alinea con el texto */
+}
+
+.face {
+  display: flex;
+  flex-direction: column; /* apila verticalmente la imagen y el texto */
+  align-items: center;    /* centra horizontalmente */
+}
+
+.card-label {
+  margin-top: 0.5rem;    /* separa un poco el texto de la imagen */
+  font-weight: bold;
+  font-size: 1rem;
+}
 
 /* Contenedor de stuffs */
 .card-play-container {
