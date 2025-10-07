@@ -131,11 +131,11 @@ function initUnoTarot() {
         inner.classList.add("uno-card-inner");
 
         const front = document.createElement("img");
-        front.src = "../PLAYGROUND-ITEMS/UNO-CARDS/Cover-uno.svg";
+        front.src = "/CODE-LAB/PLAYGROUND-ITEMS/UNO-CARDS/Cover-uno.svg";
         front.classList.add("uno-card-front");
 
         const back = document.createElement("img");
-        back.src = `../PLAYGROUND-ITEMS/UNO-CARDS/${card}.svg`;
+        back.src = `/CODE-LAB/PLAYGROUND-ITEMS/UNO-CARDS/${card}.svg`;
         back.classList.add("uno-card-back");
 
         inner.appendChild(front);
