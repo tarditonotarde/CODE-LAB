@@ -871,52 +871,55 @@ padding: 20px;
 }
 
 
-/* =============================
-   UNO CARDS
-   ============================= */
 /* ===========================
-   UNO TAROT FLIP - CSS
+   UNO TAROT CSS
    =========================== */
 
+/* Contenedor principal */
 .uno-tarot-main {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  padding: 20px;
 }
 
+/* Filas de cartas */
 .uno-tarot-row {
   display: flex;
+  gap: 20px;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
 }
 
+/* Wrapper de cada carta */
 .uno-card-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  perspective: 1000px;
 }
 
+/* Carta */
 .uno-card {
-  width: 100px;
-  height: 140px;
-  perspective: 1000px; /* Para efecto 3D */
+  width: 150px;
+  height: 210px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+  cursor: pointer;
+  position: relative;
 }
 
+/* Gira solo al click */
+.uno-card.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Inner de la carta */
 .uno-card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.6s;
   transform-style: preserve-3d;
-  cursor: pointer;
 }
 
-.uno-card.flipped .uno-card-inner {
-  transform: rotateY(180deg);
-}
-
+/* Cara frontal y trasera */
 .uno-card-front,
 .uno-card-back {
   position: absolute;
@@ -924,45 +927,95 @@ padding: 20px;
   height: 100%;
   backface-visibility: hidden;
   border-radius: 10px;
+  object-fit: cover;
 }
 
+/* Cara trasera */
 .uno-card-back {
   transform: rotateY(180deg);
 }
 
+/* Glow solo al hover, sin girar */
+.uno-card:hover {
+  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.7);
+  transform: scale(1.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Significado */
 .uno-meaning {
   margin-top: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
   text-align: center;
-  font-size: 0.85rem;
-  white-space: pre-line; /* Para saltos de línea en el significado */
+  max-width: 150px;
+}
+
+/* ===========================
+   BOTÓN 3D "SACAR CARTAS"
+   =========================== */
+
+:root {
+  --color1: #000;
+  --color2: #fff;
+  --height-btn: 50px;
+  --width-btn: 150px;
+  --border-btn: 2px;
 }
 
 .uno-tarot-button {
-  margin-top: 30px;
-  padding: 10px 25px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 10px;
+  width: var(--width-btn);
+  height: var(--height-btn);
+  background: transparent;
   border: none;
-  background-color: #ffca28;
-  color: #333;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  transition: background-color 0.3s;
+  position: relative;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
+  transform: translateZ(calc(-1 * var(--height-btn) / 2)); /* Posición fija */
 }
 
+/* Hover solo efecto 3D, sin desplazar */
 .uno-tarot-button:hover {
-  background-color: #ffe082;
+  transform: translateZ(calc(-1 * var(--height-btn) / 2)) rotateX(-90deg);
 }
 
-/* Responsive para móviles */
-@media (max-width: 600px) {
-  .uno-card {
-    width: 70px;
-    height: 100px;
-  }
+/* Caras del botón */
+.uno-tarot-button .face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--width-btn);
+  height: var(--height-btn);
+  position: absolute;
+  border: var(--border-btn) solid var(--color1);
+  border-radius: 40px;
+  backface-visibility: hidden;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  box-sizing: border-box;
+}
 
-  .uno-tarot-button {
-    padding: 8px 20px;
-    font-size: 14px;
-  }
+/* Cara frontal */
+.uno-tarot-button .front {
+  background-color: transparent;
+  color: var(--color1);
+  transform: rotateX(0deg) translateZ(calc(var(--height-btn) / 2));
+}
+
+/* Cara superior */
+.uno-tarot-button .top {
+  background-color: var(--color1);
+  color: var(--color2);
+  transform: rotateX(90deg) translateZ(calc(var(--height-btn) / 2));
+}
+
+/* Estado activo del botón: vuelve a frontal */
+.uno-tarot-button.active {
+  transform: translateZ(calc(-1 * var(--height-btn) / 2));
+}
+
+.uno-tarot-button.active .front,
+.uno-tarot-button.active .top {
+  transform: rotateX(0deg) translateZ(calc(var(--height-btn) / 2));
 }

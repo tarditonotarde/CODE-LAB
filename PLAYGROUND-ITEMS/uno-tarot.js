@@ -1,5 +1,5 @@
 /* ===========================
-   GAME UNO TAROT (Flip + Animate)
+   GAME UNO TAROT (Flip + Animate + 3D Button)
    =========================== */
 
 const cards = [
@@ -14,7 +14,6 @@ const cards = [
   "Wild-1","Wild-2","Wild-3","Wild-4","Draw4-1","Draw4-2","Draw4-3","Draw4-4"
 ];
 
-// Ejemplo de significados
 const meanings = {
   "Yellow-0": "Nada cambia, igual vas a fracasar hoy.",
   "Yellow-1": "Un intento mínimo, pero sigue siendo insuficiente.",
@@ -32,7 +31,7 @@ const meanings = {
   "Yellow-Skip-2": "Otra oportunidad de ignorar la realidad.",
   "Yellow-Reverse-1": "Gira tu vida… directamente hacia el abismo.",
   "Yellow-Reverse-2": "Otro giro que solo empeorará las cosas.",
-
+  
   "Blue-0": "Nada azul, solo tristeza silenciosa.",
   "Blue-1": "Un día normal lleno de decepciones leves.",
   "Blue-2": "Dos problemas nuevos, no lo mereces, pero los tendrás.",
@@ -49,7 +48,7 @@ const meanings = {
   "Blue-Skip-2": "Ignorar otra vez no arreglará nada.",
   "Blue-Reverse-1": "Reversa… tu esperanza se va de vacaciones.",
   "Blue-Reverse-2": "Otro giro inútil hacia la desesperación.",
-
+  
   "Red-0": "Cero pasión, solo ira contenida.",
   "Red-1": "Una pelea que tú provocaste, obviamente.",
   "Red-2": "Dos errores que harán arder todo.",
@@ -66,7 +65,7 @@ const meanings = {
   "Red-Skip-2": "Otro salto hacia el caos.",
   "Red-Reverse-1": "Vuelves, pero todo sigue mal.",
   "Red-Reverse-2": "Giro inútil, tu drama sigue intacto.",
-
+  
   "Green-0": "Cero esperanza, todo verde y mohoso.",
   "Green-1": "Un día aburrido lleno de envidia ajena.",
   "Green-2": "Dos opciones malas, elige a ciegas.",
@@ -83,7 +82,7 @@ const meanings = {
   "Green-Skip-2": "Ignorar otra vez solo empeora todo.",
   "Green-Reverse-1": "Giro inesperado… tu plan fracasa.",
   "Green-Reverse-2": "Otro giro para perder el control.",
-
+  
   "Wild-1": "Tu libertad es una ilusión.",
   "Wild-2": "Caos salvaje, sin sentido ni gracia.",
   "Wild-3": "Locura pura, disfrútala mientras puedas.",
@@ -94,25 +93,22 @@ const meanings = {
   "Draw4-4": "El gran combo de la mala suerte: cuatro golpes letales."
 };
 
-
 function initUnoTarot() {
   const tarotContainer = document.getElementById("uno-tarot");
   if (!tarotContainer) return;
 
-  tarotContainer.innerHTML = ""; // limpiar contenido
+  tarotContainer.innerHTML = ""; 
 
   const mainContainer = document.createElement("div");
   mainContainer.classList.add("uno-tarot-main");
   tarotContainer.appendChild(mainContainer);
 
-  // Función para barajar
   function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
   }
 
-  // Función para sacar cartas
   function drawCards(num = 7) {
-    mainContainer.innerHTML = ""; // limpiar tirada anterior
+    mainContainer.innerHTML = "";
     const drawn = shuffle(cards).slice(0, num);
     const rows = [3, 3, 1];
     let index = 0;
@@ -128,12 +124,14 @@ function initUnoTarot() {
 
         const cardElement = document.createElement("div");
         cardElement.classList.add("uno-card");
+        cardElement.style.width = "150px";
+        cardElement.style.height = "210px";
 
         const inner = document.createElement("div");
         inner.classList.add("uno-card-inner");
 
         const front = document.createElement("img");
-        front.src = "/PLAYGROUND-ITEMS/UNO-CARDS/Cover-uno-2.svg";
+        front.src = "/PLAYGROUND-ITEMS/UNO-CARDS/Cover-uno.svg";
         front.classList.add("uno-card-front");
 
         const back = document.createElement("img");
@@ -145,7 +143,6 @@ function initUnoTarot() {
         cardElement.appendChild(inner);
         cardWrapper.appendChild(cardElement);
 
-        // Flip y significado
         const meaningDiv = document.createElement("div");
         meaningDiv.classList.add("uno-meaning");
         cardWrapper.appendChild(meaningDiv);
@@ -157,14 +154,13 @@ function initUnoTarot() {
             : "";
         });
 
-        // Animación de entrada
         cardWrapper.style.opacity = "0";
         cardWrapper.style.transform = "translateY(50px)";
         setTimeout(() => {
           cardWrapper.style.transition = "all 0.6s ease";
           cardWrapper.style.opacity = "1";
           cardWrapper.style.transform = "translateY(0)";
-        }, i * 100); // retardo para efecto escalonado
+        }, i * 100);
 
         row.appendChild(cardWrapper);
       }
@@ -172,16 +168,26 @@ function initUnoTarot() {
       mainContainer.appendChild(row);
     });
 
-    // Botón abajo
     mainContainer.appendChild(button);
   }
 
   const button = document.createElement("button");
-  button.innerText = "Sacar cartas 🔮";
   button.classList.add("uno-tarot-button");
+
+  const frontBtn = document.createElement("span");
+  frontBtn.classList.add("face", "front");
+  frontBtn.innerText = "Sacar cartas 🔮";
+
+  const topBtn = document.createElement("span");
+  topBtn.classList.add("face", "top");
+  topBtn.innerText = "Sacar cartas 🔮";
+
+  button.appendChild(frontBtn);
+  button.appendChild(topBtn);
+
   button.addEventListener("click", () => drawCards(7));
 
-  drawCards(7); // tirada inicial
+  drawCards(7);
 }
 
 document.addEventListener("DOMContentLoaded", initUnoTarot);
