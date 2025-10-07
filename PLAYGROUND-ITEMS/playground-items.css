@@ -937,6 +937,8 @@ li.open .tag-content {
   transition: transform 0.8s;
   cursor: pointer;
   position: relative;
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+
 }
 
 /* Gira solo al click */
