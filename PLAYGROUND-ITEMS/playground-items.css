@@ -937,7 +937,7 @@ li.open .tag-content {
   transition: transform 0.8s;
   cursor: pointer;
   position: relative;
-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
 }
 
 /* Gira solo al click */
@@ -1070,34 +1070,23 @@ box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
 /* =============================
    HATERS GONNA HATE
    ============================= */
-/* =============================
-   HATERS GONNA HATE
-   ============================= */
-
 /* GENERAL */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-}
-
 #haters-tools-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px auto;
-  max-width: 900px;
+  max-width: 700px;
+  cursor: crosshair;
 }
 
 /* PORTRAIT */
 #portrait-wrapper {
   position: relative;
-  width: 200px;
-  height: 300px;
-  border: 5px solid #000;
+  width: 350px;
+  height: 350px;
   margin-bottom: 10px;
   overflow: hidden;
-  background-color: #fff;
 }
 
 #portrait-container {
@@ -1122,61 +1111,25 @@ canvas#draw-canvas {
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* stickers individuales tendrán pointer-events auto */
-}
-
-/* TOOLBAR */
-#tool-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 5px;
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-.tool-btn {
-  padding: 6px 12px;
-  cursor: pointer;
-  background-color: #eee;
-  border: 1px solid #333;
-  border-radius: 5px;
-}
-
-.tool-btn.active {
-  background-color: #333;
-  color: #fff;
-}
-
-#tool-bar label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 14px;
-}
-
-#controls-bottom {
-  margin-top: 10px;
-}
-
-#controls-bottom button {
-  padding: 8px 16px;
-  cursor: pointer;
-  background-color: #444;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
+  pointer-events: none;
+  /* stickers individuales tendrán pointer-events auto */
 }
 
 /* STICKERS EN LA BARRA */
+.nav-stickers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+  margin: 10px;
+}
+
 .sticker-btn {
   width: 40px;
   height: 40px;
   cursor: pointer;
-  border: 1px solid #333;
+  border: 1px solid #000000;
   border-radius: 4px;
   object-fit: cover;
 }
@@ -1184,15 +1137,32 @@ canvas#draw-canvas {
 /* STICKERS DENTRO DEL PORTRAIT */
 .sticker {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: auto;
+  height: 70px;
   cursor: grab;
   touch-action: none;
-  pointer-events: auto; /* para poder clicar y arrastrar */
+  pointer-events: auto;
+  /* para poder clicar y arrastrar */
   user-select: none;
 }
 
 /* RANGE Y COLOR PICKER */
+.nav-shapes {
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.color-lab,
+.size-lab {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 input[type="range"] {
   cursor: pointer;
 }
@@ -1201,6 +1171,136 @@ input[type="color"] {
   width: 30px;
   height: 30px;
   padding: 0;
-  border: none;
+  border: 0px;
   cursor: pointer;
+  border-radius: 100px;
+}
+
+/* VARIABLES */
+:root {
+  --color1: #000;
+  --color2: #fff;
+  --height: 30px !important;
+  --width: 90px !important;
+  --border: 2px;
+}
+
+/* TOOLBAR ALL */
+.all-tools {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: #fdbdcf58;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* TOOLBAR PRINCIPAL Y DE ACCIONES */
+#toolbar,
+#toolbar-actions,
+#portrait-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+/* LISTA DE LINKS */
+#toolbar>.links,
+#toolbar-actions>.links,
+#portrait-nav>.links {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 10px;
+  padding: 10px;
+}
+
+#toolbar>.links li,
+#toolbar-actions>.links li,
+#portrait-nav>.links li {
+  min-width: var(--width);
+  height: var(--height);
+  perspective: 1000px;
+  z-index: 1;
+}
+
+#toolbar>.links li:hover,
+#toolbar-actions>.links li:hover,
+#portrait-nav>.links li:hover {
+  z-index: 2;
+}
+
+/* BOTONES */
+.tool-btn,
+.portrait-btn {
+  display: block;
+  height: var(--height);
+  position: relative;
+  text-decoration: none;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(-1 * var(--height) / 2));
+  transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
+}
+
+/* HOVER */
+.tool-btn:hover,
+.portrait-btn:hover {
+  transform: translateZ(calc(-1 * var(--height) / 2)) rotateX(-90deg);
+}
+
+/* FRENTE Y REVERSO */
+.tool-btn::before,
+.tool-btn::after,
+.portrait-btn::before,
+.portrait-btn::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--width);
+  height: var(--height);
+  position: absolute;
+  border: var(--border) solid var(--color1);
+  content: attr(title);
+}
+
+/* FRENTE */
+.tool-btn::before,
+.portrait-btn::before {
+  background-color: transparent;
+  color: var(--color1);
+  transform: rotateY(0deg) translateZ(calc(var(--height) / 2));
+}
+
+/* REVERSO */
+.tool-btn::after,
+.portrait-btn::after {
+  background-color: var(--color1);
+  color: var(--color2);
+  transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
+}
+
+/* BOTÓN ACTIVO */
+.tool-btn.active,
+.portrait-btn.active {
+  transform: translateZ(calc(-1 * var(--height) / 2)) rotateX(-90deg);
+}
+
+/* ==========================
+   PORTRAIT EXAMPLES
+   ========================== */
+
+.img-examples {
+  gap: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.img-exp {
+  max-height: 250px !important;
+  width: auto;
 }
