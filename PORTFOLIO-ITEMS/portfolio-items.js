@@ -108,97 +108,99 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* ===========================
-     SNAKE GAME
-     =========================== */
-  const game = document.getElementById("snakeGame");
-  if (game) {
-    const gridSize = 5;
-    const cols = 200 / gridSize;
-    const rows = 40 / gridSize;
-    let snake = [{ x: 2, y: 2 }], direction, foods;
-    const maxFood = 10;
+/* ===========================
+   SNAKE GAME
+   =========================== */
+const game = document.getElementById("snakeGame");
 
-    const resetGame = () => {
-      const startX = Math.floor(Math.random() * cols);
-      const startY = Math.floor(Math.random() * rows);
-      snake = [{ x: startX, y: startY }];
-      direction = { x: 1, y: 0 };
-      foods = [];
-      for (let i = 0; i < maxFood; i++) placeFood();
-    };
+if (game) {
+  // Hacer que el cursor sea pointer
+  game.style.cursor = "pointer";
 
-    const placeFood = () => {
-      if (foods.length >= maxFood) return;
-      let food;
-      do { food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) }; }
-      while (snake.some(seg => seg.x === food.x && seg.y === food.y));
-      foods.push(food);
-    };
+  // Cuando hagan click, se abre playground.html
+  game.addEventListener("click", () => {
+    window.location.href = "/CODE-LAB/playground.html";
+  });
 
-    const moveFoodRandomly = () => {
-      foods.forEach((food, index) => {
-        let newFood;
-        do { newFood = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) }; }
-        while (snake.some(seg => seg.x === newFood.x && seg.y === newFood.y));
-        foods[index] = newFood;
-      });
-    };
+  const gridSize = 5;
+  const cols = 200 / gridSize;
+  const rows = 40 / gridSize;
+  let snake = [{ x: 2, y: 2 }], direction, foods;
+  const maxFood = 10;
 
-    const draw = () => {
-      game.innerHTML = "";
-      snake.forEach(seg => {
-        const el = document.createElement("div");
-        el.classList.add("segment");
-        el.style.left = seg.x * gridSize + "px";
-        el.style.top = seg.y * gridSize + "px";
-        game.appendChild(el);
-      });
-      foods.forEach(f => {
-        const el = document.createElement("div");
-        el.classList.add("food");
-        el.style.left = f.x * gridSize + "px";
-        el.style.top = f.y * gridSize + "px";
-        game.appendChild(el);
-      });
-    };
+  const resetGame = () => {
+    const startX = Math.floor(Math.random() * cols);
+    const startY = Math.floor(Math.random() * rows);
+    snake = [{ x: startX, y: startY }];
+    direction = { x: 1, y: 0 };
+    foods = [];
+    for (let i = 0; i < maxFood; i++) placeFood();
+  };
 
-    const move = () => {
-      const head = { ...snake[0] };
-      head.x += direction.x;
-      head.y += direction.y;
+  const placeFood = () => {
+    if (foods.length >= maxFood) return;
+    let food;
+    do {
+      food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
+    } while (snake.some(seg => seg.x === food.x && seg.y === food.y));
+    foods.push(food);
+  };
 
-      if (Math.random() < 0.15) {
-        const dirs = [{ x: 1, y: 0 }, { x: -1, y: 0 }, { x: 0, y: 1 }, { x: 0, y: -1 }];
-        direction = dirs[Math.floor(Math.random() * dirs.length)];
-      }
+  const moveFoodRandomly = () => {
+    foods.forEach((food, index) => {
+      let newFood;
+      do {
+        newFood = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
+      } while (snake.some(seg => seg.x === newFood.x && seg.y === newFood.y));
+      foods[index] = newFood;
+    });
+  };
 
-      if (head.x < 0) head.x = 0;
-      if (head.x >= cols) head.x = cols - 1;
-      if (head.y < 0) head.y = 0;
-      if (head.y >= rows) head.y = rows - 1;
+  const draw = () => {
+    game.innerHTML = "";
+    snake.forEach(seg => {
+      const el = document.createElement("div");
+      el.classList.add("segment");
+      el.style.left = seg.x * gridSize + "px";
+      el.style.top = seg.y * gridSize + "px";
+      game.appendChild(el);
+    });
+    foods.forEach(f => {
+      const el = document.createElement("div");
+      el.classList.add("food");
+      el.style.left = f.x * gridSize + "px";
+      el.style.top = f.y * gridSize + "px";
+      game.appendChild(el);
+    });
+  };
 
-      snake.unshift(head);
-      const foodIndex = foods.findIndex(f => f.x === head.x && f.y === head.y);
-      if (foodIndex !== -1) {
-        foods.splice(foodIndex, 1);
-        if (foods.length === 0) resetGame();
-      } else snake.pop();
+  const move = () => {
+    const head = { ...snake[0] };
+    head.x += direction.x;
+    head.y += direction.y;
 
-      draw();
-    };
+    if (Math.random() < 0.15) {
+      const dirs = [{ x: 1, y: 0 }, { x: -1, y: 0 }, { x: 0, y: 1 }, { x: 0, y: -1 }];
+      direction = dirs[Math.floor(Math.random() * dirs.length)];
+    }
 
-    resetGame();
-    setInterval(move, 60);
-    setInterval(moveFoodRandomly, 3000);
-  }
+    if (head.x < 0) head.x = 0;
+    if (head.x >= cols) head.x = cols - 1;
+    if (head.y < 0) head.y = 0;
+    if (head.y >= rows) head.y = rows - 1;
 
-  /* ===========================
-     FOOTER ARROWS
-     =========================== */
-  if (window.jQuery) {
-    $(".arrow.prev").click(() => window.history.back());
-    $(".arrow.next").click(() => window.history.forward());
-    $(".arrow.scroll-top").click(() => $("html, body").animate({ scrollTop: 0 }, "slow"));
-  }
+    snake.unshift(head);
+    const foodIndex = foods.findIndex(f => f.x === head.x && f.y === head.y);
+    if (foodIndex !== -1) {
+      foods.splice(foodIndex, 1);
+      if (foods.length === 0) resetGame();
+    } else snake.pop();
+
+    draw();
+  };
+
+  resetGame();
+  setInterval(move, 60);
+  setInterval(moveFoodRandomly, 3000);
+}
 
