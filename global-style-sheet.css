@@ -1658,6 +1658,13 @@ ul {
   /* alinea con el texto */
 }
 
+.gif-img {
+  vertical-align: middle;
+  height: 70px;
+  width: auto;
+  /* alinea con el texto */
+}
+
 .face {
   display: flex;
   flex-direction: column;
