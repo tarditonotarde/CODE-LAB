@@ -434,7 +434,7 @@ stuffsLinks.forEach(link => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const text = "■ Why so serious?";
-  const output = document.getElementById("typing-text-title");
+  const output = document.getElementById("typing-text-title2");
   const cursor = document.getElementById("cursor-title");
 
   if (!output || !cursor) return; // ✅ no afecta otras páginas
