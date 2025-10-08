@@ -427,3 +427,28 @@ stuffsLinks.forEach(link => {
   });
 });
 // si no estamos en dark mode, deja que funcione normalmente
+
+/* =============================
+   MAIN TITLE
+   ============================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const text = "■ Why so serious?";
+  const output = document.getElementById("typing-text-title");
+  const cursor = document.getElementById("cursor-title");
+
+  if (!output || !cursor) return; // ✅ no afecta otras páginas
+
+  let i = 0;
+  function typeWriter() {
+  if (i < text.length) {
+  output.textContent += text.charAt(i);
+  i++;
+  setTimeout(typeWriter, 100); // velocidad de escritura
+} 
+// no necesitamos hacer nada más, la animación CSS ya parpadea continuamente
+
+  }
+
+  typeWriter();
+});
