@@ -1313,17 +1313,22 @@ input[type="color"] {
   border-radius: 20px;
   border: 2px solid black;
   padding: 20px;
+  margin: 20px;
   box-shadow: 0 0 20px rgba(255, 0, 100, 0.3);
   font-family: monospace;
+  width: 70vw;
+  max-width: 70vw;
 }
 
 #chat-box {
 border-radius: 20px;
 border: 2px solid black;
-height: 300px; 
+height: 200px; 
 overflow-y: auto; 
 color:#eee; 
 font-family: monospace;
+padding: 20px;
+margin: 20px;
 }
 
 #chat-box .bot-msg {
@@ -1345,3 +1350,28 @@ font-family: monospace;
   background-color: #ff5e99;
   color: #111;
 }
+
+.input-g {
+  display: flex;
+  padding: 20px;
+
+}
+
+.form-ctrl {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
