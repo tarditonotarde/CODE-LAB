@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     msg.style.padding = "5px 10px";
     msg.style.marginBottom = "5px";
     msg.style.borderRadius = "5px";
-    msg.style.backgroundColor = sender === "Claudia 👁" ? "#222" : "#333";
-    msg.style.color = "#eee";
+    msg.style.backgroundColor = sender === "Claudia 👁" ? "#fd497c76" : "#09cabe85";
+    msg.style.color = "#000000ff";
     msg.style.fontFamily = "monospace";
     chatBox.appendChild(msg);
     chatBox.scrollTop = chatBox.scrollHeight;

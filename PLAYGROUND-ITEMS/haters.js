@@ -3,13 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // PATHS DE LOS PORTRAITS
   // ==========================
   const portraits = [
-    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait1.svg",
-    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait2.svg",
-    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait3.svg",
-    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait4.svg",
-    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait5.svg",
-    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait7.svg",
-    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait7.svg",
+    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait1.png",
+    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait2.png",
+    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait3.png",
+    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait4.png",
+    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait5.png",
+    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait7.png",
+    "/CODE-LAB/PLAYGROUND-ITEMS/HATERS/portrait7.png",
   ];
 
   // ==========================
