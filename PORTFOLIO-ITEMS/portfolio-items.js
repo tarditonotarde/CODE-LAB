@@ -108,99 +108,141 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-/* ===========================
-   SNAKE GAME
-   =========================== */
-const game = document.getElementById("snakeGame");
+ /* ===========================
+     SNAKE GAME
+     =========================== */
 
-if (game) {
-  // Hacer que el cursor sea pointer
-  game.style.cursor = "pointer";
+  const game = document.getElementById("snakeGame");
 
-  // Cuando hagan click, se abre playground.html
-  game.addEventListener("click", () => {
-    window.location.href = "/CODE-LAB/playground.html";
+  if (game) {
+    // Hacer que el cursor sea pointer
+    game.style.cursor = "pointer";
+
+    // Cuando hagan click, se abre playground.html
+    game.addEventListener("click", () => {
+      window.location.href = "../playground.html";
+    });
+
+    const gridSize = 5;
+    const cols = 200 / gridSize;
+    const rows = 40 / gridSize;
+    let snake = [{ x: 2, y: 2 }], direction, foods;
+    const maxFood = 10;
+
+    const resetGame = () => {
+      const startX = Math.floor(Math.random() * cols);
+      const startY = Math.floor(Math.random() * rows);
+      snake = [{ x: startX, y: startY }];
+      direction = { x: 1, y: 0 };
+      foods = [];
+      for (let i = 0; i < maxFood; i++) placeFood();
+    };
+
+    const placeFood = () => {
+      if (foods.length >= maxFood) return;
+      let food;
+      do {
+        food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
+      } while (snake.some(seg => seg.x === food.x && seg.y === food.y));
+      foods.push(food);
+    };
+
+    const moveFoodRandomly = () => {
+      foods.forEach((food, index) => {
+        let newFood;
+        do {
+          newFood = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
+        } while (snake.some(seg => seg.x === newFood.x && seg.y === newFood.y));
+        foods[index] = newFood;
+      });
+    };
+
+    const draw = () => {
+      game.innerHTML = "";
+      snake.forEach(seg => {
+        const el = document.createElement("div");
+        el.classList.add("segment");
+        el.style.left = seg.x * gridSize + "px";
+        el.style.top = seg.y * gridSize + "px";
+        game.appendChild(el);
+      });
+      foods.forEach(f => {
+        const el = document.createElement("div");
+        el.classList.add("food");
+        el.style.left = f.x * gridSize + "px";
+        el.style.top = f.y * gridSize + "px";
+        game.appendChild(el);
+      });
+    };
+
+    const move = () => {
+      const head = { ...snake[0] };
+      head.x += direction.x;
+      head.y += direction.y;
+
+      if (Math.random() < 0.15) {
+        const dirs = [{ x: 1, y: 0 }, { x: -1, y: 0 }, { x: 0, y: 1 }, { x: 0, y: -1 }];
+        direction = dirs[Math.floor(Math.random() * dirs.length)];
+      }
+
+      if (head.x < 0) head.x = 0;
+      if (head.x >= cols) head.x = cols - 1;
+      if (head.y < 0) head.y = 0;
+      if (head.y >= rows) head.y = rows - 1;
+
+      snake.unshift(head);
+      const foodIndex = foods.findIndex(f => f.x === head.x && f.y === head.y);
+      if (foodIndex !== -1) {
+        foods.splice(foodIndex, 1);
+        if (foods.length === 0) resetGame();
+      } else snake.pop();
+
+      draw();
+    };
+
+    resetGame();
+    setInterval(move, 60);
+    setInterval(moveFoodRandomly, 3000);
+  }
+
+  /* ===========================
+     NAV EYE MOVEMENT + HOVER HEADER
+     =========================== */
+  const eyesHeader = document.querySelectorAll('.ojo-svg-header');
+  document.addEventListener('mousemove', (e) => {
+    eyesHeader.forEach(eye => {
+      const pupil = eye.querySelector('#pupila');
+      if (eye.dataset.hovering === "true") return;
+
+      const rect = eye.getBoundingClientRect();
+      const eyeX = rect.left + rect.width / 2;
+      const eyeY = rect.top + rect.height / 2;
+
+      const dx = e.clientX - eyeX;
+      const dy = e.clientY - eyeY;
+      const angle = Math.atan2(dy, dx);
+      const distance = Math.min(15, Math.hypot(dx, dy) / 10);
+
+      const isRightEye = eye.parentElement.classList.contains("eye-right");
+      const offsetX = Math.cos(angle) * distance * (isRightEye ? -1 : 1);
+      const offsetY = Math.sin(angle) * distance;
+
+      pupil.setAttribute("transform", `translate(${offsetX}, ${offsetY})`);
+    });
   });
 
-  const gridSize = 5;
-  const cols = 200 / gridSize;
-  const rows = 40 / gridSize;
-  let snake = [{ x: 2, y: 2 }], direction, foods;
-  const maxFood = 10;
-
-  const resetGame = () => {
-    const startX = Math.floor(Math.random() * cols);
-    const startY = Math.floor(Math.random() * rows);
-    snake = [{ x: startX, y: startY }];
-    direction = { x: 1, y: 0 };
-    foods = [];
-    for (let i = 0; i < maxFood; i++) placeFood();
-  };
-
-  const placeFood = () => {
-    if (foods.length >= maxFood) return;
-    let food;
-    do {
-      food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
-    } while (snake.some(seg => seg.x === food.x && seg.y === food.y));
-    foods.push(food);
-  };
-
-  const moveFoodRandomly = () => {
-    foods.forEach((food, index) => {
-      let newFood;
-      do {
-        newFood = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
-      } while (snake.some(seg => seg.x === newFood.x && seg.y === newFood.y));
-      foods[index] = newFood;
+  eyesHeader.forEach(eye => {
+    const pupil = eye.querySelector('#pupila');
+    eye.addEventListener("mouseenter", () => {
+      eye.dataset.hovering = "true";
+      pupil.setAttribute("transform", `translate(0, -12)`);
     });
-  };
-
-  const draw = () => {
-    game.innerHTML = "";
-    snake.forEach(seg => {
-      const el = document.createElement("div");
-      el.classList.add("segment");
-      el.style.left = seg.x * gridSize + "px";
-      el.style.top = seg.y * gridSize + "px";
-      game.appendChild(el);
+    eye.addEventListener("mouseleave", () => {
+      eye.dataset.hovering = "false";
+      pupil.setAttribute("transform", `translate(0,0)`);
     });
-    foods.forEach(f => {
-      const el = document.createElement("div");
-      el.classList.add("food");
-      el.style.left = f.x * gridSize + "px";
-      el.style.top = f.y * gridSize + "px";
-      game.appendChild(el);
-    });
-  };
+    eye.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  });
 
-  const move = () => {
-    const head = { ...snake[0] };
-    head.x += direction.x;
-    head.y += direction.y;
 
-    if (Math.random() < 0.15) {
-      const dirs = [{ x: 1, y: 0 }, { x: -1, y: 0 }, { x: 0, y: 1 }, { x: 0, y: -1 }];
-      direction = dirs[Math.floor(Math.random() * dirs.length)];
-    }
-
-    if (head.x < 0) head.x = 0;
-    if (head.x >= cols) head.x = cols - 1;
-    if (head.y < 0) head.y = 0;
-    if (head.y >= rows) head.y = rows - 1;
-
-    snake.unshift(head);
-    const foodIndex = foods.findIndex(f => f.x === head.x && f.y === head.y);
-    if (foodIndex !== -1) {
-      foods.splice(foodIndex, 1);
-      if (foods.length === 0) resetGame();
-    } else snake.pop();
-
-    draw();
-  };
-
-  resetGame();
-  setInterval(move, 60);
-  setInterval(moveFoodRandomly, 3000);
-}
 
