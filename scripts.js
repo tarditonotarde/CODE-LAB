@@ -219,6 +219,8 @@ document.addEventListener("DOMContentLoaded", () => {
       !msnPopup.contains(e.target) &&
       !(contactBtn && contactBtn.contains(e.target))) {
       msnPopup.style.display = "none";
+      msnSound.style.visibility = "hidden";
+      msnSound.style.display = "none";
       msnSound.currentTime = 0;
       msnSound.play().catch(() => { });
     }
