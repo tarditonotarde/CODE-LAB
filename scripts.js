@@ -175,54 +175,62 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* ===========================
-     FOOTER POPUP MSN
-     =========================== */
-  const contactBtn = document.querySelector(".icon-nav-effect[aria-label='Contact']");
-  const figmaBtn = document.querySelector(".icon-nav-effect[aria-label='Figma']");
-  const resumeBtn = document.querySelector(".icon-nav-effect[aria-label='Resume']");
-  const msnPopup = document.getElementById("msn-popup");
-  const closeArea = document.getElementById("msn-close");
-  const whatsappArea = document.getElementById("msn-whatsapp");
+/* ===========================
+   FOOTER POPUP MSN
+=========================== */
+const contactBtn = document.querySelector(".icon-nav-effect[aria-label='Contact']");
+const figmaBtn = document.querySelector(".icon-nav-effect[aria-label='Figma']");
+const resumeBtn = document.querySelector(".icon-nav-effect[aria-label='Resume']");
+const msnPopup = document.getElementById("msn-popup");
+const closeArea = document.getElementById("msn-close");
+const whatsappArea = document.getElementById("msn-whatsapp");
+
+// Función para reproducir sonido sin mostrar miniaturas
+function playMsnSound() {
   const msnSound = new Audio("ASSETS/SOUNDS/msn-zumbido.mp3");
-  msnSound.preload = "auto";
+  msnSound.play().catch(() => { });
+}
 
-  if (contactBtn && msnPopup) {
-    contactBtn.addEventListener("click", e => {
-      e.stopPropagation();
-      msnPopup.style.display = "block";
-      msnPopup.classList.add("shake");
-      msnSound.currentTime = 0;
-      msnSound.play().catch(() => { });
-    });
-  }
+// Abrir popup
+if (contactBtn && msnPopup) {
+  contactBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    msnPopup.style.display = "block";
+    msnPopup.classList.add("shake");
+    playMsnSound();
+  });
+}
 
-  if (figmaBtn) figmaBtn.addEventListener("click", () => window.open("https://www.figma.com/proto/95WPIJoGGErxr5TYSXC9o0/Portfolio-Claudia-Tardito?page-id=2010%3A24768&node-id=2010-24769&viewport=115%2C74%2C0.31&t=llxvXUiUtBJnbqi1-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2010%3A24769", "_blank"));
-  if (resumeBtn) resumeBtn.addEventListener("click", () => window.open("https://drive.google.com/file/d/1BSFvcdQJjesg4U2r8i4tGjXFQhhCA5L5/view", "_blank"));
+// Abrir enlaces
+if (figmaBtn) figmaBtn.addEventListener("click", () => window.open("https://www.figma.com/proto/95WPIJoGGErxr5TYSXC9o0/Portfolio-Claudia-Tardito?page-id=2010%3A24768&node-id=2010-24769&viewport=115%2C74%2C0.31&t=llxvXUiUtBJnbqi1-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2010%3A24769", "_blank"));
+if (resumeBtn) resumeBtn.addEventListener("click", () => window.open("https://drive.google.com/file/d/1BSFvcdQJjesg4U2r8i4tGjXFQhhCA5L5/view", "_blank"));
 
-  if (msnPopup && closeArea) {
-    closeArea.addEventListener("click", e => {
-      e.stopPropagation();
-      msnPopup.style.display = "none";
-      msnSound.currentTime = 0;
-      msnSound.play().catch(() => { });
-    });
-  }
+// Cerrar popup
+if (msnPopup && closeArea) {
+  closeArea.addEventListener("click", e => {
+    e.stopPropagation();
+    msnPopup.style.display = "none";
+    playMsnSound();
+  });
+}
 
-  if (whatsappArea) whatsappArea.addEventListener("click", e => {
+// Whatsapp
+if (whatsappArea) {
+  whatsappArea.addEventListener("click", e => {
     e.stopPropagation();
     window.open("https://wa.me/34663830109", "_blank");
   });
+}
 
-  document.addEventListener("click", e => {
-    if (msnPopup && msnPopup.style.display === "block" &&
+// Cerrar popup al clicar fuera
+document.addEventListener("click", e => {
+  if (msnPopup && msnPopup.style.display === "block" &&
       !msnPopup.contains(e.target) &&
       !(contactBtn && contactBtn.contains(e.target))) {
-      msnPopup.style.display = "none";
-      msnSound.currentTime = 0;
-      msnSound.play().catch(() => { });
-    }
-  });
+    msnPopup.style.display = "none";
+    playMsnSound();
+  }
+});
 
  /* ===========================
      SNAKE GAME
