@@ -714,7 +714,6 @@ background: none;
   stroke: var(--color1);
   stroke-width: 2px;
   fill: var(--color1);
-  cursor: url('../ASSETS/IMG/cursor-dark-pointer.svg') 0 0, auto !important;
 }
 
 @keyframes triple-bounce {
@@ -825,7 +824,6 @@ background: none;
 #camera:hover {
   stroke: var(--color1);
   stroke-width: 0.5px;
-  cursor: url('../ASSETS/IMG/cursor-dark-pointer.svg') 0 0, auto !important;
 }
 
 @keyframes camera-tiritar {
@@ -939,7 +937,6 @@ background: none;
 #wireframes:hover {
   animation: wireframes-hover 0.3s linear forwards;
   /* tirite inmediato al pasar el mouse */
-  cursor: url('../ASSETS/IMG/cursor-dark-pointer.svg') 0 0, auto !important;
 }
 
 @keyframes wireframes-tiritar {
@@ -1042,7 +1039,6 @@ background: none;
 #art:hover {
   stroke: var(--color1);
   stroke-width: 3px;
-  cursor: url('../ASSETS/IMG/cursor-dark-pointer.svg') 0 0, auto !important;
 }
 
 @keyframes art-tambaleo {
@@ -1108,7 +1104,6 @@ background: none;
 #book:hover {
   stroke: var(--color1);
   stroke-width: 1px;
-  cursor: url('../ASSETS/IMG/cursor-dark-pointer.svg') 0 0, auto !important;
 }
 
 @keyframes book-slide {
@@ -1159,7 +1154,6 @@ background: none;
   /* efecto rápido en hover */
   stroke: var(--color1);
   stroke-width: 1px;
-  cursor: url('../ASSETS/IMG/cursor-dark-pointer.svg') 0 0, auto !important;
 }
 
 @keyframes subir-caer {
@@ -1214,7 +1208,6 @@ background: none;
   stroke: var(--color1);
   stroke-width: 2px;
   fill: var(--color1);
-  cursor: url('../ASSETS/IMG/cursor-dark-pointer.svg') 0 0, auto !important;
 }
 
 @keyframes triple-bounce {

@@ -826,7 +826,6 @@ ul {
   stroke: #000;
   stroke-width: 2px;
   fill: #000;
-  cursor: pointer;
 }
 
 @keyframes triple-bounce {
@@ -937,7 +936,6 @@ ul {
 #camera:hover {
   stroke: #000;
   stroke-width: 0.5px;
-  cursor: pointer;
 }
 
 @keyframes camera-tiritar {
@@ -1051,7 +1049,6 @@ ul {
 #wireframes:hover {
   animation: wireframes-hover 0.3s linear forwards;
   /* tirite inmediato al pasar el mouse */
-  cursor: pointer;
 }
 
 @keyframes wireframes-tiritar {
@@ -1154,7 +1151,6 @@ ul {
 #art:hover {
   stroke: #000;
   stroke-width: 3px;
-  cursor: pointer;
 }
 
 @keyframes art-tambaleo {
@@ -1220,7 +1216,6 @@ ul {
 #book:hover {
   stroke: #000;
   stroke-width: 1px;
-  cursor: pointer;
 }
 
 @keyframes book-slide {
@@ -1271,7 +1266,6 @@ ul {
   /* efecto rápido en hover */
   stroke: #000;
   stroke-width: 1px;
-  cursor: pointer;
 }
 
 @keyframes subir-caer {
@@ -1326,7 +1320,6 @@ ul {
   stroke: #000;
   stroke-width: 2px;
   fill: #000;
-  cursor: pointer;
 }
 
 @keyframes triple-bounce {
