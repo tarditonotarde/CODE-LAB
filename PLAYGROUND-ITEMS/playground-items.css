@@ -1328,6 +1328,7 @@ height: 200px;
 overflow-y: auto; 
 padding: 20px;
 margin: 20px;
+background: #fdbdcf58;
 }
 
 .input-g {
@@ -1338,6 +1339,7 @@ margin: 20px;
 
 #user-input {
 font-family: monospace;
+background: #fdbdcf58;
 }
 
 .form-ctrl {
@@ -1391,7 +1393,7 @@ font-family: monospace;
 
 /* FRENTE */
 .msg-btn::before {
-  background-color: transparent;
+  background: #fdbdcf58;
   color: var(--color1);
   transform: rotateY(0deg) translateZ(calc(var(--height) / 2));
 }

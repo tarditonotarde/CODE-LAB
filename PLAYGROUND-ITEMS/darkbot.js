@@ -12,8 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
     msg.style.padding = "5px 10px";
     msg.style.marginBottom = "5px";
     msg.style.borderRadius = "5px";
-    msg.style.backgroundColor = sender === "Claudia 👁" ? "#fd497c76" : "#09cabe85";
-    msg.style.color = "#000000ff";
+  if (sender === "😈 Claudia" || sender === "😈") {
+    msg.style.backgroundColor = "#fd497c76";
+  } else {
+    msg.style.backgroundColor = "#09cabe85";
+  }
+  
+  msg.style.color = "#000000ff";
     msg.style.fontFamily = "monospace";
     chatBox.appendChild(msg);
     chatBox.scrollTop = chatBox.scrollHeight;
@@ -33,9 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "Prepárate… el sarcasmo extremo está activado.",
     "Hola… tu incompetencia será documentada aquí.",
     "Bienvenido… donde la mediocridad se encuentra con el juicio.",
-  ];
+  ]; 
   const welcomeIndex = Math.floor(Math.random() * welcomeMessages.length);
-  addMessage("👁", welcomeMessages[welcomeIndex]);
+  addMessage("😈", welcomeMessages[welcomeIndex]);
 
   // =============================
   // Función para obtener respuesta del bot
@@ -963,7 +968,7 @@ const defaultEnglish = [
     input.value = "";
 
     const botReply = getBotReply(userMessage);
-    setTimeout(() => addMessage("Claudia 👁", botReply), 500);
+    setTimeout(() => addMessage("😈 Claudia", botReply), 500);
   }
 
   // =============================
