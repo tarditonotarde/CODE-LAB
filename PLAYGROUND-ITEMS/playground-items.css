@@ -1310,68 +1310,100 @@ input[type="color"] {
    DARKBOT
    ========================== */
 #darkbot-container {
+  display: flex;
+  flex-direction: column;
   border-radius: 20px;
   border: 2px solid black;
   padding: 20px;
   margin: 20px;
   box-shadow: 0 0 20px rgba(255, 0, 100, 0.3);
-  font-family: monospace;
   width: 70vw;
   max-width: 70vw;
 }
 
 #chat-box {
-border-radius: 20px;
+border-radius: 10px;
 border: 2px solid black;
 height: 200px; 
 overflow-y: auto; 
-color:#eee; 
-font-family: monospace;
 padding: 20px;
 margin: 20px;
-}
-
-#chat-box .bot-msg {
-  color: #ff5e99;
-}
-
-#chat-box .user-msg {
-  color: #ffee58;
-}
-
-#send-btn {
-  background-color: #111;
-  color: #ff5e99;
-  border: 1px solid #ff5e99;
-  transition: all 0.3s ease;
-}
-
-#send-btn:hover {
-  background-color: #ff5e99;
-  color: #111;
 }
 
 .input-g {
   display: flex;
   padding: 20px;
+  gap: 10px;
+}
 
+#user-input {
+font-family: monospace;
 }
 
 .form-ctrl {
-    display: block;
-    width: 100%;
-    padding: .375rem .75rem;
+  display: flex;
+  width: 100%;
+    font-family: monospace;
+    padding: 10px;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--bs-body-color);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-color: var(--bs-body-bg);
-    background-clip: padding-box;
-    border: var(--bs-border-width) solid var(--bs-border-color);
-    border-radius: var(--bs-border-radius);
+    color: black;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 2px solid black;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
+/* BOTONES MEAN BOT */
+.msg-btn {
+  justify-content: flex-end;
+  padding-right: 20px;
+  list-style: none;
+  border: none;
+  background: transparent;
+  display: flex;
+  height: var(--height);
+  position: relative;
+  text-decoration: none;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(-1 * var(--height) / 2));
+  transition: transform 0.5s cubic-bezier(.08, .82, .17, 1);
+}
+
+/* HOVER */
+.msg-btn:hover {
+  transform: translateZ(calc(-1 * var(--height) / 2)) rotateX(-90deg);
+}
+
+/* FRENTE Y REVERSO */
+.msg-btn::before,
+.msg-btn::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--width);
+  height: var(--height);
+  position: absolute;
+  border: var(--border) solid var(--color1);
+  content: attr(title);
+}
+
+/* FRENTE */
+.msg-btn::before {
+  background-color: transparent;
+  color: var(--color1);
+  transform: rotateY(0deg) translateZ(calc(var(--height) / 2));
+}
+
+/* REVERSO */
+.msg-btn::after {
+  background-color: var(--color1);
+  color: var(--color2);
+  transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
+}
+
+/* BOTÓN ACTIVO */
+.msg-btn.active {
+  transform: translateZ(calc(-1 * var(--height) / 2)) rotateX(-90deg);
+}
