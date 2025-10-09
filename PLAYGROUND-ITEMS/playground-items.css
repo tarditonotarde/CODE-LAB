@@ -1305,3 +1305,34 @@ input[type="color"] {
   max-height: 250px !important;
   width: auto;
 }
+
+/* ==========================
+   DARKBOT
+   ========================== */
+#darkbot-container {
+  background: #000;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 0 20px rgba(255, 0, 100, 0.3);
+  font-family: 'Courier New', monospace;
+}
+
+#chat-box .bot-msg {
+  color: #ff5e99;
+}
+
+#chat-box .user-msg {
+  color: #ffee58;
+}
+
+#send-btn {
+  background-color: #111;
+  color: #ff5e99;
+  border: 1px solid #ff5e99;
+  transition: all 0.3s ease;
+}
+
+#send-btn:hover {
+  background-color: #ff5e99;
+  color: #111;
+}
