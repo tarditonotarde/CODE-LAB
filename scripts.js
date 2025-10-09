@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Cuando hagan click, se abre playground.html
     game.addEventListener("click", () => {
-      window.location.href = "/playground.html";
+      window.location.href = "playground.html";
     });
 
     const gridSize = 5;
