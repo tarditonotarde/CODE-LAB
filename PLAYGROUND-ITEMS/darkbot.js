@@ -18,8 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
     msg.style.backgroundColor = "#09cabe85";
   }
   
-  msg.style.color = "#000000ff";
-    msg.style.fontFamily = "monospace";
+msg.style.color = "#000000ff";
+msg.style.fontFamily = "monospace";
+msg.style.fontSize = "1em";
+
+// Media query para pantallas <= 768px
+if (window.matchMedia("(max-width: 768px)").matches) {
+  msg.style.fontSize = "0.8rem";
+}
+
+// Media query para pantallas <= 480px
+if (window.matchMedia("(max-width: 480px)").matches) {
+  msg.style.fontSize = "0.8rem";
+}
     chatBox.appendChild(msg);
     chatBox.scrollTop = chatBox.scrollHeight;
   }

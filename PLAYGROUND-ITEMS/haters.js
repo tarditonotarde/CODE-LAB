@@ -29,9 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let color = "#ff0066";
   let size = 2;
 
-  const canvasWidth = 350;
-  const canvasHeight = 350;
+let canvasWidth = 250;
+let canvasHeight = 250;
 
+  
   // ==========================
   // HISTORIAL PARA UNDO
   // ==========================
