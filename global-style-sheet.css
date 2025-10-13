@@ -1685,6 +1685,8 @@ ul {
 .card.visible {
   opacity: 1;
   transform: translateY(0);
+  display: flex;
+  justify-content: center;
 }
 
 .card img {
