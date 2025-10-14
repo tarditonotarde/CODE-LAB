@@ -1323,13 +1323,13 @@ input[type="color"] {
 }
 
 #chat-box {
-border-radius: 10px;
-border: 2px solid black;
-height: 200px; 
-overflow-y: auto; 
-padding: 20px;
-margin: 20px;
-background: #fdbdcf58;
+  border-radius: 10px;
+  border: 2px solid black;
+  height: 200px;
+  overflow-y: auto;
+  padding: 20px;
+  margin: 20px;
+  background: #fdbdcf58;
 }
 
 .input-g {
@@ -1339,35 +1339,35 @@ background: #fdbdcf58;
 }
 
 #user-input {
-font-family: monospace;
-background: #fdbdcf58;
+  font-family: monospace;
+  background: #fdbdcf58;
 }
 
 .form-ctrl {
   display: flex;
   width: 100%;
-    font-family: monospace;
-    padding: 10px;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: black;
-    background-color: transparent;
-    border-radius: 10px;
-    border: 2px solid black;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  font-family: monospace;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: black;
+  background-color: transparent;
+  border-radius: 10px;
+  border: 2px solid black;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 @media (max-width: 768px) {
   .form-ctrl {
     font-size: 0.8rem;
-}
+  }
 }
 
 @media (max-width: 480px) {
   .form-ctrl {
     font-size: 0.8rem;
-}
+  }
 }
 
 /* BOTONES MEAN BOT */
@@ -1421,4 +1421,164 @@ background: #fdbdcf58;
 /* BOTÓN ACTIVO */
 .msg-btn.active {
   transform: translateZ(calc(-1 * var(--height) / 2)) rotateX(-90deg);
+}
+
+
+
+
+
+/* OFFICE APOCALYPSE */
+
+.office-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #000000cb;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 70vw;
+  margin: 20px;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.office-container h2 {
+  text-align: center;
+  margin: 0px;
+
+  padding: 0px;
+}
+
+.stats-bars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.stat {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+  line-height: 1.2em;
+  margin-bottom: 5px;
+}
+
+.bar-container {
+  background-color: #111111a5;
+  width: 100%;
+  height: 25px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease;
+}
+
+.bar.stress {
+  background-color: #ff4d4d;
+}
+
+.bar.chaos {
+  background-color: #ffa500;
+}
+
+.bar.happiness {
+  background-color: #4dff4d;
+}
+
+.bar.embarrassment {
+  background-color: #4dffff;
+}
+
+.event-text {
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 1.2em;
+  line-height: 1.2em;
+}
+
+#event-text h2 {
+  font-weight: 300;
+  font-size: 1.2em;
+  color: #4dffff !important;
+  margin: 0px;
+  padding: 0px;
+}
+
+.options-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.options-container button {
+  flex: 1 1 45%;
+  min-width: 120px;
+  padding: 10px;
+  font-weight: 600;
+  background-color: #000000b3;
+  border: 1px solid white;
+  border-radius: 40px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.options-container button:hover {
+  background-color: #00000063;
+}
+
+#restart-btn {
+  display: none;
+  min-width: 120px;
+  padding: 10px;
+  background-color: #f91414be;
+  border: 1px solid white;
+  border-radius: 40px;
+   text-transform: uppercase;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#restart-btn:hover {
+  background-color: #ff4d4d86;
+}
+
+@media screen and (max-width: 600px) {
+  .stat {
+    flex: 1 1 100%;
+  }
+
+  .options-container button {
+    flex: 1 1 100%;
+  }
+
+  #event-text h2 {
+    margin: 0px;
+    padding: 0px;
+    font-weight: 300;
+    font-size: 1em;
+    text-align: left !important;
+    color: #4dffff !important;
+  }
 }
