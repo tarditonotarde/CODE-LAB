@@ -41,10 +41,10 @@ if (window.matchMedia("(max-width: 480px)").matches) {
   const welcomeMessages = [
     "Bienvenido… prepárate, tu vida y tu dignidad van a ser criticadas sin piedad.",
     "Hola… espero que tu día sea tan desastroso como tu último proyecto.",
-    "Atención: Claudia 👁 te juzgará sin piedad.",
+    "Atención: Claudia 👁👄👁 te juzgará sin piedad.",
     "Prepárate… tu ego está en juego, y yo no tengo piedad.",
     "Bienvenido… espero que tu sentido común sobreviva a este chat.",
-    "Cuidado… Claudia 👁 está observando tus errores.",
+    "Cuidado… Claudia 👁👄👁 está observando tus errores.",
     "Bienvenido al club de los desastres humanos.",
     "Prepárate… el sarcasmo extremo está activado.",
     "Hola… tu incompetencia será documentada aquí.",
