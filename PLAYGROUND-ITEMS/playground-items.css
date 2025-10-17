@@ -632,7 +632,6 @@ ul {
 /* Texto debajo de los botones */
 .tag-content {
   max-height: 0;
-  padding-left: 15px;
   overflow: hidden;
   opacity: 0;
   transition: all 0.3s ease;
@@ -1578,4 +1577,41 @@ input[type="color"] {
     text-align: left !important;
     color: #4dffff !important;
   }
+}
+
+/* ==========================
+ SYNAPHELMET
+   ========================== */
+
+   /* Contenedor del móvil */
+.mobile-frame {
+    width: 360px;           /* Ancho típico de un móvil */
+    height: 740px;          /* Alto proporcional */
+    margin: 2rem auto;      /* Centrado */
+    border: 16px solid #111; /* Borde tipo "marco" del móvil */
+    border-radius: 36px;     /* Bordes redondeados */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5); /* Sombra 3D */
+    overflow: hidden;        /* Para que el iframe no se salga */
+    background: #000;        /* Fondo negro dentro del marco */
+    position: relative;
+}
+
+/* Simular notch o altavoz superior (opcional) */
+.mobile-frame::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 8px;
+    background: #222;
+    border-radius: 4px;
+}
+
+/* Iframe que ocupa todo el contenedor */
+.mobile-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
