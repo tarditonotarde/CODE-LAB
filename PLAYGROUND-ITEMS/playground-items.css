@@ -787,6 +787,26 @@ li.open .tag-content {
   padding: 20px;
 }
 
+.img-norm {
+  width: 40vw;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+.img-norm {
+  width: 60vw;
+  padding: 20px;
+}
+}
+
+@media (max-width: 480px) {
+ .img-norm {
+  width: 80vw;
+  padding: 20px;
+}
+}
+
+
 .img-figma {
   width: 80vw;
   height: 80vh;
