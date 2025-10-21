@@ -1590,7 +1590,7 @@ input[type="color"] {
 .mobile-frame {
   width: 90vw;              /* se adapta al ancho de pantalla */
   max-width: 400px;         /* no crece más que el prototipo */
-  height: 80vh;
+  height: 800px;
   max-height: 700px;
   margin: 3rem auto;
   border: 16px solid #111;
