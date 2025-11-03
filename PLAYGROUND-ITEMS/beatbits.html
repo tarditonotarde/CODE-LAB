@@ -238,6 +238,14 @@
         </div>
     </div>
 
+
+            <div class="linea-completa"></div>
+
+<img class="img-norm" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTh6ZGI3NTNrOXVkZDBkNXl6ZXJ4enVwMGExNGo5eGd2aTE4OWo1MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gpZyDJVTFTRqE/giphy.gif" alt="Beatbits animation demo">
+
+            <div class="linea-completa"></div>
+
+
     <div class="text-block">
         <div class="block-content">
             <ul>
@@ -306,17 +314,6 @@
         <div class="block-content">
             <div class="linea-completa-subtitle"></div>
             <ul>
-                <li>Persistent component architecture to avoid reset when switching screens:</li>
-<pre><code>&lt;motion.div
-  animate={{ opacity: isActive ? 1 : 0, pointerEvents: isActive ? 'auto' : 'none' }}
-  style={{ display: 'block' }}
-&gt;</code></pre>
-                <li>stopAudioTrigger system to stop audio without resetting UI:</li>
-<pre><code>const handleScreenChange = (screenId) =&gt; {
-  stopAllAudio();
-  setStopAudioTrigger(prev =&gt; prev + 1);
-  setActiveScreen(screenId);
-};</code></pre>
                 <li>Dynamic color feedback on logo based on active sound type.</li>
                 <li>Permanent vocal effects through audio conversion & saving new version.</li>
                 <li>Optimized latency (<50ms), responsive animations, memory management, and smooth mobile UX.</li>
