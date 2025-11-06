@@ -27,12 +27,14 @@ body {
 
 }
 
+
 body {
   position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   font-family: 'Montserrat', sans-serif;
+  
 
 }
 
@@ -1635,6 +1637,7 @@ input[type="color"] {
   justify-content: center;
   align-items: flex-start;
   cursor: pointer;
+   zoom: 0.6;
 }
 
 /* Notch */
