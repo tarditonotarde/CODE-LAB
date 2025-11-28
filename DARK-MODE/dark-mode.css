@@ -67,6 +67,8 @@ body {
   pointer-events: none;
 }
 
+
+
 /* Gradiente animado encima del overlay */
 body::before {
   content: "";
