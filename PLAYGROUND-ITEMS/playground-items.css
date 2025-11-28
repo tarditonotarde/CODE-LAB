@@ -121,6 +121,17 @@ header {
   align-items: center;
   flex-direction: column;
 }
+@media (max-width: 768px) {
+  .head-items {
+    zoom: 0.7; 
+  }
+}
+
+@media (max-width: 480px) {
+  .head-items {
+    zoom: 0.6; 
+  }
+}
 
 .ojo-svg-header {
   width: 80px;
