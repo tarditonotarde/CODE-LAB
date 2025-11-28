@@ -77,13 +77,6 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image:
-    linear-gradient(in oklch longer hue to right,
-      oklch(0.15 0.15 var(--hue1) / 60%),
-      oklch(0.15 0.15 var(--hue2) / 60%)),
-    linear-gradient(in oklch longer hue to bottom,
-      oklch(0.15 0.15 var(--hue1) / 60%),
-      oklch(0.15 0.15 var(--hue2) / 60%));
   background-size: 100% 100%;
   z-index: -1; /* encima del overlay y el video */
   animation: anim_bg_dark 10s linear infinite;
