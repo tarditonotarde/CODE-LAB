@@ -1706,6 +1706,19 @@ input[type="color"] {
   scrollbar-width: none;    /* Firefox scrollbar */
 }
 
+
+@media (max-width: 768px) {
+  .mobile-frame iframe {
+    zoom: 0.8; 
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-frame iframe {
+    zoom: 0.7; 
+  }
+}
+
 /* Ocultar scrollbar en Chrome, Safari y Opera */
 .mobile-frame iframe::-webkit-scrollbar {
   display: none;
