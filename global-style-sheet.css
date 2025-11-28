@@ -416,6 +416,20 @@ ul {
   margin-bottom: 50px;
 }
 
+@media (max-width: 768px) {
+  .eye-container {
+  margin-bottom: 30px;
+  zoom: 0.8;
+}
+}
+
+@media (max-width: 480px) {
+ .eye-container {
+  margin-bottom: 20px;
+  zoom: 0.7;
+}
+}
+
 .eye {
   position: relative;
   width: 100px;
