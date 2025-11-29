@@ -29,10 +29,16 @@
 <body>
     
 <!-- Video de fondo -->
-<video autoplay muted loop id="bg-video">
-  <source src="../ASSETS/IMG/frankenstein.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<!-- HTML -->
+<div class="bg-wrapper" aria-hidden="true">
+  <video id="bg-video" autoplay muted loop playsinline webkit-playsinline preload="auto" muted>
+    <source src="../ASSETS/IMG/frankenstein.mp4" type="video/mp4">
+  </video>
+
+  <div id="bg-overlay"></div>
+  <div id="bg-gradient" aria-hidden="true"></div>
+</div>
+
 
 <!-- Overlay negro semi-transparente -->
 <div id="bg-overlay"></div>

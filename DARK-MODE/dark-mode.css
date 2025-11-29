@@ -43,43 +43,50 @@ body {
 /* =============================
    DARK GRADIENT BACKGROUND
    ============================= */
+/* CSS corregido: sin z-index negativos */
+.bg-wrapper {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0; /* base */
+}
+
 /* Video de fondo */
 #bg-video {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* cubre toda la pantalla */
-  z-index: -3; /* detrás de todo */
-  pointer-events: none; /* no bloquea clicks */
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;        /* esto hará que siempre ajuste sin deformarse */
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* Overlay negro semi-transparente */
 #bg-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* negro 50% opacidad */
-  z-index: -2; /* encima del video pero debajo del gradiente */
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1; /* encima del video */
   pointer-events: none;
 }
 
-
-
-/* Gradiente animado encima del overlay */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+/* Gradiente animado encima */
+#bg-gradient {
+  position: absolute;
+  inset: 0;
   background-size: 100% 100%;
-  z-index: -1; /* encima del overlay y el video */
+  z-index: 2; /* encima del overlay */
+  pointer-events: none;
   animation: anim_bg_dark 10s linear infinite;
+}
+
+/* Asegúrate de que el contenido principal esté por encima */
+main, .app-content {
+  position: relative;
+  z-index: 3;
 }
 
 
