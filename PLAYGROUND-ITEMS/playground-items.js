@@ -245,4 +245,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-
+  /* ===========================
+VIDEO X2
+     =========================== */
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".fast-video").playbackRate = 2;
+});

@@ -1733,3 +1733,62 @@ input[type="color"] {
     width: 100% !important;              /* ocupa todo el ancho del marco */
   height: 100% !important;             /* ocupa toda la altura */
 }
+
+
+/* ===========================
+   VIDEO GALLERY (Responsive)
+   =========================== */
+
+.video-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20PX;
+    width: 70VW;
+    padding: 20px;
+}
+
+.video-item {
+  flex: 0 0 20%;   /* 5 columnas en desktop */
+  max-width: 20%;
+}
+
+.video-it {
+   width: 250px;
+  max-width: 70vw;
+  padding: 20px;
+  justify-content: center !important;
+}
+
+.video-item video {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  object-fit: cover;
+}
+
+
+/* ===========================
+   RESPONSIVE BREAKPOINTS
+   =========================== */
+
+/* Tablet (se hacen más grandes pero siguen en fila) */
+@media (max-width: 992px) {
+  .video-item {
+    flex: 0 0 auto;   /* 3 por fila */
+  }
+}
+
+/* Móvil (cambia a columnas reales) */
+@media (max-width: 600px) {
+  .video-gallery {
+    flex-wrap: wrap;        /* cambia a columnas */
+
+  }
+
+  .video-item {
+    flex: 0 0 100%;         /* cada video ocupa una fila */
+    max-width: 100%;
+  }
+}
