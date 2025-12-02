@@ -1709,13 +1709,13 @@ input[type="color"] {
 
 @media (max-width: 768px) {
   .mobile-frame iframe {
-    zoom: 0.8; 
+    zoom: 0.7; 
   }
 }
 
 @media (max-width: 480px) {
   .mobile-frame iframe {
-    zoom: 0.7; 
+    zoom: 0.6; 
   }
 }
 
