@@ -528,3 +528,54 @@ stuffsLinks.forEach(link => {
 
 }); 
 
+/* ===========================================================
+   FORZAR LINKS DE CARDS → /CODE-LAB/PLAYGROUND-ITEMS/...
+                            /CODE-LAB/PORTFOLIO-ITEMS/...
+   Mantiene subcarpeta original y elimina -dark
+   =========================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cardLinks = document.querySelectorAll(".cards-section .card a");
+
+  cardLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href") || "";
+
+      // ignorar externos
+      if (/^https?:\/\//i.test(href)) return;
+
+      // obtener partes del href
+      const parts = href.split("/").filter(Boolean); // limpia vacíos
+
+      // ejemplo: ["PORTFOLIO-ITEMS", "herta-security.html"]
+      const folder = parts[parts.length - 2] || "";
+      let filename = parts.pop().replace("-dark", "");
+
+      // si está fuera de PLAYGROUND/PORTFOLIO, no hacemos nada
+      if (!folder.includes("PLAYGROUND-ITEMS") && !folder.includes("PORTFOLIO-ITEMS")) return;
+
+      e.preventDefault();
+
+      // construir nueva ruta
+      const target = `/CODE-LAB/${folder}/${filename}`;
+
+      // ctrl/cmd/shift → nueva pestaña
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) {
+        window.open(target, "_blank");
+      } else {
+        window.location.href = target;
+      }
+    });
+  });
+});
+
+/* ===========================
+  CARD EFFECTS PORTFOLIO ITEMS
+   =========================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cards = document.querySelectorAll('.card');
+  setTimeout(() => {
+    cards.forEach(card => card.classList.add('visible'));
+  }, 500); // espera 0.5 segundos antes de aplicar
+});
