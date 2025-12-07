@@ -1622,107 +1622,112 @@ input[type="color"] {
    ========================== */
 
 
-/* Contenedor del marco del móvil */
-.mobile-frame {
-  width: 90vw;               /* se adapta al ancho de pantalla */
-  max-width: 430px;          /* tamaño más cercano al iPhone 16 */
-  height: 932px;             /* proporción aproximada de pantalla iPhone 16 */
-  max-height: 932px;
-  margin: 3rem auto;
-  border: 4px solid #111;    /* bordes más finos como el iPhone */
-  border-radius: 48px;       /* esquinas redondeadas */
+/* ===== Variables actualizadas (móviles más pequeños) ===== */
+:root{
+  --scale-xl: 0.7;   /* >=1600px */
+  --scale-lg: 0.6;   /* 1200-1599px */
+  --scale-md: 0.5;   /* 768-1199px */
+
+  /* 🔥 Ajuste solicitado: un poco más pequeño en móviles */
+  --scale-sm: 0.5;   /* 421-767px → antes 0.75  */
+  --scale-xs: 0.5;   /* <=420px  → antes 0.90  */
+
+  --scale-current: var(--scale-md);
+}
+
+/* Mockup */
+.mobile-frame{
+  width: clamp(220px, 16.5vw, 340px);
+  aspect-ratio: 430 / 932;
+  margin: 2rem auto;
+  border: 3px solid #111;
+  border-radius: 36px;
   background: #000;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
-              inset 0 0 30px rgba(255, 255, 255, 0.05);
-  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.55), inset 0 0 24px rgba(255,255,255,0.03);
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  cursor: pointer;
-   zoom: 0.6;
+  overflow: hidden;
 }
 
 /* Notch */
-.mobile-frame::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 210px;       /* ancho aproximado del notch */
-  height: 34px;       /* alto aproximado del notch */
-  background: #111;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  z-index: 2;
+.mobile-frame::before{
+  content:"";
+  position:absolute;
+  top: 1.2%;
+  left:50%;
+  transform:translateX(-50%);
+  width:26%;
+  height:2.2%;
+  background:#222;
+  border-radius:6px;
+  z-index:10;
+}
+.mobile-frame::after{
+  content:"";
+  position:absolute;
+  top:2%;
+  left:50%;
+  transform:translateX(-50%);
+  width:12%;
+  height:1.4%;
+  background:#333;
+  border-radius:4px;
+  z-index:11;
 }
 
-/* Altavoces y cámara frontal (opcional) */
-.mobile-frame::after {
-  content: '';
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70px;
-  height: 6px;
-  background: #333;
-  border-radius: 3px;
-  z-index: 3;
+/* Viewport */
+.frame-inner{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
 }
 
-
-/* Notch superior */
-.mobile-frame::before {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 10px;
-  background: #222;
-  border-radius: 5px;
-  z-index: 10;
-}
-
-/* Iframe ocupando todo el contenedor */
-.mobile-frame iframe {
-  width: 100%;              /* ocupa todo el ancho del marco */
-  height: 100%;             /* ocupa toda la altura */
+/* Iframe centrado + escala */
+.frame-inner iframe{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform-origin:center center;
+  transform: translate(-50%,-50%) scale(var(--scale-current));
+  width: calc(100% / var(--scale-current));
+  height: calc(100% / var(--scale-current));
   border: none;
-  overflow-y: auto;         /* scroll vertical si es necesario */
-  overflow-x: hidden;       /* evita scroll horizontal */
-  -ms-overflow-style: none; /* IE/Edge scrollbar */
-  scrollbar-width: none;    /* Firefox scrollbar */
+  display:block;
+  pointer-events:auto;
+  -webkit-overflow-scrolling:touch;
 }
 
+/* Scrollbars off */
+.frame-inner iframe::-webkit-scrollbar{ display:none; }
+.frame-inner iframe{ -ms-overflow-style:none; scrollbar-width:none; }
 
-@media (max-width: 768px) {
-  .mobile-frame iframe {
-    zoom: 0.7; 
-  }
+/* ===== Breakpoints ===== */
+
+/* Pantallas muy grandes */
+@media (min-width:1600px){
+  :root{ --scale-current: var(--scale-xl); }
 }
 
-@media (max-width: 480px) {
-  .mobile-frame iframe {
-    zoom: 0.6; 
-  }
+/* Desktop grande */
+@media (min-width:1200px) and (max-width:1599px){
+  :root{ --scale-current: var(--scale-lg); }
 }
 
-
-
-/* Ocultar scrollbar en Chrome, Safari y Opera */
-.mobile-frame iframe::-webkit-scrollbar {
-  display: none;
+/* Desktop medio */
+@media (min-width:768px) and (max-width:1199px){
+  :root{ --scale-current: var(--scale-md); }
 }
 
-/* Cursor tipo móvil */
-.mobile-frame {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><circle cx="16" cy="16" r="6" fill="white" fill-opacity="0.8"/></svg>') 16 16, auto;
+/* Tablets / móviles grandes */
+@media (min-width:421px) and (max-width:767px){
+  :root{ --scale-current: var(--scale-sm); }
+  .mobile-frame { width: clamp(240px, 70vw, 320px); }
 }
 
+/* Móviles pequeños */
+@media (max-width:420px){
+  :root{ --scale-current: var(--scale-xs); }
+  .mobile-frame { width: clamp(200px, 86vw, 300px); }
+}
 
 
 /* ===========================
