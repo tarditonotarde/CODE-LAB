@@ -1634,7 +1634,7 @@ input[type="color"] {
 
   /* móviles (ajustadas para legibilidad sin quedar enanas) */
   --scale-sm: 0.7;   /* 421-767px */
-  --scale-xs: 0.6;   /* <=420px */
+  --scale-xs: 0.55;   /* <=420px */
 
   /* translate Y variable: se usa para "mover" visualmente el iframe en Y en móviles */
   --ty-xl: -50%;      /* centro perfecto para desktop */
