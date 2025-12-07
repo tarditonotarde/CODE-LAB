@@ -1634,14 +1634,14 @@ input[type="color"] {
 
   /* móviles (ajustadas para legibilidad sin quedar enanas) */
   --scale-sm: 0.7;   /* 421-767px */
-  --scale-xs: 0.7;   /* <=420px */
+  --scale-xs: 0.6;   /* <=420px */
 
   /* translate Y variable: se usa para "mover" visualmente el iframe en Y en móviles */
   --ty-xl: -50%;      /* centro perfecto para desktop */
   --ty-lg: -50%;
   --ty-md: -50%;
   --ty-sm: -49%;      /* subir ligeramente el contenido en móviles grandes */
-  --ty-xs: -45%;      /* subir más en móviles pequeños */
+  --ty-xs: -50%;      /* subir más en móviles pequeños */
 
   /* valor activo (será redefinido por media queries) */
   --scale-current: var(--scale-md);
