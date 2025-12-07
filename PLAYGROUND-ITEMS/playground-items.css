@@ -1621,21 +1621,34 @@ input[type="color"] {
    MOBILE FRAME
    ========================== */
 
+/* ============================
+   CSS FINAL: MOCKUP + IFRAME (corrige móviles)
+   ============================ */
 
-/* ===== Variables actualizadas (móviles más pequeños) ===== */
+/* Variables: ajusta aquí si quieres */
 :root{
-  --scale-xl: 0.7;   /* >=1600px */
-  --scale-lg: 0.6;   /* 1200-1599px */
+  /* escalas por breakpoint (desktop -> móvil) */
+  --scale-xl: 0.8;   /* >=1600px */
+  --scale-lg: 0.7;   /* 1200-1599px */
   --scale-md: 0.5;   /* 768-1199px */
 
-  /* 🔥 Ajuste solicitado: un poco más pequeño en móviles */
-  --scale-sm: 0.5;   /* 421-767px → antes 0.75  */
-  --scale-xs: 0.5;   /* <=420px  → antes 0.90  */
+  /* móviles (ajustadas para legibilidad sin quedar enanas) */
+  --scale-sm: 0.7;   /* 421-767px */
+  --scale-xs: 0.7;   /* <=420px */
 
+  /* translate Y variable: se usa para "mover" visualmente el iframe en Y en móviles */
+  --ty-xl: -50%;      /* centro perfecto para desktop */
+  --ty-lg: -50%;
+  --ty-md: -50%;
+  --ty-sm: -49%;      /* subir ligeramente el contenido en móviles grandes */
+  --ty-xs: -45%;      /* subir más en móviles pequeños */
+
+  /* valor activo (será redefinido por media queries) */
   --scale-current: var(--scale-md);
+  --ty-current: var(--ty-md);
 }
 
-/* Mockup */
+/* Mockup container — control estricto con clamp + aspect-ratio */
 .mobile-frame{
   width: clamp(220px, 16.5vw, 340px);
   aspect-ratio: 430 / 932;
@@ -1646,102 +1659,136 @@ input[type="color"] {
   box-shadow: 0 18px 40px rgba(0,0,0,0.55), inset 0 0 24px rgba(255,255,255,0.03);
   position: relative;
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Notch */
+/* Notch y altavoz (proporcionales) */
 .mobile-frame::before{
-  content:"";
-  position:absolute;
+  content: "";
+  position: absolute;
   top: 1.2%;
-  left:50%;
-  transform:translateX(-50%);
-  width:26%;
-  height:2.2%;
-  background:#222;
-  border-radius:6px;
-  z-index:10;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26%;
+  height: 2.2%;
+  background: #222;
+  border-radius: 6px;
+  z-index: 10;
 }
 .mobile-frame::after{
-  content:"";
-  position:absolute;
-  top:2%;
-  left:50%;
-  transform:translateX(-50%);
-  width:12%;
-  height:1.4%;
-  background:#333;
-  border-radius:4px;
-  z-index:11;
+  content: "";
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12%;
+  height: 1.4%;
+  background: #333;
+  border-radius: 4px;
+  z-index: 11;
 }
 
-/* Viewport */
+/* Wrapper: ocupa todo el mockup */
 .frame-inner{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
 }
 
-/* Iframe centrado + escala */
+/* Iframe centrado y escalable.
+   Nota: usamos variables --scale-current y --ty-current para controlar zoom + offset Y. */
 .frame-inner iframe{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform-origin:center center;
-  transform: translate(-50%,-50%) scale(var(--scale-current));
-  width: calc(100% / var(--scale-current));
-  height: calc(100% / var(--scale-current));
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center center;
+
+  /* Primero translate X/Y usando la variable de Y, luego scale */
+  transform: translate(-50%, var(--ty-current, -50%)) scale(var(--scale-current, 0.56));
+
+  /* Para evitar recortes: el iframe "real" se hace mayor que el viewport y luego se escala */
+  width: calc(100% / var(--scale-current, 0.56));
+  height: calc(100% / var(--scale-current, 0.56));
+
   border: none;
-  display:block;
-  pointer-events:auto;
-  -webkit-overflow-scrolling:touch;
+  display: block;
+  pointer-events: auto;
+  -webkit-overflow-scrolling: touch;
+  background: transparent;
 }
 
-/* Scrollbars off */
-.frame-inner iframe::-webkit-scrollbar{ display:none; }
-.frame-inner iframe{ -ms-overflow-style:none; scrollbar-width:none; }
+/* Ocultar scrollbars si quieres */
+.frame-inner iframe::-webkit-scrollbar{ display: none; }
+.frame-inner iframe{ -ms-overflow-style: none; scrollbar-width: none; }
 
-/* ===== Breakpoints ===== */
+/* -----------------------
+   Breakpoints: definimos --scale-current y --ty-current
+   ----------------------- */
 
-/* Pantallas muy grandes */
-@media (min-width:1600px){
-  :root{ --scale-current: var(--scale-xl); }
+/* Muy grandes (desktop extra) */
+@media (min-width: 1600px) {
+  :root{
+    --scale-current: var(--scale-xl);
+    --ty-current: var(--ty-xl);
+  }
+  .mobile-frame { width: clamp(240px, 14.5vw, 360px); }
 }
 
 /* Desktop grande */
-@media (min-width:1200px) and (max-width:1599px){
-  :root{ --scale-current: var(--scale-lg); }
+@media (min-width: 1200px) and (max-width: 1599px) {
+  :root{
+    --scale-current: var(--scale-lg);
+    --ty-current: var(--ty-lg);
+  }
+  .mobile-frame { width: clamp(240px, 15.5vw, 340px); }
 }
 
 /* Desktop medio */
-@media (min-width:768px) and (max-width:1199px){
-  :root{ --scale-current: var(--scale-md); }
+@media (min-width: 768px) and (max-width: 1199px) {
+  :root{
+    --scale-current: var(--scale-md);
+    --ty-current: var(--ty-md);
+  }
+  .mobile-frame { width: clamp(220px, 18vw, 320px); }
 }
 
 /* Tablets / móviles grandes */
-@media (min-width:421px) and (max-width:767px){
-  :root{ --scale-current: var(--scale-sm); }
-
-  .mobile-frame { width: clamp(240px, 70vw, 320px); }
-
-  .frame-inner iframe{
-    transform: translate(-50%, -47%) scale(var(--scale-current));
-    width: calc(100% / var(--scale-current));
-    height: calc(100% / var(--scale-current));
+@media (min-width: 421px) and (max-width: 767px) {
+  :root{
+    --scale-current: var(--scale-sm);
+    --ty-current: var(--ty-sm);
   }
+  .mobile-frame { width: clamp(240px, 70vw, 320px); }
 }
 
 /* Móviles pequeños */
-@media (max-width:420px){
-  :root{ --scale-current: var(--scale-xs); }
-
-  .mobile-frame { width: clamp(200px, 86vw, 300px); }
-
-  .frame-inner iframe{
-    transform: translate(-50%, -45%) scale(var(--scale-current));
-    width: calc(100% / var(--scale-current));
-    height: calc(100% / var(--scale-current));
+@media (max-width: 420px) {
+  :root{
+    --scale-current: var(--scale-xs);
+    --ty-current: var(--ty-xs);
   }
+  .mobile-frame { width: clamp(200px, 86vw, 300px); }
 }
+
+/* -----------------------
+   Consejos rápidos para afinar si aún no queda perfecto
+   -----------------------
+   • Si el contenido sigue muy arriba/bajo en *tu* móvil, ajusta --ty-xs:
+     por ejemplo --ty-xs: -43% (mueve el contenido ligeramente hacia abajo)
+     o --ty-xs: -48% (mueve ligeramente hacia arriba).
+
+   • Si el contenido sigue enano, sube --scale-xs a 0.85; si quieres más pequeño baja a 0.70.
+
+   • Para probar cambios rápidos desde devtools:
+     document.documentElement.style.setProperty('--scale-current','0.9');
+     document.documentElement.style.setProperty('--ty-current','-46%');
+
+   • Si quieres que me lo deje perfecto para tu dispositivo, dime:
+     modelo (ej. "iPhone 12", "Pixel 6") o resolución (ej. "1080x2340") y te doy
+     los valores exactos (--scale-xs y --ty-xs) que funcionen a la primera.
+*/
+
+
 
 
 
