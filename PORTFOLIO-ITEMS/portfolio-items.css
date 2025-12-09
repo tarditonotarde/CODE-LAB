@@ -44,7 +44,9 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image:
+  background-color: whitesmoke;
+
+   /* background-image:
     linear-gradient(in oklch longer hue to right,
       oklch(0.93 0.08 var(--hue1) / 50%),
       oklch(0.93 0.08 var(--hue2) / 50%)),
@@ -53,8 +55,8 @@ body::before {
       oklch(0.93 0.08 var(--hue2) / 50%));
   background-size: 100% 100%;
   z-index: -1;
-  /* siempre detrás de todo */
-  animation: anim_bg 5s linear infinite;
+ siempre detrás de todo 
+  animation: anim_bg 5s linear infinite;*/
 }
 
 /* =============================
@@ -241,7 +243,7 @@ footer {
   padding: 10px;
   border-top: 2px solid black;
   height: 50px;
-background: #fdbdcf58; 
+background: #d6d2d498; 
   box-sizing: border-box;
 }
 

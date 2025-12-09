@@ -36,7 +36,6 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-
 body::before {
   content: "";
   position: fixed;
@@ -45,6 +44,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
+   background-color: whitesmoke;
   background-image:
     linear-gradient(in oklch longer hue to right,
       oklch(0.93 0.08 var(--hue1) / 10%),
@@ -712,7 +712,7 @@ ul {
   padding: 10px;
   border-top: 2px solid black;
   height: 50px;
-  background: #fdbdcf58;
+background: #d6d2d498; 
   box-sizing: border-box;
 }
 
